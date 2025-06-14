@@ -1,3 +1,9 @@
 export default function HomePage() {
-  return <h1>임시 홈 페이지 입니다.</h1>;
+  return (
+    <>
+      <div className="bg-primary text-white p-4 rounded-lg">
+        커스텀 그라데이션 배경
+      </div>
+    </>
+  );
 }
