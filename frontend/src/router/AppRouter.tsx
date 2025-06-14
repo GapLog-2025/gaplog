@@ -16,7 +16,7 @@ export default function AppRouter() {
       {/* 테스트 코드 작성을 위한 라우터 */}
       <Routes>
         <Route path="/jinyoung" element={<Jinyoung />} />
-        <Route path="/gimhun" element={<Gimhyn />} />
+        <Route path="/gimhyn" element={<Gimhyn />} />
         <Route path="/sinijini" element={<Sinijini />} />
       </Routes>
       {/* 유저 확인 로직 반영 전 라우터 작성 -25.06.14 */}
