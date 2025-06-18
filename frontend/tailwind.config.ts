@@ -1,9 +1,27 @@
 import type { Config } from 'tailwindcss';
+import plugin from 'tailwindcss/plugin';
 
+// 텍스트 스타일 타입 선언
+type TypoStyle = {
+  fontSize: string;
+  lineHeight: string;
+  letterSpacing: string;
+  fontWeight: string;
+  textDecoration?: string;
+};
+
+// tailwind 활용 테마 및 스타일링 설정
 const config: Config = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      fontWeight: {
+        regular: '400',
+        medium: '500',
+        semibold: '600',
+        bold: '700',
+        extrabold: '800',
+      },
       colors: {
         primary: '#8B5CF6',
         'primary-active': '#A855F7',
@@ -40,7 +58,90 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(({ matchUtilities, theme }) => {
+      // 1) 텍스트 스타일 맵
+      const typography: Record<string, TypoStyle> = {
+        'title-hero': {
+          fontSize: '72px',
+          lineHeight: '120%', // 120%
+          letterSpacing: '-0.03em', // -3%
+          fontWeight: theme('fontWeight.bold'),
+        },
+        title: {
+          fontSize: '48px',
+          lineHeight: '120%',
+          letterSpacing: '-0.02em',
+          fontWeight: theme('fontWeight.bold'),
+        },
+        subtitle: {
+          fontSize: '48px',
+          lineHeight: '120%',
+          letterSpacing: '-0.02em',
+          fontWeight: theme('fontWeight.bold'),
+        },
+        heading: {
+          fontSize: '24px',
+          lineHeight: '120%',
+          letterSpacing: '-0.02em',
+          fontWeight: theme('fontWeight.medium'),
+        },
+        subheading: {
+          fontSize: '20px',
+          lineHeight: '120%',
+          letterSpacing: '0em',
+          fontWeight: theme('fontWeight.medium'),
+        },
+        text: {
+          fontSize: '16px',
+          lineHeight: '140%',
+          letterSpacing: '0em',
+          fontWeight: theme('fontWeight.regular'),
+        },
+        link: {
+          fontSize: '16px',
+          lineHeight: '140%',
+          letterSpacing: '0em',
+          fontWeight: theme('fontWeight.regular'),
+          textDecoration: 'underline',
+        },
+        strong: {
+          fontSize: '16px',
+          lineHeight: '140%',
+          letterSpacing: '0em',
+          fontWeight: theme('fontWeight.bold'),
+        },
+        small: {
+          fontSize: '14px',
+          lineHeight: '140%',
+          letterSpacing: '0em',
+          fontWeight: theme('fontWeight.regular'),
+        },
+      };
+
+      // 2) matchUtilities로 typo-<key> 클래스 자동 생성
+      matchUtilities(
+        {
+          typo: (value) => {
+            const style = value as TypoStyle;
+            return {
+              fontSize: style.fontSize,
+              lineHeight: style.lineHeight,
+              letterSpacing: style.letterSpacing,
+              fontWeight: style.fontWeight,
+              ...(style.textDecoration && {
+                textDecoration: style.textDecoration,
+              }),
+            };
+          },
+        },
+        {
+          values: typography,
+          type: ['any'],
+        },
+      );
+    }),
+  ],
 };
 
 export default config;
