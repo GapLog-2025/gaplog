@@ -9,13 +9,13 @@ interface LayoutProps {
 
 export default function Layout({ children, aside }: LayoutProps) {
   return (
-    <div className="flex flex-col min-h-screen px-20">
+    <div className="flex flex-col min-h-screen">
       {/* Header */}
       <Header />
       {/* Body */}
-      <div className="flex flex-1 w-full pt-14 max-w-[1440px] mx-auto gap-[33px]">
+      <div className="flex flex-1 w-full min-w-[1440px] pt-14 mx-auto justify-between px-40 ">
         {/* Main Content Area */}
-        <main className="w-[842px] flex-none">{children}</main>
+        <main className="flex-none min-w-[850px]">{children}</main>
         {/* Right Aside (optional) */}
         {aside && <Aside>{aside}</Aside>}
       </div>

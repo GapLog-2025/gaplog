@@ -22,9 +22,9 @@ const tabs = [
 
 function Header() {
   return (
-    <header className="w-full h-full flex-col bg-white  items-center justify-between w-full max-w-[1440px] mx-auto">
+    <header className="w-full h-full flex-col bg-white mx-auto">
       {/* 홈 로고 & 통합 검색 */}
-      <div className="flex justify-between items-center w-full border-b-[1px] border-border pt-10 pb-5">
+      <div className="flex justify-between items-center w-full min-w-[1440px] border-b-[1px] border-border pt-10 pb-5 px-40">
         {/* 로고 부분 */}
         <NavLink to="/" className="flex items-center gap-3">
           <img src="/gaplog_icon.png" alt="갭로그 로고" />
@@ -40,7 +40,7 @@ function Header() {
       </div>
 
       {/* 네비게이션 탭 */}
-      <nav className="w-full flex gap-5 border-b-[1px] border-border">
+      <nav className="w-full min-w-[1440px] flex gap-5 border-b-[1px] border-border px-40">
         {tabs.map((tab) => (
           <NavLink
             key={tab.path}
