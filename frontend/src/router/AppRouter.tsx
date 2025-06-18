@@ -4,6 +4,7 @@ import GapReviewPage from "@/pages/GapReviewPage";
 import MentorPage from "@/pages/MentorPage";
 import CarePage from "@/pages/CarePage";
 import CompanyPage from "@/pages/CompanyPage";
+import RoadmapPage from "@/pages/Roadmap";
 import MyPage from "@/pages/MyPage";
 import LoginPage from "@/pages/LoginPage";
 import SignUpPage from "@/pages/SignUpPage";
@@ -28,6 +29,7 @@ export default function AppRouter() {
         <Route path="/mentoring" element={<MentorPage />} />
         <Route path="/care" element={<CarePage />} />
         <Route path="/companies" element={<CompanyPage />} />
+        <Route path="/roadmap" element={<RoadmapPage/>}/
         <Route path="/mypage" element={<MyPage />} />
       </Routes>
     </BrowserRouter>
