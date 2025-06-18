@@ -1,9 +1,10 @@
+import Layout from '@/components/Layout';
+import HomeAside from '@/features/Home/HomeAside';
+
 export default function HomePage() {
   return (
-    <>
-      <div className="bg-primary text-white p-4 rounded-lg">
-        커스텀 그라데이션 배경
-      </div>
-    </>
+    <Layout aside={<HomeAside />}>
+      <h1>홈 페이지입니다.</h1>
+    </Layout>
   );
 }
