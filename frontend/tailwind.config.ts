@@ -75,7 +75,7 @@ const config: Config = {
           fontWeight: theme('fontWeight.bold'),
         },
         subtitle: {
-          fontSize: '48px',
+          fontSize: '32px',
           lineHeight: '120%',
           letterSpacing: '-0.02em',
           fontWeight: theme('fontWeight.bold'),
