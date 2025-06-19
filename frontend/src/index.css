@@ -3,12 +3,22 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "PretendardVariable";
-  src: url("/fonts/PretendardGOVVariable.ttf") format("truetype");
+  font-family: 'PretendardVariable';
+  src: url('/fonts/PretendardGOVVariable.ttf') format('truetype');
   font-weight: 100 900;
   font-display: swap;
 }
 
+/* 기본 높이 설정 */
+html,
+body,
+#root {
+  height: 100%;
+}
+
 body {
-  font-family: "PretendardVariable", sans-serif;
+  @apply bg-white text-black;
+
+  font-family: 'PretendardVariable', sans-serif;
+  min-width: 1440px;
 }
