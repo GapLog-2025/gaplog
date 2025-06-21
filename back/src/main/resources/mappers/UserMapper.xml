@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaplog.user.mapper.UserMapper">
+
+    <insert id="save" parameterType="com.gaplog.user.domain.User" useGeneratedKeys="true" keyProperty="userId">
+        INSERT INTO users (email, password, name, role, job)
+        VALUES (#{email}, #{password}, #{name}, #{role} , #{job})
+    </insert>
+
+    <select id="findByEmail" resultType="com.gaplog.user.domain.User">
+        SELECT * FROM users WHERE email = #{email}
+    </select>
+
+    <update id="updateRoleAndJob">
+        UPDATE users
+        SET role = #{role}, job = #{job}
+        WHERE email = #{email}
+    </update>
+
+</mapper>
