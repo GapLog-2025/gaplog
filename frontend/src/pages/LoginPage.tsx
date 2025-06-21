@@ -1,6 +1,7 @@
 // Login Page (로그인)
 import { Stack, Avatar, Divider } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import IntroCard from '@/features/Auth/IntroCard';
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -17,31 +18,28 @@ export default function LoginPage() {
       justifyContent="center"
       height="100vh"
     >
-      <Stack id="comment" flex={1} alignItems="flex-end">
-        <Stack alignItems="flex-start">
-          <Stack id="logo" direction={'row'} gap={1}>
-            <Avatar
-              alt="gaplog 로고"
-              src="./public/gaplog_icon.png"
-              className="w-90"
-            />
-            <p className="self-center text-black font-bold text-lg">갭로그</p>
-          </Stack>
-          <div className="text-4xl leading-tight font-bold">
-            <div>
-              다시 시작하는{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8B5CF6] to-[#DF4AAB]">
-                당신
-              </span>
-              <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8B5CF6] to-[#DF4AAB]">
-                을 위한
-              </span>{' '}
-              <span>공간</span>
-            </div>
+      <IntroCard
+        sx={{
+          flex: 1,
+        }}
+      >
+        <IntroCard.Title>
+          <div>
+            다시 시작하는{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8B5CF6] to-[#DF4AAB]">
+              당신
+            </span>
+            <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8B5CF6] to-[#DF4AAB]">
+              을 위한
+            </span>{' '}
+            <span>공간</span>
           </div>
-        </Stack>
-      </Stack>
+        </IntroCard.Title>
+        <IntroCard.Description>
+          갭로그에 로그인하고 공백기를 의미있는 시간으로 만들어보세요.
+        </IntroCard.Description>
+      </IntroCard>
       <Stack id="login" flex={1}>
         <Stack className="border p-3 rounded-md w-1/3" gap={2}>
           <p className="text-2xl font-bold text-title">로그인</p>
