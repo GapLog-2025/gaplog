@@ -681,7 +681,32 @@ const PortfolioBuilderPage = () => {
                         }
                         />
                     </div>
+                  </div>
+                  <div className="mt-6">
+                    <div className="flex items-center justify-between mb-2">
+                      <label className="block text-sm font-medium text-gray-700">자기소개</label>
+                      <button
+                        className="flex items-center gap-2 px-3 py-1 text-sm border border-purple-600 text-purple-600 rounded-md hover:bg-purple-50 disabled:opacity-50"
+                        onClick={() => handleAIAssist("자기소개")}
+                        disabled={isGenerating}
+                      >
+                        <Wand2 size={16} />
+                        AI 도움받기
+                      </button>
                     </div>
+                    <textarea
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      rows={4}
+                      placeholder="간단한 자기소개를 작성하거나 AI 도움받기 버튼을 클릭하세요"
+                      value={portfolioData.personalInfo.summary}
+                      onChange={(e) =>
+                        setPortfolioData((prev) => ({
+                          ...prev,
+                          personalInfo: { ...prev.personalInfo, summary: e.target.value },
+                        }))
+                      }
+                    />
+                  </div>
                 </div>
                 )}
 
