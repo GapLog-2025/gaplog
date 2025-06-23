@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gaplog.emotion.mapper.EmotionMapper">
+
+    <!-- 감정일기 등록 -->
+    <insert id="insertEmotion" parameterType="com.gaplog.emotion.domain.DayEmotion">
+        INSERT INTO day_emotions (user_id, emotion, content, date, weather, sleeptime)
+        VALUES (#{userId}, #{emotion}, #{content}, #{date}, #{weather}, #{sleeptime})
+    </insert>
+
+    <!-- 감정일기 단건 조회 -->
+    <select id="findById" resultType="com.gaplog.emotion.domain.DayEmotion">
+        SELECT * FROM day_emotions WHERE emotions_id = #{emotionsId}
+    </select>
+
+    <!-- 감정일기 전체 조회 (사용자 기준) -->
+    <select id="findByUserId" resultType="com.gaplog.emotion.domain.DayEmotion">
+        SELECT * FROM day_emotions WHERE user_id = #{userId} ORDER BY date DESC
+    </select>
+
+    <!-- 감정일기 수정 -->
+    <update id="update" parameterType="com.gaplog.emotion.domain.DayEmotion">
+        UPDATE day_emotions
+        SET emotion = #{emotion},
+            content = #{content},
+            date = #{date},
+            weather = #{weather},
+            sleeptime = #{sleeptime}
+        WHERE emotions_id = #{emotionsId} AND user_id = #{userId}
+    </update>
+
+    <!-- 감정일기 삭제 -->
+    <delete id="delete">
+        DELETE FROM day_emotions WHERE emotions_id = #{emotionsId}
+    </delete>
+
+</mapper>
