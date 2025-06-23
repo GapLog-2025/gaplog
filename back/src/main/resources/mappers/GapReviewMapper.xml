@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gaplog.gapreview.mapper.GapReviewMapper">
+
+    <insert id="insertReview" parameterType="com.gaplog.gapreview.domain.GapReview">
+        INSERT INTO gap_reviews (user_id, title, major, content, grade, gap_period_months)
+        VALUES (#{userId}, #{title}, #{major}, #{content}, #{grade}, #{gapPeriodMonths})
+    </insert>
+
+    <select id="findBookmarkedReviews" parameterType="long" resultType="com.gaplog.gapreview.domain.GapReview">
+        SELECT gr.*
+        FROM gap_reviews gr
+        JOIN gap_review_bookmarks bm ON gr.gap_reviews_id = bm.gap_reviews_id
+        WHERE bm.user_id = #{userId}
+    </select>
+
+    <select id="search" resultType="com.gaplog.gapreview.domain.GapReview">
+        SELECT * FROM gap_reviews
+        <where>
+            <if test="major != null">
+                AND major = #{major}
+            </if>
+            <if test="minGrade != null">
+                AND grade &gt;= #{minGrade}
+            </if>
+            <if test="minGapPeriodMonths != null">
+                AND gap_period_months &gt;= #{minGapPeriodMonths}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insertBookmark" parameterType="map">
+        INSERT INTO gap_review_bookmarks (user_id, gap_reviews_id)
+        VALUES (#{userId}, #{reviewId})
+    </insert>
+
+    <select id="findBookmarkedReviewIdsByUserId" parameterType="long" resultType="long">
+        SELECT gap_reviews_id
+        FROM gap_review_bookmarks
+        WHERE user_id = #{userId}
+    </select>
+
+    <delete id="deleteBookmark" parameterType="map">
+        DELETE FROM gap_review_bookmarks
+        WHERE user_id = #{userId} AND gap_reviews_id = #{reviewId}
+    </delete>
+
+    <select id="isBookmarked" resultType="int" parameterType="map">
+        SELECT COUNT(*) FROM gap_review_bookmarks
+        WHERE user_id = #{userId} AND gap_reviews_id = #{reviewId}
+    </select>
+
+</mapper>
+
