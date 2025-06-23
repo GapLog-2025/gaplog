@@ -10,8 +10,9 @@ import com.gaplog.user.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.util.StringUtils;
 
 @SecurityRequirement(name = "bearerAuth")
 @RestController
@@ -40,8 +41,8 @@ public class UserController {
     public ResponseEntity<?> login(@RequestBody LoginRequestDTO request) {
         LoginResponseDTO response = userService.login(request.getEmail(), request.getPassword());
 
-        // ✅ 로그인 시 Redis에 토큰 저장
-        tokenService.saveToken(response.getToken(), response.getRole());
+        // ✅ 로그인된 토큰 Redis에 저장
+        tokenService.saveToken(response.getToken());
 
         return ResponseEntity.ok(response);
     }
@@ -49,9 +50,9 @@ public class UserController {
     @Operation(summary = "로그아웃")
     @PostMapping("/logout")
     public ResponseEntity<?> logout(@RequestHeader("Authorization") String bearerToken) {
-        if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
             String token = bearerToken.substring(7);
-            tokenService.deleteToken(token);
+            tokenService.deleteToken(token);  // ✅ Redis에서 삭제
             return ResponseEntity.ok("로그아웃 완료");
         }
         return ResponseEntity.badRequest().body("토큰이 없습니다");
@@ -60,13 +61,9 @@ public class UserController {
     @PutMapping("/update")
     @Operation(summary = "회원 정보 수정")
     public ResponseEntity<?> updateUser(@RequestBody UserUpdateDTO dto,
-                                        @RequestHeader("Authorization") String bearerToken) {
-        if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
-            String token = bearerToken.substring(7);
-            String email = jwtUtil.getEmailFromToken(token);
-            userService.updateUser(email, dto);
-            return ResponseEntity.ok("회원 정보가 수정되었습니다.");
-        }
-        return ResponseEntity.badRequest().body("토큰이 없습니다.");
+                                        @AuthenticationPrincipal com.gaplog.security.UserDetailsImpl userDetails) {
+        String email = userDetails.getEmail();
+        userService.updateUser(email, dto);
+        return ResponseEntity.ok("회원 정보가 수정되었습니다.");
     }
 }
