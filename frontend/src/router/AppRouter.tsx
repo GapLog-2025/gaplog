@@ -9,6 +9,7 @@ import MyPage from '@/pages/MyPage';
 import LoginPage from '@/pages/LoginPage';
 import SignUpPage from '@/pages/SignUpPage';
 import PortfolioPage from '@/pages/Portfolio/PortfolioPage';
+import Service from '@/pages/ServiceIntroduction';
 import Jinyoung from '@/pages/Test/Jinyoung';
 import Gimhyn from '@/pages/Test/GimHyn';
 import Sinijini from '@/pages/Test/Sinijini';
@@ -33,6 +34,7 @@ export default function AppRouter() {
         <Route path="/roadmap" element={<RoadmapPage />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/portfolio" element={<PortfolioPage />} />
+        <Route path="/service" element={<Service />} />
       </Routes>
     </BrowserRouter>
   );
