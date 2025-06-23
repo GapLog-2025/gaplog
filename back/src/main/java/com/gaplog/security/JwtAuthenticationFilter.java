@@ -1,6 +1,7 @@
 package com.gaplog.security;
 
 import com.gaplog.jwt.JwtUtil;
+import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Collections;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
@@ -27,25 +29,25 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request,
-                                    HttpServletResponse response,
-                                    FilterChain filterChain)
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
         String token = parseToken(request);
 
         if (token != null && jwtUtil.validateToken(token)) {
-            // Redis 블랙리스트 확인
             String isLogout = redisTemplate.opsForValue().get(token);
             if (isLogout != null) {
-                // 로그아웃된 토큰
                 filterChain.doFilter(request, response);
                 return;
             }
 
-            String email = jwtUtil.getEmailFromToken(token);
-            UsernamePasswordAuthenticationToken authentication =
-                    new UsernamePasswordAuthenticationToken(email, null, null);
+            Claims claims = jwtUtil.getClaimsFromToken(token);
+            Long userId = Long.parseLong(claims.getSubject());
+            String email = claims.get("email", String.class);
+            String role = claims.get("role", String.class);
+
+            UserDetailsImpl userDetails = new UserDetailsImpl(userId, email, null, role);
+            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
             authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }

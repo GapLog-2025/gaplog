@@ -1,5 +1,6 @@
 package com.gaplog.jwt;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -21,38 +22,39 @@ public class JwtUtil {
         this.expirationMs = expirationMs;
     }
 
-    // 토큰생성
-    public String generateToken(String email) {
+    public String generateToken(Long userId, String email, String role) {
         return Jwts.builder()
-                .setSubject(email)
+                .setSubject(String.valueOf(userId))
+                .claim("email", email)
+                .claim("role", role)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + expirationMs))
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
     }
 
-    public long getExpirationMs() {
-        return expirationMs;
-    }
-
     public boolean validateToken(String token) {
         try {
-            Jwts.parserBuilder()
-                    .setSigningKey(key)
-                    .build()
-                    .parseClaimsJws(token);
+            Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
             return true;
         } catch (Exception e) {
             return false;
         }
     }
 
+    public Claims getClaimsFromToken(String token) {
+        return Jwts.parserBuilder().setSigningKey(this.key).build().parseClaimsJws(token).getBody();
+    }
+
+    public Long getUserIdFromToken(String token) {
+        return Long.parseLong(getClaimsFromToken(token).getSubject());
+    }
+
+    public String getRoleFromToken(String token) {
+        return getClaimsFromToken(token).get("role", String.class);
+    }
+
     public String getEmailFromToken(String token) {
-        return Jwts.parserBuilder()
-                .setSigningKey(key)
-                .build()
-                .parseClaimsJws(token)
-                .getBody()
-                .getSubject(); // subject로 email 저장했으니 그대로 꺼냄
+        return getClaimsFromToken(token).get("email", String.class);
     }
 }

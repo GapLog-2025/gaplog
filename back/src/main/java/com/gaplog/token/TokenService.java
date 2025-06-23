@@ -2,11 +2,9 @@ package com.gaplog.token;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 @Service
 @RequiredArgsConstructor
@@ -14,7 +12,7 @@ public class TokenService {
 
     private final RedisTemplate<String, String> redisTemplate;
 
-    public void saveToken(String token, String role) {
+    public void saveToken(String token, String role, Long userId) {
         // ✅ 토큰을 key로, 이메일을 value로 저장하고 유효시간 설정 (예: 1시간)
         redisTemplate.opsForValue().set(token, role, Duration.ofHours(1));
     }

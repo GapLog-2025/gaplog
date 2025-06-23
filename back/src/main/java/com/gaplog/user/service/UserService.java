@@ -9,6 +9,7 @@ import com.gaplog.user.dto.UserUpdateDTO;
 public interface UserService {
     void register(UserDTO userDTO);
     LoginResponseDTO login(String email, String password);
-    User findByEmail(String email);
-    void updateUser(String email, UserUpdateDTO userUpdateDTO);
+    void updateUser(long userId, UserUpdateDTO userUpdateDTO);
+
+
 }
