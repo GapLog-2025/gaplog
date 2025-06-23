@@ -9,6 +9,12 @@
         VALUES (#{email}, #{password}, #{name}, #{role} , #{job})
     </insert>
 
+
+
+    <select id="findByUserId" resultType="com.gaplog.user.domain.User">
+        SELECT * FROM users WHERE user_id = #{userId}
+    </select>
+
     <select id="findByEmail" resultType="com.gaplog.user.domain.User">
         SELECT * FROM users WHERE email = #{email}
     </select>
