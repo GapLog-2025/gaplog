@@ -1,11 +1,11 @@
-import type React from "react"
-import { 
-  Box, 
-  Container, 
-  Card, 
-  CardContent, 
-  Skeleton
-} from "@mui/material"
+// import type React from "react"
+import {
+  // Box,
+  Container,
+  Card,
+  CardContent,
+  Skeleton,
+} from '@mui/material';
 
 export default function ServiceLoading() {
   return (
@@ -83,5 +83,5 @@ export default function ServiceLoading() {
         </div>
       </div>
     </Container>
-  )
+  );
 }
