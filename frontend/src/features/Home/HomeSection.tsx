@@ -8,7 +8,7 @@ import { messageList } from '@/features/Home/data/messageList';
 import { selectTwoRandom } from '@/features/Home/utils/selectTwoRandom';
 import { CertificateFallbackCard } from './ui/card/CertificateCard';
 // reivew
-import ReviewCard from '../GapReview/ui/reviewCard';
+import ReviewCard from '@/features/GapReview/ui/ReviewCard';
 import { reviewData } from '@/features/GapReview/data/reviewList';
 import { useNavigate } from 'react-router-dom';
 import { TimelineFallbackCard } from './ui/card/TimelineCard';

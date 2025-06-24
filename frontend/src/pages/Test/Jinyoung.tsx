@@ -4,7 +4,7 @@ import SectionBlock from '@/features/Home/ui/SectionBlock';
 import { certificateList } from '@/features/Home/data/cerificateList';
 
 import { reviewData } from '@/features/GapReview/data/reviewList';
-import ReviewCard from '@/features/GapReview/ui/reviewCard';
+import ReviewCard from '@/features/GapReview/ui/ReviewCard';
 
 import { TimelineCard } from '@/features/Home/ui/card/TimelineCard';
 export default function Jinyoung() {
