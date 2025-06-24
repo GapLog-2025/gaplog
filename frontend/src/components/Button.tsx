@@ -1,21 +1,29 @@
-// 임시 버튼 컴포넌트 생성
+import { Button } from '@mui/base/Button/Button';
 
-import React from "react";
-
-type ButtonProps = {
+type MoveButtonProps = {
+  type?: 'primary' | 'default';
   children: React.ReactNode;
   onClick?: () => void;
 };
 
-const Button = ({ children, onClick }: ButtonProps) => {
-  return (
-    <button
-      onClick={onClick}
-      className="px-4 py-2 rounded bg-blue-500 text-white"
-    >
-      {children}
-    </button>
-  );
-};
+export default function MoveButton({
+  type = 'default',
+  children,
+  onClick,
+}: MoveButtonProps) {
+  const baseClasses =
+    'w-fit bg-white border-2 typo-strong rounded-lg px-4 py-2';
+  const primaryClasses =
+    'border border-primary-primary-background text-primary';
+  const defaultClasses = 'border border-border text-main';
 
-export default Button;
+  const className = `${baseClasses} ${type === 'primary' ? primaryClasses : defaultClasses}`;
+
+  return (
+    <Button className={className} onClick={onClick}>
+      <span>{children}</span>
+    </Button>
+  );
+}
+
+export { MoveButton };
