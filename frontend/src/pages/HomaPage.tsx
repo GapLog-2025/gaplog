@@ -1,10 +1,11 @@
 import Layout from '@/components/Layout';
 import HomeAside from '@/features/Home/HomeAside';
+import HomeSection from '@/features/Home/HomeSection';
 
 export default function HomePage() {
   return (
     <Layout aside={<HomeAside />}>
-      <h1>홈 페이지입니다.</h1>
+      <HomeSection />
     </Layout>
   );
 }

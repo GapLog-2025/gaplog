@@ -1,6 +1,6 @@
 import React from 'react';
 import { BookCheck, Calendar, ClockFading, Award } from 'lucide-react';
-import MoveButton from '@/components/Button';
+import { MoveButton } from '@/components/Button';
 import { useNavigate } from 'react-router-dom';
 
 import type { CertificateProps } from '@/types/certificate';
