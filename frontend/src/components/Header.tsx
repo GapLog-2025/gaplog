@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import {
-  Search,
   House,
   BookOpen,
   MessageSquare,
@@ -9,6 +8,8 @@ import {
   Heart,
   MapPin,
 } from 'lucide-react';
+
+import { ActionButton, MoveButton } from './Button';
 
 const tabs = [
   { name: '홈', path: '/', icon: <House /> },
@@ -20,6 +21,7 @@ const tabs = [
 ];
 
 function Header() {
+  // header 반응형 설정을 위한 변수 선언
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -44,20 +46,25 @@ function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
+  const navigate = useNavigate();
   return (
     // 최상단 고정 헤더
     <header className="fixed top-0 left-0 w-full z-[999] bg-white border-b border-border shadow-sm">
-      {/* 로고 & 검색 */}
+      {/* 로고 & 로그인 & 회원가입 */}
       <div className="w-full px-10 pt-10 pb-5">
         <div className="flex justify-between items-center w-full max-w-[1440px] mx-auto">
           <NavLink to="/" className="flex items-center gap-3">
             <img src="/gaplog_icon.png" alt="갭로그 로고" />
             <span className="typo-subtitle text-black">갭로그</span>
           </NavLink>
-          <button className="flex items-center gap-2 text-main hover:text-primary-active">
-            <Search size={20} color="currentColor" />
-            <span className="typo-subheading">통합검색</span>
-          </button>
+          <div className="flex gap-4">
+            <ActionButton onClick={() => navigate('/login')}>
+              로그인
+            </ActionButton>
+            <MoveButton onClick={() => navigate('/signup')}>
+              회원가입
+            </MoveButton>
+          </div>
         </div>
       </div>
 
