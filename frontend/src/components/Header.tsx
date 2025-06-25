@@ -22,10 +22,10 @@ const tabs = [
 
 function Header() {
   return (
-    <header className="w-full bg-white mx-auto">
+    <header className="w-full bg-white mx-auto px-4">
       {/* 홈 로고 & 통합 검색 */}
       <div className="w-full border-b border-border">
-        <div className="mx-auto flex justify-between items-center max-w-[1440px] pt-10 pb-5">
+        <div className="mx-auto flex justify-between items-center w-full lg:max-w-[1440px] pt-10 pb-5">
           {/* 로고 부분 */}
           <NavLink to="/" className="flex items-center gap-3">
             <img src="/gaplog_icon.png" alt="갭로그 로고" />
