@@ -9,16 +9,19 @@ interface LayoutProps {
 
 export default function Layout({ children, aside }: LayoutProps) {
   return (
-    <div className="flex flex-col w-screen h-screen ">
+    <div className="flex flex-col w-full h-full ">
       {/* Header */}
       <Header />
       {/* Body */}
-      <div className="flex flex-1 justify-center pt-14 mx-auto gap-14 w-full px-4 lg:px-10 min-w-[1024px] lg:max-w-[1440px] ">
-        {/* Main Content Area */}
-        <main className="flex-none w-[665px] lg:min-w-[65%]">{children}</main>
-        {/* Right Aside (optional) */}
-        {aside && <Aside>{aside}</Aside>}
+      <div className="flex flex-1 justify-center w-full pt-40">
+        <div className="w-full px-10 pt-14">
+          <div className="flex justify-between w-full min-w-[1024px] max-w-[1440px] mx-auto">
+            <main className="w-[65%]">{children}</main>
+            {aside && <Aside>{aside}</Aside>}
+          </div>
+        </div>
       </div>
+
       {/* Fotter */}
       <Footer />
     </div>

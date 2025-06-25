@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import {
   Search,
@@ -8,9 +9,7 @@ import {
   Heart,
   MapPin,
 } from 'lucide-react';
-import React from 'react';
 
-// tabs
 const tabs = [
   { name: '홈', path: '/', icon: <House /> },
   { name: '공백기 후기', path: '/gap-review', icon: <BookOpen /> },
@@ -21,34 +20,61 @@ const tabs = [
 ];
 
 function Header() {
+  const [isNavVisible, setIsNavVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      // 일정 높이 이하면 가려짐
+      if (currentY <= 40) {
+        setIsNavVisible(true);
+      } else if (currentY > lastScrollY) {
+        // 아래로 스크롤 : 탭 숨김
+        setIsNavVisible(false);
+      } else {
+        // 위로 스크롤 : 탭 보임
+        setIsNavVisible(true);
+      }
+
+      setLastScrollY(currentY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
+
   return (
-    <header className="w-full bg-white mx-auto px-4">
-      {/* 홈 로고 & 통합 검색 */}
-      <div className="w-full border-b border-border">
-        <div className="mx-auto flex justify-between items-center w-full lg:max-w-[1440px] pt-10 pb-5">
-          {/* 로고 부분 */}
+    // 최상단 고정 헤더
+    <header className="fixed top-0 left-0 w-full z-[999] bg-white border-b border-border shadow-sm">
+      {/* 로고 & 검색 */}
+      <div className="w-full px-10 pt-10 pb-5">
+        <div className="flex justify-between items-center w-full max-w-[1440px] mx-auto">
           <NavLink to="/" className="flex items-center gap-3">
             <img src="/gaplog_icon.png" alt="갭로그 로고" />
             <span className="typo-subtitle text-black">갭로그</span>
           </NavLink>
-
-          {/* 통합 검색 */}
           <button className="flex items-center gap-2 text-main hover:text-primary-active">
-            {/* color에 "currentColor"를 주고, className의 text-* 으로 색상을 제어 */}
             <Search size={20} color="currentColor" />
             <span className="typo-subheading">통합검색</span>
           </button>
         </div>
       </div>
-      {/* 네비게이션 탭 */}
-      <nav className="w-full border-b border-border ">
-        <div className="max-w-[1440px] flex gap-5 mx-auto">
+
+      {/* 탭 네비게이션 */}
+      <nav
+        className={`
+    w-full border-t border-border whitespace-nowrap bg-white overflow-hidden transition-all duration-200
+    ${isNavVisible ? 'max-h-[56px]' : 'max-h-0'}
+  `}
+      >
+        <div className="flex gap-5 px-10 max-w-[1440px] min-w-[1024px] mx-auto h-[56px] items-center">
           {tabs.map((tab) => (
             <NavLink
               key={tab.path}
               to={tab.path}
               className={({ isActive }) =>
-                `flex justify-center items-center gap-3 py-3 px-4  ${
+                `flex justify-center items-center gap-3 py-3 px-4 ${
                   isActive
                     ? 'mt-[3px] border-b-[3px] border-primary-active text-primary-active'
                     : 'text-secondary hover:text-primary-active'
@@ -56,7 +82,7 @@ function Header() {
               }
             >
               {tab.icon}
-              <span className="typo-strong">{tab.name}</span>
+              <span className="typo-strong leading-non">{tab.name}</span>
             </NavLink>
           ))}
         </div>
