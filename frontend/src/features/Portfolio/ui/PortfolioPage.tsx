@@ -547,7 +547,7 @@ const PortfolioBuilderPage = () => {
 
   return (
     <Layout aside={<PortfolioSidebar />}>
-      <div className="max-w-4xl mx-auto py-8 px-4">
+      <div className="w-full py-8">
         <div className="mb-8">
           <h1 className="text-2xl font-bold text mb-2">AI 포트폴리오</h1>
           <p className="text-lg text-gray-600">
