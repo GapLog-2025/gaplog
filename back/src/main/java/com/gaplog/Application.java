@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan("com.gaplog.user.mapper")
 @MapperScan("com.gaplog.gapreview.mapper")
 @MapperScan("com.gaplog.emotion.mapper")
+@MapperScan("com.gaplog.mentoring.mapper")
 public class Application {
 
 	public static void main(String[] args) {

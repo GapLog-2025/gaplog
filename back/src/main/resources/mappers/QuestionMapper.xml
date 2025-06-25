@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gaplog.mentoring.mapper.QuestionMapper">
+
+    <insert id="insertQuestion" parameterType="com.gaplog.mentoring.domain.Question" useGeneratedKeys="true" keyProperty="questionId">
+        INSERT INTO questions (user_id, title, content)
+        VALUES (#{userId}, #{title}, #{content})
+    </insert>
+
+    <select id="findAllQuestions" resultType="com.gaplog.mentoring.domain.Question">
+        SELECT
+            questions_id AS questionId,
+            user_id AS userId,
+            title,
+            content,
+            created_at AS createdAt
+        FROM questions
+    </select>
+    <select id="findQuestionById" parameterType="long" resultType="com.gaplog.mentoring.domain.Question">
+        SELECT * FROM questions WHERE questions_id = #{questionId}
+    </select>
+
+    <insert id="insertLike">
+        INSERT INTO question_likes (questions_id, user_id) VALUES (#{questionId}, #{userId})
+    </insert>
+
+    <delete id="deleteLike">
+        DELETE FROM question_likes WHERE user_id = #{userId} AND questions_id = #{questionId}
+    </delete>
+
+    <select id="countLikesByQuestionId" parameterType="long" resultType="int">
+        SELECT COUNT(*) FROM question_likes WHERE questions_id = #{questionId}
+    </select>
+
+    <insert id="insertAnswer" parameterType="com.gaplog.mentoring.domain.Answer">
+        INSERT INTO answers (questions_id, mentor_id, content)
+        VALUES (#{questionId}, #{userId}, #{content})
+    </insert>
+
+    <select id="findAnswersByQuestionId" parameterType="long" resultType="com.gaplog.mentoring.domain.Answer">
+        SELECT
+            answers_id AS answerId,
+            questions_id AS questionId,
+            mentor_id AS userId,
+            content,
+            created_at AS createdAt
+        FROM answers
+        WHERE questions_id = #{questionId}
+    </select>
+
+    <insert id="insertQuestionTag">
+        INSERT INTO question_tags (questions_id, tag_id) VALUES (#{questionId}, #{tagId})
+    </insert>
+
+    <select id="findTagsByQuestionId" parameterType="long" resultType="string">
+        SELECT t.name
+        FROM tags t
+                 JOIN question_tags qt ON t.tag_id = qt.tag_id
+        WHERE qt.questions_id = #{questionId}
+    </select>
+
+    <insert id="insertTagIfNotExists" parameterType="string">
+        INSERT INTO tags (name)
+        SELECT #{tagName}
+            WHERE NOT EXISTS (
+            SELECT 1 FROM tags WHERE name = #{tagName}
+                )
+    </insert>
+
+    <select id="findTagIdByName" parameterType="string" resultType="long">
+        SELECT tag_id FROM tags WHERE name = #{tagName}
+    </select>
+
+    <select id="isLiked" parameterType="map" resultType="boolean">
+        SELECT EXISTS (
+            SELECT 1
+            FROM question_likes
+            WHERE questions_id = #{questionId}
+              AND user_id = #{userId}
+        )
+    </select>
+
+
+    <resultMap id="QuestionResultMap" type="com.gaplog.mentoring.domain.Question">
+        <id property="questionId" column="questions_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="createdAt" column="created_at"/>
+    </resultMap>
+
+    <select id="findQuestionsByTags" parameterType="map" resultMap="QuestionResultMap">
+        SELECT q.*
+        FROM questions q
+        JOIN question_tags qt ON q.questions_id = qt.questions_id
+        JOIN tags t ON qt.tag_id = t.tag_id
+        WHERE t.name IN
+        <foreach item="tag" collection="tags" open="(" separator="," close=")">
+            #{tag}
+        </foreach>
+        GROUP BY q.questions_id
+        HAVING COUNT(DISTINCT t.name) = #{tagCount}
+    </select>
+
+</mapper>
