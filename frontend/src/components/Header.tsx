@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import {
   House,
@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 
 import { ActionButton, MoveButton } from './Button';
-
+import UserDropdown from './UserDropdown';
 const tabs = [
   { name: '홈', path: '/', icon: <House /> },
   { name: '공백기 후기', path: '/gap-review', icon: <BookOpen /> },
@@ -21,24 +21,26 @@ const tabs = [
 ];
 
 function Header() {
-  // header 반응형 설정을 위한 변수 선언
+  const navigate = useNavigate();
+
+  // 로그인 여부 및 유저 정보 (임시)
+  const isMember = true;
+  const username = '홍길동';
+
+  // 헤더 스크롤 인터랙션
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentY = window.scrollY;
-      // 일정 높이 이하면 가려짐
       if (currentY <= 40) {
         setIsNavVisible(true);
       } else if (currentY > lastScrollY) {
-        // 아래로 스크롤 : 탭 숨김
-        setIsNavVisible(false);
+        setIsNavVisible(false); // 아래로 스크롤 시 숨김
       } else {
-        // 위로 스크롤 : 탭 보임
-        setIsNavVisible(true);
+        setIsNavVisible(true); // 위로 스크롤 시 보임
       }
-
       setLastScrollY(currentY);
     };
 
@@ -46,34 +48,67 @@ function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
-  const navigate = useNavigate();
+  // 유저 메뉴 드롭다운 상태
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node)
+      ) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // 로그아웃 임시 로직
+  const handleLogout = () => {
+    console.log('로그아웃');
+    setIsDropdownOpen(false);
+  };
+
   return (
-    // 최상단 고정 헤더
     <header className="fixed top-0 left-0 w-full z-[999] bg-white border-b border-border shadow-sm">
-      {/* 로고 & 로그인 & 회원가입 */}
+      {/* 상단 로고 + 유저 정보 */}
       <div className="w-full px-10 pt-10 pb-5">
         <div className="flex justify-between items-center w-full max-w-[1440px] mx-auto">
+          {/* 로고 */}
           <NavLink to="/" className="flex items-center gap-3">
             <img src="/gaplog_icon.png" alt="갭로그 로고" />
             <span className="typo-subtitle text-black">갭로그</span>
           </NavLink>
-          <div className="flex gap-4">
-            <ActionButton onClick={() => navigate('/login')}>
-              로그인
-            </ActionButton>
-            <MoveButton onClick={() => navigate('/signup')}>
-              회원가입
-            </MoveButton>
-          </div>
+
+          {/* 유저 메뉴 */}
+          {isMember ? (
+            <UserDropdown
+              username={username}
+              onLogout={handleLogout}
+              isOpen={isDropdownOpen}
+              setIsOpen={setIsDropdownOpen}
+            />
+          ) : (
+            <div className="flex gap-4">
+              <ActionButton onClick={() => navigate('/login')}>
+                로그인
+              </ActionButton>
+              <MoveButton onClick={() => navigate('/signup')}>
+                회원가입
+              </MoveButton>
+            </div>
+          )}
         </div>
       </div>
 
       {/* 탭 네비게이션 */}
       <nav
         className={`
-    w-full border-t border-border whitespace-nowrap bg-white overflow-hidden transition-all duration-200
-    ${isNavVisible ? 'max-h-[56px]' : 'max-h-0'}
-  `}
+          w-full border-t border-border whitespace-nowrap bg-white overflow-hidden transition-all duration-200
+          ${isNavVisible ? 'max-h-[56px]' : 'max-h-0'}
+        `}
       >
         <div className="flex gap-5 px-10 max-w-[1440px] min-w-[1024px] mx-auto h-[56px] items-center">
           {tabs.map((tab) => (
