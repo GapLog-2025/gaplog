@@ -7,6 +7,8 @@ type EmotionLog = {
   content: string;
 };
 
+// export const RecentCareData = [];
+
 export const RecentCareData: EmotionLog[] = [
   {
     emotion: '기쁨',
