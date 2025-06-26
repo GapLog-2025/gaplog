@@ -4,7 +4,7 @@ import GapReviewPage from '@/pages/GapReviewPage';
 import MentorPage from '@/pages/MentorPage';
 import CarePage from '@/pages/CarePage';
 import CompanyPage from '@/pages/CompanyPage';
-import RoadmapPage from '@/pages/Roadmap';
+import RoadmapPage from '@/pages/Roadmap'; 
 import MyPage from '@/pages/MyPage';
 import LoginPage from '@/pages/LoginPage';
 import SignUpPage from '@/pages/SignUpPage';
