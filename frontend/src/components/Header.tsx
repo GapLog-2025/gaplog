@@ -9,8 +9,11 @@ import {
   MapPin,
 } from 'lucide-react';
 
-import { ActionButton, MoveButton } from './Button';
-import UserDropdown from './UserDropdown';
+import { ActionButton, MoveButton } from '@/components/Button';
+import UserDropdown from '@/components/UserDropdown';
+
+import { useAuthStore } from '@/stores/useAuthStore';
+
 const tabs = [
   { name: '홈', path: '/', icon: <House /> },
   { name: '공백기 후기', path: '/gap-review', icon: <BookOpen /> },
@@ -24,8 +27,7 @@ function Header() {
   const navigate = useNavigate();
 
   // 로그인 여부 및 유저 정보 (임시)
-  const isMember = true;
-  const username = '홍길동';
+  const { user, isLoggedIn, logout } = useAuthStore();
 
   // 헤더 스크롤 인터랙션
   const [isNavVisible, setIsNavVisible] = useState(true);
@@ -54,6 +56,7 @@ function Header() {
   // 로그아웃 임시 로직
   const handleLogout = () => {
     console.log('로그아웃');
+    logout();
     setIsDropdownOpen(false);
   };
 
@@ -69,9 +72,9 @@ function Header() {
           </NavLink>
 
           {/* 유저 메뉴 */}
-          {isMember ? (
+          {isLoggedIn && user ? (
             <UserDropdown
-              username={username}
+              username={user.name}
               onLogout={handleLogout}
               isOpen={isDropdownOpen}
               setIsOpen={setIsDropdownOpen}
