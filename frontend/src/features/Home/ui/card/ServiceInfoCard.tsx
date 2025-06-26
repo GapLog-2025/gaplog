@@ -10,7 +10,7 @@ export default function ServiceInfoCard() {
       <CardHeader className="w-full flex justify-between items-center">
         <div>
           <p className="typo-subheading text-secondary  leading-none">
-            서비스 안내
+            갭로그 서비스 안내
           </p>
           <p className="typo-small text-main leading-none">
             공백기를 기록하고, 나를 이해하는 시간
