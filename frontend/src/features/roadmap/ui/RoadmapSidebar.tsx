@@ -1,6 +1,4 @@
-import React from 'react';
 import { Card, CardHeader, CardContent } from '@/components/Card';
-import { ActionButton } from '@/components/Button';
 import { timelineData } from '../data/roadmapItems';
 import type { TimelineItem } from '../data/roadmapItems';
 
@@ -117,6 +115,9 @@ export default function RoadmapSidebar({ selectedPath, progressHook }: RoadmapSi
               </div>
             )}
             
+            <button className="px-4 py-2 bg-primary-action text-white rounded-lg hover:bg-primary-action/90 transition-colors typo-small">
+              {currentStep ? '학습 계속하기' : '다음 단계 시작하기'}
+            </button>
           </div>
         </CardContent>
       </Card>

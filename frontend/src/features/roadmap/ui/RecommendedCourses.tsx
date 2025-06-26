@@ -1,8 +1,7 @@
-import React from 'react';
 import { BookOpen } from 'lucide-react';
 import { Card, CardContent } from '@/components/Card';
 import Tag from '@/components/Tag';
-import { resources } from '../data/resources'; // 기존 파일과 동일
+import { resources } from '../data/resources';
 
 interface RecommendedCoursesProps {
   selectedPath: 'frontend' | 'backend' | 'designer';

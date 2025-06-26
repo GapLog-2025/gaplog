@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { FileText, Download, ChevronDown } from 'lucide-react';
+import { useState } from 'react';
+import { ChevronDown } from 'lucide-react';
 
 interface RoadmapHeaderProps {
-  selectedPath: string;
-  setSelectedPath: (path: string) => void;
+  selectedPath: 'frontend' | 'backend' | 'designer';
+  setSelectedPath: (path: 'frontend' | 'backend' | 'designer') => void;
 }
 
 export default function RoadmapHeader({ selectedPath, setSelectedPath }: RoadmapHeaderProps) {
@@ -50,7 +50,7 @@ export default function RoadmapHeader({ selectedPath, setSelectedPath }: Roadmap
                 <button
                   key={option.value}
                   onClick={() => {
-                    setSelectedPath(option.value);
+                    setSelectedPath(option.value as 'frontend' | 'backend' | 'designer');
                     setIsDropdownOpen(false);
                   }}
                   className={`w-full p-3 text-left hover:bg-gray-50 typo-text first:rounded-t-lg last:rounded-b-lg ${

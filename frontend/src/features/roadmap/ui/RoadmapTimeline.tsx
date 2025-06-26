@@ -1,4 +1,3 @@
-import React from 'react';
 import { CheckCircle, Circle } from 'lucide-react';
 import Tag from '@/components/Tag';
 import { timelineData } from '../data/roadmapItems';

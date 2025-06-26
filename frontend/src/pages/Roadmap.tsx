@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Layout from '@/components/Layout';
 import RoadmapHeader from '@/features/roadmap/ui/RoadmapHeader';
 import RoadmapTimeline from '@/features/roadmap/ui/RoadmapTimeline';

@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { timelineData } from '../data/roadmapItems';
 
 export interface TaskProgress {
@@ -14,10 +14,10 @@ export function useRoadmapProgress(selectedPath: 'frontend' | 'backend' | 'desig
   const roadmapItems = timelineData[selectedPath] || [];
 
   // 경로 변경 시 상태 초기화 (옵션)
-  React.useEffect(() => {
-    console.log('Path changed to:', selectedPath);
-    // 필요시 상태 초기화: setTaskProgress([]);
-  }, [selectedPath]);
+  // React.useEffect(() => {
+  //   console.log('Path changed to:', selectedPath);
+  //   // 필요시 상태 초기화: setTaskProgress([]);
+  // }, [selectedPath]);
 
   // 작업 완료 상태 토글
   const toggleTaskCompletion = (timelineId: string, taskIndex: number) => {

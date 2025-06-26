@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { CheckCircle, Circle } from 'lucide-react';
 import { Card, CardHeader, CardContent } from '@/components/Card';
 

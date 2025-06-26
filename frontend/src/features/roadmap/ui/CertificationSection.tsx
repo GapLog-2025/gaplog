@@ -1,8 +1,7 @@
-import React from 'react';
 import { Award } from 'lucide-react';
 import { Card, CardContent } from '@/components/Card';
 import Tag from '@/components/Tag';
-import { certifications } from '../data/certifications'; 
+import { certifications } from '../data/certifications'; // 기존 certifications.ts 사용
 
 interface CertificationSectionProps {
   selectedPath: 'frontend' | 'backend' | 'designer';
