@@ -9,10 +9,16 @@ import MyPage from '@/pages/MyPage';
 import LoginPage from '@/pages/LoginPage';
 import SignUpPage from '@/pages/SignUpPage';
 import PortfolioPage from '@/pages/Portfolio/PortfolioPage';
-import Service from '@/pages/ServiceIntroduction';
+import Service from '@/pages/Service/ServiceIntroduction';
 import Jinyoung from '@/pages/Test/Jinyoung';
 import Gimhyn from '@/pages/Test/GimHyn';
 import Sinijini from '@/pages/Test/Sinijini';
+import TeamInfo from '@/pages/Service/TeamInfo';
+import Contact from '@/pages/Service/Contact';
+import FAQ from '@/pages/Support/FAQ';
+import Terms from '@/pages/Support/Terms';
+import Privacy from '@/pages/Support/Privacy';
+
 export default function AppRouter() {
   return (
     <BrowserRouter>
@@ -34,7 +40,14 @@ export default function AppRouter() {
         <Route path="/roadmap" element={<RoadmapPage />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/portfolio" element={<PortfolioPage />} />
-        <Route path="/service" element={<Service />} />
+        {/* 서비스 안내 관련 페이지  */}
+        <Route path="/about/service" element={<Service />} />
+        <Route path="/about/team" element={<TeamInfo />} />
+        <Route path="about/contact" element={<Contact />} />
+        {/* 고객센터 관련 페이지 */}
+        <Route path="/support/faq" element={<FAQ />} />
+        <Route path="/support/terms" element={<Terms />} />
+        <Route path="/support/privacy" element={<Privacy />} />
       </Routes>
     </BrowserRouter>
   );

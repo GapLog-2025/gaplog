@@ -1,6 +1,6 @@
-import { NavLink } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import {
-  Search,
   House,
   BookOpen,
   MessageSquare,
@@ -8,9 +8,9 @@ import {
   Heart,
   MapPin,
 } from 'lucide-react';
-import React from 'react';
 
-// tabs
+import { ActionButton, MoveButton } from './Button';
+import UserDropdown from './UserDropdown';
 const tabs = [
   { name: '홈', path: '/', icon: <House /> },
   { name: '공백기 후기', path: '/gap-review', icon: <BookOpen /> },
@@ -21,42 +21,99 @@ const tabs = [
 ];
 
 function Header() {
-  return (
-    <header className="w-full h-full flex-col bg-white mx-auto">
-      {/* 홈 로고 & 통합 검색 */}
-      <div className="flex justify-between items-center w-full min-w-[1440px] border-b-[1px] border-border pt-10 pb-5 px-40">
-        {/* 로고 부분 */}
-        <NavLink to="/" className="flex items-center gap-3">
-          <img src="/gaplog_icon.png" alt="갭로그 로고" />
-          <span className="typo-subtitle text-black">갭로그</span>
-        </NavLink>
+  const navigate = useNavigate();
 
-        {/* 통합 검색 */}
-        <button className="flex items-center gap-2 text-main hover:text-primary-active">
-          {/* color에 "currentColor"를 주고, className의 text-* 으로 색상을 제어 */}
-          <Search size={20} color="currentColor" />
-          <span className="typo-subheading">통합검색</span>
-        </button>
+  // 로그인 여부 및 유저 정보 (임시)
+  const isMember = true;
+  const username = '홍길동';
+
+  // 헤더 스크롤 인터랙션
+  const [isNavVisible, setIsNavVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      if (currentY <= 40) {
+        setIsNavVisible(true);
+      } else if (currentY > lastScrollY) {
+        setIsNavVisible(false); // 아래로 스크롤 시 숨김
+      } else {
+        setIsNavVisible(true); // 위로 스크롤 시 보임
+      }
+      setLastScrollY(currentY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
+
+  // 유저 메뉴 드롭다운 상태
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  // 로그아웃 임시 로직
+  const handleLogout = () => {
+    console.log('로그아웃');
+    setIsDropdownOpen(false);
+  };
+
+  return (
+    <header className="fixed top-0 left-0 w-full z-[999] bg-white border-b border-border shadow-sm">
+      {/* 상단 로고 + 유저 정보 */}
+      <div className="w-full px-10 pt-10 pb-5">
+        <div className="flex justify-between items-center w-full max-w-[1440px] mx-auto">
+          {/* 로고 */}
+          <NavLink to="/" className="flex items-center gap-3">
+            <img src="/gaplog_icon.png" alt="갭로그 로고" />
+            <span className="typo-subtitle text-black">갭로그</span>
+          </NavLink>
+
+          {/* 유저 메뉴 */}
+          {isMember ? (
+            <UserDropdown
+              username={username}
+              onLogout={handleLogout}
+              isOpen={isDropdownOpen}
+              setIsOpen={setIsDropdownOpen}
+            />
+          ) : (
+            <div className="flex gap-4">
+              <ActionButton onClick={() => navigate('/login')}>
+                로그인
+              </ActionButton>
+              <MoveButton onClick={() => navigate('/signup')}>
+                회원가입
+              </MoveButton>
+            </div>
+          )}
+        </div>
       </div>
 
-      {/* 네비게이션 탭 */}
-      <nav className="w-full min-w-[1440px] flex gap-5 border-b-[1px] border-border px-40">
-        {tabs.map((tab) => (
-          <NavLink
-            key={tab.path}
-            to={tab.path}
-            className={({ isActive }) =>
-              `flex justify-center items-center gap-3 py-3 px-4  ${
-                isActive
-                  ? 'mt-[3px] border-b-[3px] border-primary-active text-primary-active'
-                  : 'text-secondary hover:text-primary-active'
-              }`
-            }
-          >
-            {tab.icon}
-            <span className="typo-strong">{tab.name}</span>
-          </NavLink>
-        ))}
+      {/* 탭 네비게이션 */}
+      <nav
+        className={`
+          w-full border-t border-border whitespace-nowrap bg-white overflow-hidden transition-all duration-200
+          ${isNavVisible ? 'max-h-[56px]' : 'max-h-0'}
+        `}
+      >
+        <div className="flex gap-5 px-10 max-w-[1440px] min-w-[1024px] mx-auto h-[56px] items-center">
+          {tabs.map((tab) => (
+            <NavLink
+              key={tab.path}
+              to={tab.path}
+              className={({ isActive }) =>
+                `flex justify-center items-center gap-3 py-3 px-4 ${
+                  isActive
+                    ? 'mt-[3px] border-b-[3px] border-primary-active text-primary-active'
+                    : 'text-secondary hover:text-primary-active'
+                }`
+              }
+            >
+              {tab.icon}
+              <span className="typo-strong leading-non">{tab.name}</span>
+            </NavLink>
+          ))}
+        </div>
       </nav>
     </header>
   );
