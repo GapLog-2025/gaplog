@@ -20,7 +20,7 @@ export default function HomeSection() {
   const reviewColors = ['purple', 'skyblue'] as const;
   const navigate = useNavigate();
   return (
-    <section className="flex flex-col gap-[60px]">
+    <section className="flex flex-col gap-20">
       {/* 응원과 자격증 추천*/}
       <div className="w-full flex flex-col gap-8 ">
         <div className="flex gap-4 itemx-center mb-2">
@@ -56,7 +56,7 @@ export default function HomeSection() {
             onClick={() => navigate('/gap-review')}
           />
         ))}
-        <div className="w-full flex justify-center">
+        <div className="w-full flex justify-center mb-5">
           <MoveButton onClick={() => navigate('/gap-review')}>
             더 많은 후기 보러 가기
           </MoveButton>
