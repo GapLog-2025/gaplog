@@ -17,7 +17,7 @@ export default function Jinyoung() {
           ))}
         </SectionBlock>
         <div className="flex flex-col gap-4">
-          <ReviewCard type="purple" {...reviewData} />
+          <ReviewCard type="primary" {...reviewData} />
           <ReviewCard type="skyblue" {...reviewData} />
           <ReviewCard type="yellow" {...reviewData} />
           <ReviewCard type="green" {...reviewData} />

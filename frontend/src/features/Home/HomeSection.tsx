@@ -17,7 +17,7 @@ export default function HomeSection() {
   // 메시지 2개 랜덤 가져오기
   const [msg1, msg2] = selectTwoRandom(messageList);
   // 리뷰 색상 고정 2개
-  const reviewColors = ['purple', 'skyblue'] as const;
+  const reviewColors = ['primary', 'skyblue'] as const;
   const navigate = useNavigate();
   return (
     <section className="flex flex-col gap-20">

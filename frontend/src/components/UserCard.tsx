@@ -13,7 +13,7 @@ export default function UserCard() {
   const tags = [<Tag key="info" type="info" label="갭로거" />];
 
   if (user?.isMentor) {
-    tags.push(<Tag key="mentor" type="purple" label="멘토" />);
+    tags.push(<Tag key="mentor" type="primary" label="멘토" />);
   }
   return (
     <>
