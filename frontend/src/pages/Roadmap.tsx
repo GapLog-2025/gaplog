@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Layout from '@/components/Layout';
 import RoadmapHeader from '@/features/roadmap/ui/RoadmapHeader';
 import RoadmapTimeline from '@/features/roadmap/ui/RoadmapTimeline';
@@ -15,8 +15,18 @@ export default function RoadmapPage() {
   // 통합된 상태 관리
   const progressHook = useRoadmapProgress(selectedPath);
 
+  // 강제 리렌더링을 위한 상태
+  const [, forceUpdate] = useState({});
+
+  // 진행률 변경 감지하여 강제 업데이트
+  useEffect(() => {
+    console.log('Progress changed:', progressHook.overallProgress);
+    forceUpdate({});
+  }, [progressHook.overallProgress, progressHook.taskProgress]);
+
   const asideContent = (
     <RoadmapSidebar 
+      key={`${selectedPath}-${progressHook.overallProgress}`}
       selectedPath={selectedPath} 
       progressHook={progressHook}
     />

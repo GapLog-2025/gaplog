@@ -13,30 +13,31 @@ export function useRoadmapProgress(selectedPath: 'frontend' | 'backend' | 'desig
   // 현재 선택된 경로의 로드맵 데이터
   const roadmapItems = timelineData[selectedPath] || [];
 
-  // 경로 변경 시 상태 초기화 (옵션)
-  // React.useEffect(() => {
-  //   console.log('Path changed to:', selectedPath);
-  //   // 필요시 상태 초기화: setTaskProgress([]);
-  // }, [selectedPath]);
 
   // 작업 완료 상태 토글
   const toggleTaskCompletion = (timelineId: string, taskIndex: number) => {
+    console.log(`Toggling task: ${timelineId}-${taskIndex}`);
+    
     setTaskProgress(prev => {
       const existingProgress = prev.find(
         p => p.timelineId === timelineId && p.taskIndex === taskIndex
       );
 
+      let newProgress;
       if (existingProgress) {
         // 기존 진행 상태 토글
-        return prev.map(p =>
+        newProgress = prev.map(p =>
           p.timelineId === timelineId && p.taskIndex === taskIndex
             ? { ...p, completed: !p.completed }
             : p
         );
       } else {
         // 새로운 진행 상태 추가
-        return [...prev, { timelineId, taskIndex, completed: true }];
+        newProgress = [...prev, { timelineId, taskIndex, completed: true }];
       }
+      
+      console.log('New task progress:', newProgress);
+      return newProgress;
     });
   };
 
@@ -57,18 +58,29 @@ export function useRoadmapProgress(selectedPath: 'frontend' | 'backend' | 'desig
       isTaskCompleted(timelineId, index)
     ).length;
 
-    return Math.round((completedTasks / timeline.tasks.length) * 100);
+    const progress = Math.round((completedTasks / timeline.tasks.length) * 100);
+    
+    return progress;
   };
 
   // 전체 진행률 계산
   const overallProgress = useMemo(() => {
-    if (roadmapItems.length === 0) return 0;
+    console.log('alculating overall progress...');
+    console.log('Current taskProgress:', taskProgress);
+    console.log('Current roadmapItems:', roadmapItems.map(item => ({ id: item.id, title: item.title, tasksCount: item.tasks.length })));
+    
+    if (roadmapItems.length === 0) {
+      console.log('No roadmap items found');
+      return 0;
+    }
 
     const totalSteps = roadmapItems.length;
     let completedSteps = 0;
 
     roadmapItems.forEach(item => {
       const stepProgress = getStepProgress(item.id);
+      console.log(`Step ${item.title}: ${stepProgress}%`);
+      
       if (stepProgress === 100) {
         completedSteps += 1;
       } else if (stepProgress > 0) {
@@ -77,9 +89,14 @@ export function useRoadmapProgress(selectedPath: 'frontend' | 'backend' | 'desig
     });
 
     const calculated = Math.round((completedSteps / totalSteps) * 100);
-    console.log('Overall progress calculated:', calculated, 'completedSteps:', completedSteps, 'totalSteps:', totalSteps);
+    console.log('Final calculation:', {
+      completedSteps,
+      totalSteps,
+      calculated
+    });
+    
     return calculated;
-  }, [roadmapItems, taskProgress, selectedPath]);
+  }, [taskProgress, selectedPath, roadmapItems]);
 
   // 현재 진행 중인 단계 찾기
   const currentStep = useMemo(() => {

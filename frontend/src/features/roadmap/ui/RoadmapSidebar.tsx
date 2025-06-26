@@ -1,13 +1,14 @@
+import React from 'react';
 import { Card, CardHeader, CardContent } from '@/components/Card';
 import { timelineData } from '../data/roadmapItems';
 import type { TimelineItem } from '../data/roadmapItems';
 
 interface RoadmapSidebarProps {
   selectedPath: 'frontend' | 'backend' | 'designer';
-  progressHook: any; // 진행 상태 훅을 props로 받음
+  progressHook: any;
 }
 
-export default function RoadmapSidebar({ selectedPath, progressHook }: RoadmapSidebarProps) {
+export default React.memo(function RoadmapSidebar({ selectedPath, progressHook }: RoadmapSidebarProps) {
   const roadmapItems = timelineData[selectedPath] || [];
   const { 
     overallProgress, 
@@ -15,6 +16,8 @@ export default function RoadmapSidebar({ selectedPath, progressHook }: RoadmapSi
     getStepStatus,
     getStepProgress 
   } = progressHook;
+
+  console.log('Sidebar rendering with progress:', overallProgress);
 
   return (
     <div className="space-y-6">
@@ -114,10 +117,6 @@ export default function RoadmapSidebar({ selectedPath, progressHook }: RoadmapSi
                 <div className="typo-small text-secondary mt-1">축하합니다! 로드맵을 모두 완료했습니다.</div>
               </div>
             )}
-            
-            <button className="px-4 py-2 bg-primary-action text-white rounded-lg hover:bg-primary-action/90 transition-colors typo-small">
-              {currentStep ? '학습 계속하기' : '다음 단계 시작하기'}
-            </button>
           </div>
         </CardContent>
       </Card>
@@ -191,4 +190,4 @@ export default function RoadmapSidebar({ selectedPath, progressHook }: RoadmapSi
       </Card>
     </div>
   );
-}
+});
