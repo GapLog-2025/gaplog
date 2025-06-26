@@ -50,7 +50,7 @@ export default function TopReviewCard() {
   return (
     <Card>
       <CardHeader className="flex justify-between items-center">
-        <p className="typo-subheading leading-none">인기 후기</p>
+        <p className="typo-subheading text-title leading-none">인기 후기</p>
         {/* 임시 갭리뷰 전체 페이지 이동 */}
         <MoreButton onClick={() => navigate('/gap-review')} />
       </CardHeader>

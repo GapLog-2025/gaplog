@@ -70,7 +70,7 @@ export default function RecentCareCard() {
   return (
     <Card>
       <CardHeader className="flex justify-between items-center">
-        <p className="typo-subheading leading-none">감정로그</p>
+        <p className="typo-subheading text-title leading-none">감정로그</p>
         {RecentCareData.length === 0 ? (
           <MoveButton type="primary" onClick={() => navigate('/care')}>
             이동하기
