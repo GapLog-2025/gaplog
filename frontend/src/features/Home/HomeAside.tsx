@@ -1,3 +1,12 @@
+import UserCard from '@/components/UserCard';
+import TopReviewCard from '../temp/ui/TopReviewCard';
+import RecentCareCard from '../Care/ui/RecentCareCard';
 export default function HomeAside() {
-  return <div>임시 사이드</div>;
+  return (
+    <>
+      <UserCard />
+      <TopReviewCard />
+      <RecentCareCard />
+    </>
+  );
 }
