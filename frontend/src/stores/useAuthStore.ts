@@ -6,6 +6,7 @@ interface User {
   id: string;
   name: string;
   email: string;
+  isMentor: boolean;
 }
 
 interface AuthState {
@@ -16,8 +17,14 @@ interface AuthState {
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
-  user: null,
-  isLoggedIn: false,
+  // 임시 목업 데이터
+  user: {
+    id: 'temp-id',
+    name: '홍길동',
+    email: 'test@example.com',
+    isMentor: true,
+  },
+  isLoggedIn: true,
   login: (user) => set({ user, isLoggedIn: true }),
   logout: () => set({ user: null, isLoggedIn: false }),
 }));
