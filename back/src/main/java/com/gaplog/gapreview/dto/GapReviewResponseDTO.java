@@ -22,7 +22,8 @@ public class GapReviewResponseDTO {
     private String userName;
     private boolean bookmarked;
     private LocalDateTime createdAt;
-
+    private Boolean isMajor;
+    private int bookmarkCount;
 
 
     public static GapReviewResponseDTO of(GapReview review, String username, boolean bookmarked) {
@@ -36,6 +37,7 @@ public class GapReviewResponseDTO {
                 .userName(username)
                 .createdAt(review.getCreatedAt().toLocalDateTime())
                 .bookmarked(bookmarked)
+                .isMajor(review.getIsMajor())
                 .build();
     }
 

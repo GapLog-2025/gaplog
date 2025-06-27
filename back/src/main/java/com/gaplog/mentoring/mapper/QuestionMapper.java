@@ -4,6 +4,7 @@ import com.gaplog.mentoring.domain.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Mapper
@@ -37,4 +38,5 @@ public interface QuestionMapper {
 
     List<Question> findQuestionsByTags(@Param("tags") List<String> tags, @Param("tagCount") int tagCount);
 
+    List<Question> findAllMyQuestions(Long userId);
 }

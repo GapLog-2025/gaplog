@@ -18,4 +18,10 @@ public class GapReview {
     private Timestamp createdAt;
     private Double grade;
     private Integer gapPeriodMonths;
+    private Boolean isMajor;
 }
+
+
+
+
+

@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
             throw new IllegalArgumentException("역할은 'user' 또는 'mentor'만 가능합니다.");
         }
 
-        userMapper.updateRoleAndJob(email, dto.getRole().toUpperCase(), dto.getJob());
+        userMapper.updateRoleAndJob(email, dto.getRole().toUpperCase(), dto.getJob(),dto.getUsername());
     }
 
 }
