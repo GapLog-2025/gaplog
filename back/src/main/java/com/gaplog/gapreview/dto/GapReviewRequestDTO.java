@@ -11,7 +11,7 @@ public class GapReviewRequestDTO {
     @Schema(description = "후기 제목", example = "6개월 동안 이렇게 준비했어요")
     private String title;
 
-    @Schema(description = "전공 또는 직무 분야", example = "경제학과")
+    @Schema(description = "직무 분야", example = "개발")
     private String major;
 
     @Schema(description = "후기 본문 내용", example = "저는 졸업 후 6개월간 공백기를 갖고 백엔드 개발을 준비했습니다...")
@@ -22,4 +22,7 @@ public class GapReviewRequestDTO {
 
     @Schema(description = "공백기 기간 (개월 수)", example = "6")
     private Integer gapPeriodMonths;
+
+    @Schema(description = "직무전공자여부 true가 전공자", example = "true")
+    private Boolean isMajor;
 }

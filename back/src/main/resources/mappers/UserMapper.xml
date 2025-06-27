@@ -21,8 +21,7 @@
 
     <update id="updateRoleAndJob">
         UPDATE users
-        SET role = #{role}, job = #{job}
+        SET name = #{username}, role = #{role}, job = #{job}
         WHERE email = #{email}
     </update>
-
 </mapper>

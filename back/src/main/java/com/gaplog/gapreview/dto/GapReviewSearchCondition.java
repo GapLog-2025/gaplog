@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class GapReviewSearchCondition {
-    private String major;
-    private Double minGrade;
-    private Integer minGapPeriodMonths;
+    private String major;           // 직무 (IT/개발 등)
+    private Boolean isMajor;        // 전공자 여부
+    private Integer maxGapMonths;   // 공백기간 최대값
 }
