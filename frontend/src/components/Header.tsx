@@ -7,6 +7,7 @@ import {
   Building,
   Heart,
   MapPin,
+  Bot,
 } from 'lucide-react';
 
 import { ActionButton, MoveButton } from '@/components/Button';
@@ -21,6 +22,7 @@ const tabs = [
   { name: '강소 기업', path: '/companies', icon: <Building /> },
   { name: '마음 챙김', path: '/care', icon: <Heart /> },
   { name: '취업 로드맵', path: '/roadmap', icon: <MapPin /> },
+  { name: 'AI 포트폴리오', path: '/portfolio', icon: <Bot /> },
 ];
 
 function Header() {

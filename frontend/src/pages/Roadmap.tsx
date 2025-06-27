@@ -20,7 +20,6 @@ export default function RoadmapPage() {
 
   // 진행률 변경 감지하여 강제 업데이트
   useEffect(() => {
-    console.log('Progress changed:', progressHook.overallProgress);
     forceUpdate({});
   }, [progressHook.overallProgress, progressHook.taskProgress]);
 

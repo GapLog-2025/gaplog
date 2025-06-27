@@ -2,6 +2,8 @@ import React from 'react';
 import { Card, CardHeader, CardContent } from '@/components/Card';
 import { timelineData } from '../data/roadmapItems';
 import type { TimelineItem } from '../data/roadmapItems';
+import { useNavigate } from 'react-router-dom';
+import { Sparkles, ExternalLink } from 'lucide-react';
 
 interface RoadmapSidebarProps {
   selectedPath: 'frontend' | 'backend' | 'designer';
@@ -10,6 +12,8 @@ interface RoadmapSidebarProps {
 
 export default React.memo(function RoadmapSidebar({ selectedPath, progressHook }: RoadmapSidebarProps) {
   const roadmapItems = timelineData[selectedPath] || [];
+  const navigate = useNavigate();
+  
   const { 
     overallProgress, 
     currentStep, 
@@ -17,10 +21,33 @@ export default React.memo(function RoadmapSidebar({ selectedPath, progressHook }
     getStepProgress 
   } = progressHook;
 
-  console.log('Sidebar rendering with progress:', overallProgress);
+  // AI 포트폴리오로 이동하는 함수
+  const handleGoToPortfolio = () => {
+    navigate('/portfolio');
+  };
 
   return (
     <div className="space-y-6">
+      {/* AI 포트폴리오 생성 버튼 */}
+      <Card className="bg-gradient-to-br from-purple-50 to-blue-50 border-purple-200">
+        <CardHeader>
+          <div className="flex items-center gap-2">
+            <Sparkles className="w-5 h-5 text-purple-600" />
+            <h3 className="text-lg font-semibold text-purple-800">AI 포트폴리오</h3>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <button
+            onClick={handleGoToPortfolio}
+            className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-200 font-medium shadow-md hover:shadow-lg"
+          >
+            <Sparkles className="w-4 h-4" />
+            AI 포트폴리오 만들기
+            <ExternalLink className="w-4 h-4" />
+          </button>
+        </CardContent>
+      </Card>
+
       {/* 로드맵 진행 상황 */}
       <Card>
         <CardHeader>

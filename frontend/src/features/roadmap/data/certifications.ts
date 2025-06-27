@@ -5,8 +5,8 @@ export const certifications = {
       description: '프로그래밍 기초 및 응용 지식을 검증하는 국가자격증입니다.',
     },
     {
-      name: '프론트엔드 개발자 부트캠프 수료증',
-      description: '실무 중심의 프론트엔드 교육 수료를 인증하는 민간 자격입니다.',
+      name: '삼성청년sw아카데미',
+      description: '프로그래밍 기초 및 응용 지식을 배울 수 있는 삼성의 교육 프로그램입니다.',
     },
   ],
   backend: [

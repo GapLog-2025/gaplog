@@ -63,7 +63,7 @@ export default function RoadmapTimeline({ selectedPath, progressHook }: RoadmapT
               {/* 콘텐츠 */}
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
-                  <Tag type="purple" label={item.period} />
+                  <Tag type="primary" label={item.period} />
                   <h3 className="typo-subheading text-title">{item.title}</h3>
                   <div className="ml-auto">
                     <Tag 
