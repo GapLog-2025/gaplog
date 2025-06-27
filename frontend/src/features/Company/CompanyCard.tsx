@@ -1,12 +1,4 @@
-import {
-  Card,
-  CardContent,
-  Box,
-  Chip,
-  Avatar,
-  Stack,
-  Link,
-} from '@mui/material';
+import { Card, CardContent, Box, Chip, Avatar, Stack } from '@mui/material';
 import {
   Business,
   Person,
