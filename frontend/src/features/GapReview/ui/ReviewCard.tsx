@@ -1,7 +1,7 @@
 import Tag from '@/components/Tag';
 import { Calendar } from 'lucide-react';
 
-type CardColor = 'purple' | 'skyblue' | 'yellow' | 'green';
+type CardColor = 'primary' | 'skyblue' | 'yellow' | 'green';
 
 type ProfileCardProps = {
   type: CardColor;
@@ -25,7 +25,7 @@ export default function ReviewCard({
   onClick,
 }: ProfileCardProps) {
   const colorMap = {
-    purple: {
+    primary: {
       background: 'bg-primary-primary-background',
       border: 'border border-primary',
       borderLeft: 'border-l-8 border-l-primary',
@@ -47,16 +47,20 @@ export default function ReviewCard({
     },
   };
   const theme = colorMap[type];
-  console.log(theme.border);
+  if (!theme) {
+    console.error(`Invalid card type: ${type}`);
+    return null; // 또는 fallback UI
+  }
+
   return (
     <div
-      className={`flex gap-10 rounded-md w-full h-[264px] rounded-xl border ${theme.borderLeft} px-12 py-8 `}
+      className={`flex w-full justify-between h-[264px] rounded-xl border ${theme.borderLeft} px-12 py-8 `}
       onClick={onClick}
     >
       {/* img */}
       <div className={`${theme.background} w-[200px] h-[200px] rounded-xl`} />
       {/* review contents */}
-      <div className="max-w-[500px] flex flex-col justify-between">
+      <div className="w-[70%] h-full flex flex-col justify-between">
         {/* tags */}
         <div className="flex gap-4">
           {tags.map((content, index) => (

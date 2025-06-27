@@ -1,12 +1,12 @@
-type TagType =
+export type TagType =
   | 'default'
   | 'info'
   | 'inactive'
   | 'skyblue'
   | 'yellow'
-  | 'purple'
+  | 'primary'
   | 'green'
-  | 'red';
+  | 'pink';
 
 type TagProps = {
   type: TagType;
@@ -20,9 +20,9 @@ const tagColorMap: Record<TagType, { bg: string; text: string }> = {
   inactive: { bg: 'bg-white', text: 'text-main' },
   skyblue: { bg: 'bg-point-blue-background', text: 'text-point-blue-text' },
   yellow: { bg: 'bg-point-yellow-background', text: 'text-point-yellow-text' },
-  purple: { bg: 'bg-purple-100', text: 'text-purple-600' },
+  primary: { bg: 'bg-primary-primary-background', text: 'text-primary' },
   green: { bg: 'bg-success-background', text: 'text-success-text' },
-  red: { bg: 'bg-danger-background', text: 'text-danger-text' },
+  pink: { bg: 'bg-danger-background', text: 'text-danger-text' },
 };
 export default function Tag({ type, label, className = '' }: TagProps) {
   const theme = tagColorMap[type];
