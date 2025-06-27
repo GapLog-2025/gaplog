@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown} from 'lucide-react';
 
 interface RoadmapHeaderProps {
   selectedPath: 'frontend' | 'backend' | 'designer';
@@ -25,6 +25,7 @@ export default function RoadmapHeader({ selectedPath, setSelectedPath }: Roadmap
           <h1 className="typo-heading text-title mb-2">맞춤형 취업 로드맵</h1>
           <p className="typo-text text-secondary">체계적인 학습 계획으로 목표 직무에 한 걸음 더 가까이</p>
         </div>
+
       </div>
 
       {/* 직무 선택 드롭다운 */}

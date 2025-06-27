@@ -16,7 +16,6 @@ export function useRoadmapProgress(selectedPath: 'frontend' | 'backend' | 'desig
 
   // 작업 완료 상태 토글
   const toggleTaskCompletion = (timelineId: string, taskIndex: number) => {
-    console.log(`Toggling task: ${timelineId}-${taskIndex}`);
     
     setTaskProgress(prev => {
       const existingProgress = prev.find(
@@ -36,7 +35,6 @@ export function useRoadmapProgress(selectedPath: 'frontend' | 'backend' | 'desig
         newProgress = [...prev, { timelineId, taskIndex, completed: true }];
       }
       
-      console.log('New task progress:', newProgress);
       return newProgress;
     });
   };
@@ -65,10 +63,7 @@ export function useRoadmapProgress(selectedPath: 'frontend' | 'backend' | 'desig
 
   // 전체 진행률 계산
   const overallProgress = useMemo(() => {
-    console.log('alculating overall progress...');
-    console.log('Current taskProgress:', taskProgress);
-    console.log('Current roadmapItems:', roadmapItems.map(item => ({ id: item.id, title: item.title, tasksCount: item.tasks.length })));
-    
+
     if (roadmapItems.length === 0) {
       console.log('No roadmap items found');
       return 0;
@@ -79,7 +74,6 @@ export function useRoadmapProgress(selectedPath: 'frontend' | 'backend' | 'desig
 
     roadmapItems.forEach(item => {
       const stepProgress = getStepProgress(item.id);
-      console.log(`Step ${item.title}: ${stepProgress}%`);
       
       if (stepProgress === 100) {
         completedSteps += 1;
@@ -89,34 +83,25 @@ export function useRoadmapProgress(selectedPath: 'frontend' | 'backend' | 'desig
     });
 
     const calculated = Math.round((completedSteps / totalSteps) * 100);
-    console.log('Final calculation:', {
-      completedSteps,
-      totalSteps,
-      calculated
-    });
     
     return calculated;
   }, [taskProgress, selectedPath, roadmapItems]);
 
   // 현재 진행 중인 단계 찾기
   const currentStep = useMemo(() => {
-    console.log('Finding current step for:', selectedPath);
     
     // 진행 중인 단계 찾기 (0% < 진행률 < 100%)
     const inProgressStep = roadmapItems.find(item => {
       const progress = getStepProgress(item.id);
-      console.log(`Step ${item.title}: ${progress}%`);
       return progress > 0 && progress < 100;
     });
     
     if (inProgressStep) {
-      console.log('Found in-progress step:', inProgressStep.title);
       return inProgressStep;
     }
     
     // 진행 중인 단계가 없으면 첫 번째 미완료 단계 찾기
     const nextStep = roadmapItems.find(item => getStepProgress(item.id) === 0);
-    console.log('Next step to start:', nextStep?.title || 'None');
     return nextStep;
   }, [roadmapItems, taskProgress, selectedPath]);
 
