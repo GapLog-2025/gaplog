@@ -8,5 +8,6 @@ public interface UserMapper {
     void save(User user);
     User findByEmail(String email);
     User findByUserId(long userId);
-    void updateRoleAndJob(String email, String role, String job);
+    void updateRoleAndJob(String email, String role, String job, String username);
+
 }

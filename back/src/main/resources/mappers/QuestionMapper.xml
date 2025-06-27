@@ -10,6 +10,18 @@
         VALUES (#{userId}, #{title}, #{content})
     </insert>
 
+
+    <select id="findAllMyQuestions" resultType="com.gaplog.mentoring.domain.Question">
+        SELECT
+            questions_id AS questionId,
+            user_id AS userId,
+            title,
+            content,
+            created_at AS createdAt
+        FROM questions
+        WHERE user_id = #{userId}
+    </select>
+
     <select id="findAllQuestions" resultType="com.gaplog.mentoring.domain.Question">
         SELECT
             questions_id AS questionId,

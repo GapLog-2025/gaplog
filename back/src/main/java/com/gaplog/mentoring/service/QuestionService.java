@@ -21,4 +21,6 @@ public interface QuestionService {
     List<AnswerResponseDTO> getAnswersByQuestionId(Long questionId);
 
     List<QuestionResponseDTO> searchByTags(List<String> tags);
+
+    List<QuestionResponseDTO> getAllMyQuestions(Long userId);
 }

@@ -18,4 +18,12 @@ public interface GapReviewMapper {
     Set<Long> findBookmarkedReviewIdsByUserId(@Param("userId") Long userId);
 
     List<GapReview> findBookmarkedReviews(@Param("userId") Long userId);
+
+    List<GapReview> findAllOrderByBookmarkCount();
+
+    List<GapReview> findByUserId(@Param("userId") Long userId);
+
+    GapReview findByReviewId(@Param("reviewId") Long reviewId);
+
+    int countBookmarks(@Param("reviewId") Long reviewId);
 }

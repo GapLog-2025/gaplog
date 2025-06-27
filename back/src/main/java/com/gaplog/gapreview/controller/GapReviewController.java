@@ -37,7 +37,7 @@ public class GapReviewController {
     @Operation(summary = "공백기 후기 검색")
     @GetMapping("/search")
     public ResponseEntity<List<GapReviewResponseDTO>> searchReviews(
-            GapReviewSearchCondition cond,
+            @ModelAttribute GapReviewSearchCondition cond,
             @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
         Long userId = userDetails.getUserId();
@@ -58,5 +58,24 @@ public class GapReviewController {
                                         @AuthenticationPrincipal UserDetailsImpl userDetails) {
         gapReviewService.removeBookmark(userDetails.getUserId(), reviewId);
         return ResponseEntity.ok("북마크 해제 완료");
+    }
+
+    @Operation(summary = "전체 게시글을 북마크 수 순으로 정렬하여 조회")
+    @GetMapping("/all")
+    public ResponseEntity<List<GapReviewResponseDTO>> getAllReviews(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return ResponseEntity.ok(gapReviewService.getAllOrderByBookmarkCount(userDetails.getUserId()));
+    }
+
+    @Operation(summary = "내가 쓴 후기 목록 조회")
+    @GetMapping("/my")
+    public ResponseEntity<List<GapReviewResponseDTO>> getMyReviews(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return ResponseEntity.ok(gapReviewService.getMyReviews(userDetails.getUserId()));
+    }
+
+    @Operation(summary = "후기 상세 조회")
+    @GetMapping("/{reviewId}")
+    public ResponseEntity<GapReviewResponseDTO> getReviewDetail(@PathVariable Long reviewId,
+                                                                @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return ResponseEntity.ok(gapReviewService.getReviewDetail(userDetails.getUserId(), reviewId));
     }
 }

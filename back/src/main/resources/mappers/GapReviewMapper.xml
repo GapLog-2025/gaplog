@@ -6,8 +6,8 @@
 <mapper namespace="com.gaplog.gapreview.mapper.GapReviewMapper">
 
     <insert id="insertReview" parameterType="com.gaplog.gapreview.domain.GapReview">
-        INSERT INTO gap_reviews (user_id, title, major, content, grade, gap_period_months)
-        VALUES (#{userId}, #{title}, #{major}, #{content}, #{grade}, #{gapPeriodMonths})
+        INSERT INTO gap_reviews (user_id, title, major, content, grade, gap_period_months, isMajor)
+        VALUES (#{userId}, #{title}, #{major}, #{content}, #{grade}, #{gapPeriodMonths}, #{isMajor})
     </insert>
 
     <select id="findBookmarkedReviews" parameterType="long" resultType="com.gaplog.gapreview.domain.GapReview">
@@ -23,13 +23,14 @@
             <if test="major != null">
                 AND major = #{major}
             </if>
-            <if test="minGrade != null">
-                AND grade &gt;= #{minGrade}
+            <if test="isMajor != null">
+                AND ismajor = #{isMajor}
             </if>
-            <if test="minGapPeriodMonths != null">
-                AND gap_period_months &gt;= #{minGapPeriodMonths}
+            <if test="maxGapMonths != null">
+                AND gap_period_months &lt;= #{maxGapMonths}
             </if>
         </where>
+        ORDER BY created_at DESC
     </select>
 
     <insert id="insertBookmark" parameterType="map">
@@ -51,6 +52,33 @@
     <select id="isBookmarked" resultType="int" parameterType="map">
         SELECT COUNT(*) FROM gap_review_bookmarks
         WHERE user_id = #{userId} AND gap_reviews_id = #{reviewId}
+    </select>
+
+    <select id="findAllOrderByBookmarkCount" resultType="com.gaplog.gapreview.domain.GapReview">
+        SELECT gr.*
+        FROM gap_reviews gr
+        LEFT JOIN (
+            SELECT gap_reviews_id, COUNT(*) AS bookmark_count
+            FROM gap_review_bookmarks
+            GROUP BY gap_reviews_id
+        ) bc ON gr.gap_reviews_id = bc.gap_reviews_id
+        ORDER BY IFNULL(bc.bookmark_count, 0) DESC, gr.created_at DESC
+    </select>
+
+    <select id="findByUserId" resultType="com.gaplog.gapreview.domain.GapReview">
+        SELECT * FROM gap_reviews
+        WHERE user_id = #{userId}
+        ORDER BY created_at DESC
+    </select>
+
+    <select id="findByReviewId" resultType="com.gaplog.gapreview.domain.GapReview">
+        SELECT * FROM gap_reviews
+        WHERE gap_reviews_id = #{reviewId}
+    </select>
+
+    <select id="countBookmarks" parameterType="long" resultType="int">
+        SELECT COUNT(*) FROM gap_review_bookmarks
+        WHERE gap_reviews_id = #{reviewId}
     </select>
 
 </mapper>

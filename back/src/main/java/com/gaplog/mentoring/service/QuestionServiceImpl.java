@@ -128,4 +128,27 @@ public class QuestionServiceImpl implements QuestionService {
                 })
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<QuestionResponseDTO> getAllMyQuestions(Long userId) {
+        return mapper.findAllMyQuestions(userId).stream()
+                .map(q -> {
+                    String username = userMapper.findByUserId(q.getUserId()).getName(); // userId → username
+                    return new QuestionResponseDTO(
+                            q.getQuestionId(),
+                            q.getTitle(),
+                            q.getContent(),
+                            username,
+                            q.getCreatedAt(),
+                            mapper.countLikesByQuestionId(q.getQuestionId()),
+                            mapper.findTagsByQuestionId(q.getQuestionId())
+                    );
+                })
+                .collect(Collectors.toList());
+    }
+
 }
+
+
+
+

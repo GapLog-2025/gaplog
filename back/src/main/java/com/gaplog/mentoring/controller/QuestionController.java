@@ -36,6 +36,13 @@ public class QuestionController {
         return ResponseEntity.ok(questionService.getAllQuestions());
     }
 
+    @Operation(summary = "내가 쓴 질문 가져오기")
+    @GetMapping("/my")
+    public ResponseEntity<List<QuestionResponseDTO>> getMyQuestions(@AuthenticationPrincipal UserDetailsImpl user)
+                                                                     {
+        return ResponseEntity.ok(questionService.getAllMyQuestions(user.getUserId()));
+    }
+
     @Operation(summary = "질문 상세")
     @GetMapping("/{questionId}")
     public ResponseEntity<QuestionResponseDTO> getQuestion(@PathVariable Long questionId) {

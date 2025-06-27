@@ -10,4 +10,8 @@ public interface GapReviewService {
     void addBookmark(Long userId, Long reviewId);
     void removeBookmark(Long userId, Long reviewId);
     List<GapReviewResponseDTO> getBookmarkedReviews(Long userId);
+
+    List<GapReviewResponseDTO> getAllOrderByBookmarkCount(Long userId);
+    List<GapReviewResponseDTO> getMyReviews(Long userId);
+    GapReviewResponseDTO getReviewDetail(Long userId, Long reviewId);
 }
