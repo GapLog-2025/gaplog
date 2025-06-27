@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { ChevronDown, Sparkles } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { ChevronDown} from 'lucide-react';
 
 interface RoadmapHeaderProps {
   selectedPath: 'frontend' | 'backend' | 'designer';
