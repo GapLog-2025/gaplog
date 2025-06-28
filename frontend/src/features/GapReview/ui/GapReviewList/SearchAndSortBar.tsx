@@ -25,10 +25,7 @@ export default function SearchAndSortBar({
           onChange={onSortChange}
         />
       </div>
-      <SearchInput
-        placeholder="키워드, 태그로 검색해보세요!"
-        onSearch={onSearch}
-      />
+      <SearchInput placeholder="검색어를 입력해주세요." onSearch={onSearch} />
     </div>
   );
 }

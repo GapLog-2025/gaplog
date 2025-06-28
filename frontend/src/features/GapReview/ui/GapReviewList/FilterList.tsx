@@ -1,10 +1,14 @@
 import { TagButton } from '@/components/Button';
-import { useState } from 'react';
 import { X, RotateCcw } from 'lucide-react';
 
-export default function FilterList() {
+export default function FilterList({
+  selectedTags,
+  setSelectedTags,
+}: {
+  selectedTags: string[];
+  setSelectedTags: React.Dispatch<React.SetStateAction<string[]>>;
+}) {
   //선택된 태그 리스트 초기화
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
   // 태그 리스트
   const categoryTags = [
     'IT/개발',
@@ -19,7 +23,7 @@ export default function FilterList() {
   ];
   const etcTags = ['전공자', '비전공자'];
   const gapPeriodTags = ['6개월 이하', '1년 이하', '3년 이하'];
-  const gradeTags = ['2.5미만', '2.5이상', '3.0이상', '3.5이상', '4.0이상'];
+  const gradeTags = ['2.0이하', '2.5이상', '3.0이상', '3.5이상', '4.0이상'];
 
   const toggleTag = (tag: string) => {
     setSelectedTags((prev) =>
