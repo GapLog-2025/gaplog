@@ -1,10 +1,13 @@
-// 임시 types 코드 예시입니다.
-
-export type MoodType = "happy" | "sad" | "angry" | "neutral";
-
-export interface EmotionLog {
-  id: string;
-  date: string;
-  mood: MoodType;
-  note: string;
+export interface GapReview {
+  gapReviewsId: number;
+  title: string;
+  category: string;
+  major: string;
+  content: string;
+  grade: number;
+  gapPeriodMonths: number;
+  isMajor: boolean;
+  userName: string;
+  bookmarked: boolean;
+  createdAt: string;
 }

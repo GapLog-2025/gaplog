@@ -66,4 +66,24 @@ function MoreButton({ onClick }: MoreButtonProps) {
   );
 }
 
-export { MoveButton, ActionButton, MoreButton };
+type TagButtonProps = {
+  isActive: boolean;
+  children: React.ReactNode;
+  onClick: () => void;
+};
+
+function TagButton({ isActive, children, onClick }: TagButtonProps) {
+  const colorStyle = !isActive
+    ? 'bg-white border-border text-secondary'
+    : 'bg-info-background border-transparent text-info-text';
+  return (
+    <button
+      onClick={onClick}
+      className={`flex gap-2 items-center px-4 py-1 rounded-full border ${colorStyle} hover:shadow hover:shadow-gray-200`}
+    >
+      {children}
+    </button>
+  );
+}
+
+export { MoveButton, ActionButton, MoreButton, TagButton };
