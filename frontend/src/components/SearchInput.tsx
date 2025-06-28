@@ -26,7 +26,7 @@ export default function SearchInput({
   );
 
   return (
-    <button className="relative flex items-center w-[480px] h-[40px] px-6 py-2 gap-[16px] border-2 border-border rounded-lg bg-white focus-within:border-primary  hover:border-primary-active transition-colors duration-200">
+    <div className="relative flex items-center w-[480px] h-[40px] px-6 py-2 gap-[16px] border-2 border-border rounded-lg bg-white focus-within:border-primary  hover:border-primary-active transition-colors duration-200">
       <Search size={20} className="text-disabled" />
       <input
         type="text"
@@ -46,6 +46,6 @@ export default function SearchInput({
           <X size={18} />
         </button>
       )}
-    </button>
+    </div>
   );
 }
