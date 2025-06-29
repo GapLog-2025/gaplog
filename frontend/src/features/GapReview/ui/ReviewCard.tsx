@@ -59,8 +59,8 @@ export default function ReviewCard({ review, type }: ReviewCardProps) {
   const navigate = useNavigate();
 
   return (
-    <div
-      className={`flex w-full justify-between h-[264px] rounded-xl border ${theme.borderLeft} px-12 py-8 `}
+    <button
+      className={`flex w-full text-start justify-between h-[264px] rounded-xl border ${theme.borderLeft} px-12 py-8 hover:shadow-lg`}
       onClick={() => navigate(`/gap-review/${gapReviewsId}`)}
     >
       {/* img */}
@@ -94,6 +94,6 @@ export default function ReviewCard({ review, type }: ReviewCardProps) {
           </div>
         </div>
       </div>
-    </div>
+    </button>
   );
 }
