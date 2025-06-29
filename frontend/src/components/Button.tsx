@@ -129,6 +129,35 @@ function LikedButton({ isLiked, children, onClick }: LikedButtonProps) {
     </button>
   );
 }
+type EditButtonProps = {
+  onClick?: () => void;
+};
+
+function EditButton({ onClick }: EditButtonProps) {
+  return (
+    <button
+      onClick={onClick}
+      className="w-fit bg-white border-2 typo-text rounded-lg px-5 py-2 hover:shadow-md transition-shadow hover:text-success-text hover:bg-success-background hover:border-green"
+    >
+      편집
+    </button>
+  );
+}
+
+type DeleteButtonProps = {
+  onClick?: () => void;
+};
+
+function DeleteButton({ onClick }: DeleteButtonProps) {
+  return (
+    <button
+      onClick={onClick}
+      className="w-fit bg-white border-2 typo-text rounded-lg px-5 py-2 hover:shadow-md transition-shadow hover:text-danger-text hover:bg-danger-background hover:border-pink"
+    >
+      삭제
+    </button>
+  );
+}
 
 export {
   MoveButton,
@@ -137,4 +166,6 @@ export {
   TagButton,
   BookmarkedButton,
   LikedButton,
+  EditButton,
+  DeleteButton,
 };

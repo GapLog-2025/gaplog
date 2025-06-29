@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { sampleReviews } from './data/reviewList';
 import NoDataContent from './ui/GapReviewDetail/NoDataContent';
-import { MoveButton } from '@/components/Button';
+import { MoveButton, EditButton, DeleteButton } from '@/components/Button';
 import useHandleBack from './hook/handleBack';
 import Tag from '@/components/Tag';
 import { Card, CardHeader, CardContent } from '@/components/Card';
@@ -10,6 +10,7 @@ import formatDate from '@/utils/formatDate';
 
 import { Calendar, Star, StarOff } from 'lucide-react';
 import { BookmarkedButton } from '@/components/Button';
+import { useAuthStore } from '@/stores/useAuthStore';
 
 export default function GapReviewDetailSection() {
   const { id } = useParams();
@@ -21,6 +22,7 @@ export default function GapReviewDetailSection() {
     review ? review.bookmarked : true,
   );
   const handleback = useHandleBack();
+  const { user } = useAuthStore();
   const toggleBookmark = () => {
     // post api 연결 예정
     setIsBookmarked((prev) => !prev);
@@ -39,12 +41,20 @@ export default function GapReviewDetailSection() {
   } else {
     tags.push('비전공자');
   }
-
   const colorTypes = ['primary', 'skyblue', 'green'] as const;
 
   return (
     <section className="w-full flex flex-col gap-5">
-      <MoveButton onClick={handleback}>뒤로가기</MoveButton>
+      <div className="flex justify-between items-center">
+        <MoveButton onClick={handleback}>뒤로가기</MoveButton>
+
+        {user?.name === review.userName && (
+          <div className="flex gap-3">
+            <EditButton />
+            <DeleteButton />
+          </div>
+        )}
+      </div>
       <Card className="p-8">
         <CardHeader className="flex flex-col gap-2">
           {/* tags */}

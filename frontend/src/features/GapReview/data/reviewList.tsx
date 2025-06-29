@@ -28,7 +28,7 @@ export const sampleReviews: GapReview[] = [
       '비전공자로 시작해서 8개월간 꾸준히 준비했어요. 처음엔 무엇을 해야 할지 막막했지만, 온라인 부트캠프와 사이드 프로젝트로 실력을 쌓았습니다. 저처럼 막막한 분들에게 도움이 되었으면 좋겠어요.',
     grade: 3.7,
     gapPeriodMonths: 8,
-    userName: '코딩초보',
+    userName: '홍길동',
     bookmarked: false,
     createdAt: '2024-12-15T09:30:00.000Z',
   },
