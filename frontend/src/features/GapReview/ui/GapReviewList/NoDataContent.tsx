@@ -11,7 +11,7 @@ export default function NoDataContent({ onClick }: NoDataContentProps) {
       <div className="w-[80px] h-[80px] flex justify-center items-center bg-gray-200 rounded-full ">
         <SearchSlash size={48} className="text-main" />
       </div>
-      <p className="typo-subheading text-">
+      <p className="typo-subheading text-black">
         일치하는 공백기 후기 게시글이 없습니다.
       </p>
       <ActionButton onClick={onClick}>새로고침</ActionButton>
