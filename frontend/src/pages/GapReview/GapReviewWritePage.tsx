@@ -1,5 +1,9 @@
 import Layout from '@/components/Layout';
-
+import GapReviewWriteSection from '@/features/GapReview/GapReviewWriteSection';
 export default function GapReviewWritePage() {
-  return <Layout>임시 공백기 후기 작성 페이지 입니다.</Layout>;
+  return (
+    <Layout>
+      <GapReviewWriteSection />
+    </Layout>
+  );
 }
