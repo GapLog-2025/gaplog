@@ -18,17 +18,17 @@ const StyledPagination = styled(Pagination)(() => ({
     width: 50,
     height: 50,
     borderRadius: '100px',
-    fontWeight: 400,
+    fontWeight: 300,
     fontSize: 16,
     lineHeight: '143%',
     letterSpacing: '0.17px',
-    color: '#4B5563',
+    color: '#4B5563!important',
   },
 
   '& .Mui-selected': {
-    backgroundColor: '#F3E8FF',
+    backgroundColor: '#F3E8FF !important',
     color: '#4B5563',
-    fontWeight: 400,
+    fontWeight: 500,
   },
 
   '& .MuiPaginationItem-previousNext, & .MuiPaginationItem-firstLast': {
@@ -38,7 +38,7 @@ const StyledPagination = styled(Pagination)(() => ({
     '& svg': {
       width: 22,
       height: 22,
-      color: '#4B5563',
+      color: '#4B5563 !important',
     },
   },
 }));
