@@ -66,4 +66,106 @@ function MoreButton({ onClick }: MoreButtonProps) {
   );
 }
 
-export { MoveButton, ActionButton, MoreButton };
+type TagButtonProps = {
+  isActive: boolean;
+  children: React.ReactNode;
+  onClick: () => void;
+};
+
+function TagButton({ isActive, children, onClick }: TagButtonProps) {
+  const colorStyle = !isActive
+    ? 'bg-white border-border text-secondary'
+    : 'bg-info-background border-transparent text-info-text';
+  return (
+    <button
+      onClick={onClick}
+      className={`flex gap-2 items-center px-4 py-1 rounded-full border ${colorStyle} hover:shadow hover:shadow-gray-200`}
+    >
+      {children}
+    </button>
+  );
+}
+type BookmarkedButtonnProps = {
+  isBookmarked: boolean;
+  children: React.ReactNode;
+  onClick?: () => void;
+};
+
+function BookmarkedButton({
+  isBookmarked,
+  children,
+  onClick,
+}: BookmarkedButtonnProps) {
+  const colorStyle = !isBookmarked
+    ? 'bg-white border-border text-secondary'
+    : 'bg-yellow border-transparent text-white';
+
+  return (
+    <button
+      onClick={onClick}
+      className={`flex gap-2 items-center px-4 py-2 rounded-full border ${colorStyle} hover:shadow hover:shadow-gray-200`}
+    >
+      {children}
+    </button>
+  );
+}
+type LikedButtonProps = {
+  isLiked: boolean;
+  children: React.ReactNode;
+  onClick?: () => void;
+};
+
+function LikedButton({ isLiked, children, onClick }: LikedButtonProps) {
+  const colorStyle = !isLiked
+    ? 'bg-white border-border text-secondary'
+    : 'bg-pink border-transparent text-white';
+
+  return (
+    <button
+      onClick={onClick}
+      className={`flex gap-2 items-center px-4 py-2 rounded-full border ${colorStyle} hover:shadow hover:shadow-gray-200`}
+    >
+      {children}
+    </button>
+  );
+}
+type EditButtonProps = {
+  onClick?: () => void;
+};
+
+function EditButton({ onClick }: EditButtonProps) {
+  return (
+    <button
+      onClick={onClick}
+      className="w-fit bg-white border-2 typo-text rounded-lg px-5 py-2 hover:shadow-md transition-shadow hover:text-success-text hover:bg-success-background hover:border-green"
+    >
+      편집
+    </button>
+  );
+}
+
+type DeleteButtonProps = {
+  onClick?: () => void;
+};
+
+function DeleteButton({ onClick }: DeleteButtonProps) {
+  return (
+    <button
+      onClick={onClick}
+      className="w-fit bg-white border-2 typo-text rounded-lg px-5 py-2 hover:shadow-md transition-shadow hover:text-danger-text hover:bg-danger-background hover:border-pink"
+    >
+      삭제
+    </button>
+  );
+}
+
+export {
+  MoveButton,
+  ActionButton,
+  MoreButton,
+  TagButton,
+  BookmarkedButton,
+  LikedButton,
+  EditButton,
+  DeleteButton,
+};

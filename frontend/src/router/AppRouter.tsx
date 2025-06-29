@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from '@/pages/HomaPage';
-import GapReviewPage from '@/pages/GapReviewPage';
+import GapReviewListPage from '@/pages/GapReview/GapReviewListPage';
 import MentorPage from '@/pages/MentorPage';
 import CarePage from '@/pages/CarePage';
 import CompanyPage from '@/pages/CompanyPage';
-import RoadmapPage from '@/pages/Roadmap'; 
+import RoadmapPage from '@/pages/Roadmap';
 import MyPage from '@/pages/MyPage';
 import LoginPage from '@/pages/LoginPage';
 import SignUpPage from '@/pages/SignUpPage';
@@ -18,6 +18,8 @@ import Contact from '@/pages/Service/Contact';
 import FAQ from '@/pages/Support/FAQ';
 import Terms from '@/pages/Support/Terms';
 import Privacy from '@/pages/Support/Privacy';
+import GapReviewWritePage from '@/pages/GapReview/GapReviewWritePage';
+import GapReviewDetailPage from '@/pages/GapReview/GapReviewDetailPage';
 
 export default function AppRouter() {
   return (
@@ -31,9 +33,13 @@ export default function AppRouter() {
       {/* 유저 확인 로직 반영 전 라우터 작성 -25.06.14 */}
       <Routes>
         <Route path="/" element={<HomePage />} />
+        {/* 유저 관련 */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/gap-review" element={<GapReviewPage />} />
+        {/* 갭리뷰 페이지 관련 */}
+        <Route path="/gap-review" element={<GapReviewListPage />} />
+        <Route path="/gap-review/write" element={<GapReviewWritePage />} />
+        <Route path="/gap-review/:id" element={<GapReviewDetailPage />} />
         <Route path="/mentoring" element={<MentorPage />} />
         <Route path="/care" element={<CarePage />} />
         <Route path="/companies" element={<CompanyPage />} />

@@ -3,9 +3,6 @@ import { CertificateCard } from '@/features/Home/ui/card/CertificateCard';
 import SectionBlock from '@/features/Home/ui/SectionBlock';
 import { certificateList } from '@/features/Home/data/cerificateList';
 
-import { reviewData } from '@/features/GapReview/data/reviewList';
-import ReviewCard from '@/features/GapReview/ui/ReviewCard';
-
 import { TimelineCard } from '@/features/Home/ui/card/TimelineCard';
 export default function Jinyoung() {
   return (
@@ -16,12 +13,7 @@ export default function Jinyoung() {
             <CertificateCard key={certificate.name + index} {...certificate} />
           ))}
         </SectionBlock>
-        <div className="flex flex-col gap-4">
-          <ReviewCard type="primary" {...reviewData} />
-          <ReviewCard type="skyblue" {...reviewData} />
-          <ReviewCard type="yellow" {...reviewData} />
-          <ReviewCard type="green" {...reviewData} />
-        </div>
+
         <div>
           <TimelineCard />
         </div>
