@@ -1,4 +1,9 @@
 import Layout from '@/components/Layout';
+import GapReviewDetailSection from '@/features/GapReview/GapReviewDetailSection';
 export default function GapReviewDetailPage() {
-  return <Layout>임시 공백기 후기 디테일 페이지 입니다.</Layout>;
+  return (
+    <Layout>
+      <GapReviewDetailSection />
+    </Layout>
+  );
 }

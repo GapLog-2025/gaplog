@@ -85,5 +85,56 @@ function TagButton({ isActive, children, onClick }: TagButtonProps) {
     </button>
   );
 }
+type BookmarkedButtonnProps = {
+  isBookmarked: boolean;
+  children: React.ReactNode;
+  onClick?: () => void;
+};
 
-export { MoveButton, ActionButton, MoreButton, TagButton };
+function BookmarkedButton({
+  isBookmarked,
+  children,
+  onClick,
+}: BookmarkedButtonnProps) {
+  const colorStyle = !isBookmarked
+    ? 'bg-white border-border text-secondary'
+    : 'bg-yellow border-transparent text-white';
+
+  return (
+    <button
+      onClick={onClick}
+      className={`flex gap-2 items-center px-4 py-2 rounded-full border ${colorStyle} hover:shadow hover:shadow-gray-200`}
+    >
+      {children}
+    </button>
+  );
+}
+type LikedButtonProps = {
+  isLiked: boolean;
+  children: React.ReactNode;
+  onClick?: () => void;
+};
+
+function LikedButton({ isLiked, children, onClick }: LikedButtonProps) {
+  const colorStyle = !isLiked
+    ? 'bg-white border-border text-secondary'
+    : 'bg-pink border-transparent text-white';
+
+  return (
+    <button
+      onClick={onClick}
+      className={`flex gap-2 items-center px-4 py-2 rounded-full border ${colorStyle} hover:shadow hover:shadow-gray-200`}
+    >
+      {children}
+    </button>
+  );
+}
+
+export {
+  MoveButton,
+  ActionButton,
+  MoreButton,
+  TagButton,
+  BookmarkedButton,
+  LikedButton,
+};
