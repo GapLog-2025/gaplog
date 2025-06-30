@@ -1,26 +1,26 @@
-import { BookOpen, PenSquare } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useState, useMemo, useEffect } from 'react';
-import StyledPagination from '@/components/Pagination';
 
+import { MessageSquare, PenSquare } from 'lucide-react';
 import { ActionButton } from '@/components/Button';
-import ReviewCard from './ui/ReviewCard';
 import SearchAndSortBar from '../../components/SearchAndSortBar';
 import FilterList from '../../components/FilterList';
-import NoDataContent from './ui/GapReviewList/NoDataContent';
 
-import { sampleReviews, sampleTopReviews } from './data/reviewList';
+import NoDataContent from '../GapReview/ui/GapReviewList/NoDataContent';
+
+import { sampleMentorList } from './data/mentorList';
 import {
-  filterReviewsByTags,
-  matchReviewByKeyword,
-} from './utils/filterReview';
+  filterMentorsByTags,
+  matchMentorByKeyword,
+} from './utils/filterMentor';
+
+import MentorCard from './ui/MentorCard';
 
 const colorThemes = ['primary', 'skyblue', 'yellow', 'green'] as const;
 const ITEMS_PER_PAGE = 4;
 
-export default function GapReviewListSection() {
+export default function MentorListSection() {
   const navigate = useNavigate();
-
   const [searchKeyword, setSearchKeyword] = useState('');
   const [sortOption, setSortOption] = useState('최신순');
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -29,15 +29,15 @@ export default function GapReviewListSection() {
 
   // 필터/정렬/검색 적용된 전체 데이터
   const filteredData = useMemo(() => {
-    let base = sortOption === '최신순' ? sampleReviews : sampleTopReviews;
+    let base = sortOption === '최신순' ? sampleMentorList : sampleMentorList;
 
     if (selectedTags.length > 0) {
-      base = filterReviewsByTags(base, selectedTags);
+      base = filterMentorsByTags(base, selectedTags);
     }
 
     if (searchKeyword.trim()) {
       const keyword = searchKeyword.trim().toLowerCase();
-      base = base.filter((review) => matchReviewByKeyword(review, keyword));
+      base = base.filter((review) => matchMentorByKeyword(review, keyword));
     }
 
     return base;
@@ -60,14 +60,16 @@ export default function GapReviewListSection() {
       <div className="w-full flex justify-between">
         <div className="flex gap-4 items-center mb-2">
           <div className="bg-gd-point-main rounded-full flex justify-center items-center w-[32px] h-[32px]">
-            <BookOpen className="text-white" />
+            <MessageSquare className="text-white" />
           </div>
-          <h1 className="typo-heading text-title pt-1">공백기 후기</h1>
+          <h1 className="typo-heading text-title leading-none">
+            멘토에게 질문하기
+          </h1>
         </div>
-        <ActionButton onClick={() => navigate('/gap-review/write')}>
+        <ActionButton onClick={() => navigate('/mentoring/write')}>
           <div className="flex gap-3 items-center">
             <PenSquare />
-            <span className="leading-none">후기 작성하기</span>
+            <span className="leading-none">질문하기</span>
           </div>
         </ActionButton>
       </div>
@@ -87,13 +89,13 @@ export default function GapReviewListSection() {
         />
       )}
 
-      {/* 후기 카드 리스트 */}
+      {/* 멘토 관련 리스트 */}
       <div className="flex flex-col gap-6">
         {currentPageData.length > 0 ? (
-          currentPageData.map((review, i) => (
-            <ReviewCard
-              key={review.gapReviewsId}
-              review={review}
+          currentPageData.map((mentor, i) => (
+            <MentorCard
+              key={mentor.mentorId}
+              article={mentor}
               type={colorThemes[i % colorThemes.length]}
             />
           ))
@@ -106,19 +108,6 @@ export default function GapReviewListSection() {
           />
         )}
       </div>
-
-      {/* 페이지네이션 */}
-      {filteredData.length > 0 && (
-        <div className="flex justify-center mt-6">
-          <StyledPagination
-            count={Math.ceil(filteredData.length / ITEMS_PER_PAGE)}
-            page={currentPage}
-            onChange={(_, value) => setCurrentPage(value)}
-            shape="rounded"
-            color="primary"
-          />
-        </div>
-      )}
     </section>
   );
 }
