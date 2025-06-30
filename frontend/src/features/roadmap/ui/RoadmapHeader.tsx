@@ -1,21 +1,35 @@
-import { useState } from 'react';
-import { ChevronDown} from 'lucide-react';
+// import { useState } from 'react';
+// import { ChevronDown} from 'lucide-react';
 
+// interface RoadmapHeaderProps {
+//   selectedPath: 'frontend' | 'backend' | 'designer';
+//   setSelectedPath: (path: 'frontend' | 'backend' | 'designer') => void;
+// }
+
+// export default function RoadmapHeader({ selectedPath, setSelectedPath }: RoadmapHeaderProps) {
+//   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  
+//   const pathOptions = [
+//     { value: 'frontend', label: '프론트엔드 개발자' },
+//     { value: 'backend', label: '백엔드 개발자' },
+//     { value: 'designer', label: 'UX/UI 디자이너' }
+//   ];
+
+//   const selectedOption = pathOptions.find(option => option.value === selectedPath);
+
+
+//직무고정
 interface RoadmapHeaderProps {
   selectedPath: 'frontend' | 'backend' | 'designer';
-  setSelectedPath: (path: 'frontend' | 'backend' | 'designer') => void;
 }
 
-export default function RoadmapHeader({ selectedPath, setSelectedPath }: RoadmapHeaderProps) {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  
-  const pathOptions = [
-    { value: 'frontend', label: '프론트엔드 개발자' },
-    { value: 'backend', label: '백엔드 개발자' },
-    { value: 'designer', label: 'UX/UI 디자이너' }
-  ];
+export default function RoadmapHeader({ selectedPath }: RoadmapHeaderProps) {
+  const pathLabels: Record<'frontend' | 'backend' | 'designer', string> = {
+    frontend: '프론트엔드 개발자',
+    backend: '백엔드 개발자',
+    designer: 'UX/UI 디자이너',
+  };
 
-  const selectedOption = pathOptions.find(option => option.value === selectedPath);
 
   return (
     <div className="mb-8">
@@ -28,7 +42,15 @@ export default function RoadmapHeader({ selectedPath, setSelectedPath }: Roadmap
 
       </div>
 
-      {/* 직무 선택 드롭다운 */}
+      {/* 직무 고정 안내 */}
+      <div>
+        <label className="block typo-strong text-main mb-2">선택된 직무</label>
+        <p className="typo-small text-secondary mb-2">
+          <span className="text-primary-action font-semibold">{pathLabels[selectedPath]}</span>
+        </p>
+      </div>
+
+      {/* 직무 선택 드롭다운
       <div>
         <label className="block typo-strong text-main mb-2">커리어 경로 선택</label>
         <p className="typo-small text-secondary mb-4">관심 있는 직무를 선택하면 맞춤형 로드맵을 제공해 드립니다.</p>
@@ -63,10 +85,10 @@ export default function RoadmapHeader({ selectedPath, setSelectedPath }: Roadmap
                   {option.label}
                 </button>
               ))}
-            </div>
-          )}
-        </div>
-      </div>
+            </div> */}
+          {/* )} */}
+        {/* </div> */}
+      {/* </div> */}
     </div>
   );
 }

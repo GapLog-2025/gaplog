@@ -16,66 +16,67 @@ export const timelineData: Record<string, TimelineItem[]> = {
     {
       id: '1',
       period: '1개월차',
-      title: '기초 역량 쌓기',
-      description: '웹개발 기초부터 시작하여 처음의 역량을 높이 끌어올립니다.',
-      completed: true,
+      title: '웹개발 기초 익히기',
+      description: '비전공자라도 이해할 수 있도록 웹의 구조와 HTML/CSS를 중심으로 학습을 시작합니다.',
+      completed: false,
       tasks: [
-        { name: 'HTML 이해하기', completed: true },
-        { name: '웹의 역할 이해하기', completed: true },
-        { name: '웹의 기본 이해하기', completed: true }
+        { name: '웹의 구조와 동작 방식 이해하기', completed: false },
+        { name: 'HTML 태그와 시맨틱 구조 익히기', completed: false },
+        { name: 'CSS 기본 문법과 레이아웃 이해하기', completed: false },
       ],
-      resources: ['생활코딩', '노마드', '부트코딩']
+      resources: ['생활코딩', '드림코딩', '코딩애플']
     },
     {
       id: '2',
       period: '2개월차',
-      title: '직무 역량 강화',
-      description: '프론트엔드의 핵심인 자바 스크립트 이용하여 응용 능력을 익힙니다.',
+      title: 'JavaScript & DOM',
+      description: '프론트엔드의 핵심인 JavaScript 문법과 DOM 조작을 익히고 기초 프로젝트를 시작합니다.',
       completed: false,
       tasks: [
-        { name: '프로그래밍 언어 이해 (JavaScript, Python 등)', completed: false },
-        { name: '프레임워크 학습 (React, Node.js 등)', completed: false }
-      ],
-      resources: ['Github', 'Udemy', 'Codecademy']
+        { name: 'JavaScript 기초 문법 익히기 (변수, 함수, 조건문)', completed: false },
+        { name: 'DOM(Document Object Model) 조작 연습', completed: false },
+        { name: '작은 웹 페이지 만들기 (ex. Todo 리스트)', completed: false },
+      ],  
+      resources: ['JavaScript', 'DOM', '미니프로젝트']
     },
     {
       id: '3',
       period: '3개월차',
-      title: '포트폴리오 준비',
-      description: '지금 역량을 보여줄 수 있는 포트폴리오를 준비해 보겠습니다.',
+      title: 'React와 SPA 이해',
+      description: '프론트엔드 개발에서 가장 많이 쓰이는 React를 통해 컴포넌트 기반 개발을 경험합니다.',
       completed: false,
       tasks: [
-        { name: '개인 프로젝트 진행하기', completed: false },
-        { name: 'Github 프로필 정리하기', completed: false },
-        { name: '기술 블로그 포스팅하기', completed: false }
+        { name: 'React 기초 개념 학습 (JSX, 컴포넌트, 상태)', completed: false },
+        { name: '기초 프로젝트 만들기 (ex. 날씨 앱, 계산기)', completed: false },
+        { name: 'React Router 및 상태 관리 기초', completed: false },
       ],
-      resources: ['Github Pages', 'Notion', 'Velog']
+      resources: ['React', '프로젝트']
     },
     {
       id: '4',
       period: '4개월차',
-      title: '취업 지원서 준비',
-      description: '이력서, 자기소개서 및 취업 전략을 실습하여 서류를 준비해 보겠습니다.',
+      title: '프로젝트 및 포트폴리오 제작',
+      description: '나만의 프로젝트를 직접 기획하고 제작하며 GitHub와 블로그를 통해 공개합니다.',
       completed: false,
       tasks: [
-        { name: '이력서 작성하기', completed: false },
-        { name: '자기소개서 작성하기', completed: false },
-        { name: 'LinkedIn 프로필 정리해하기', completed: false }
+        { name: 'React 기반 개인 프로젝트 제작', completed: false },
+        { name: 'Git & GitHub를 통한 버전관리 실습', completed: false },
+        { name: '기술 블로그에 프로젝트 과정 정리', completed: false },
       ],
-      resources: ['이력서 템플릿', '잡코리아 PWD', 'LinkedIn']
+      resources: ['Github', '포트폴리오', '기술 블로그']
     },
     {
       id: '5',
       period: '5개월차',
-      title: '면접 준비 및 지원',
-      description: '기업 연구와 학습한 능력하여 면접 준비를 포기적으로 지원합니다.',
+      title: '서류 및 면접 준비',
+      description: '이력서와 자기소개서를 준비하고, 비전공자의 장점을 살릴 수 있는 면접 전략을 학습합니다.',
       completed: false,
       tasks: [
-        { name: '기업 기업 연구하기', completed: false },
-        { name: '모의 면접 진행하기', completed: false },
-        { name: '기술/실무 면접 준비하기', completed: false }
+        { name: '이력서/자기소개서 작성 및 피드백 받기', completed: false },
+        { name: '모의 면접 준비 및 실습', completed: false },
+        { name: '프론트엔드 면접 질문 대비', completed: false },
       ],
-      resources: ['면접 질문 모음', '기업 분석 자료', '면접후기']
+      resources: ['면접 질문 모음', '기업 분석 자료', '면접 특강']
     }
   ],
   backend: [
