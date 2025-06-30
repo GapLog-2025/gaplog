@@ -8,7 +8,7 @@ import Tag from '@/components/Tag';
 import { Card, CardHeader, CardContent } from '@/components/Card';
 import formatDate from '@/utils/formatDate';
 
-import { Calendar, Star, StarOff } from 'lucide-react';
+import { Calendar, Star, StarOff, BookOpen } from 'lucide-react';
 import { BookmarkedButton } from '@/components/Button';
 import { useAuthStore } from '@/stores/useAuthStore';
 
@@ -45,6 +45,13 @@ export default function GapReviewDetailSection() {
 
   return (
     <section className="w-full flex flex-col gap-5">
+      {/* heading */}
+      <div className="flex gap-4 items-center mb-2">
+        <div className="bg-gd-point-main rounded-full flex justify-center items-center w-[32px] h-[32px]">
+          <BookOpen className="text-white" />
+        </div>
+        <h1 className="typo-heading text-title pt-1">공백기 후기</h1>
+      </div>
       <div className="flex justify-between items-center">
         <MoveButton onClick={handleback}>뒤로가기</MoveButton>
 

@@ -1,5 +1,9 @@
 import Layout from '@/components/Layout';
-
+import MentorDetailSection from '@/features/Mentor/MentorDetailSection';
 export default function MentorDetailPage() {
-  return <Layout>멘토 디테일 </Layout>;
+  return (
+    <Layout>
+      <MentorDetailSection />
+    </Layout>
+  );
 }
