@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { sampleMentorList } from './data/mentorList';
 import { MessageSquare, Heart, HeartMinus } from 'lucide-react';
 import { MoveButton, EditButton, DeleteButton } from '@/components/Button';
-import useHandleBack from '../GapReview/hook/handleBack';
+import useHandleBack from './hook/handleBack';
 import { useAuthStore } from '@/stores/useAuthStore';
 import Tag from '@/components/Tag';
 import { Card, CardHeader, CardContent } from '@/components/Card';

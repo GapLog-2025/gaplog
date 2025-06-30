@@ -1,5 +1,9 @@
 import Layout from '@/components/Layout';
-
+import MentorWriteSection from '@/features/Mentor/MentorWriteSection';
 export default function MentorWritePage() {
-  return <Layout>멘토 작성 페이지</Layout>;
+  return (
+    <Layout>
+      <MentorWriteSection />
+    </Layout>
+  );
 }
