@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { ChevronRight } from 'lucide-react';
-import StepHeader from './ui/GapReviewWrite/StepHeader';
-import useHandleBack from './hook/handleBack';
-import BasicInfoForm from './ui/GapReviewWrite/BasicInputForm';
-import SelectedSummary from './ui/GapReviewWrite/SelectedSummary';
-import ReviewForm from './ui/GapReviewWrite/ReviewForm';
+import { ChevronRight, BookOpen } from 'lucide-react';
+import StepHeader from '@/components/StepHeader';
+import BasicInfoForm from '@/components/BasicInputForm';
+import SelectedSummary from '@/components/SelectedSummary';
+import ReviewForm from '@/features/GapReview/ui/GapReviewWrite/ReviewForm';
+import useHandleBack from '@/features/GapReview/hook/handleBack';
 import { useNavigate } from 'react-router-dom';
 export default function GapReviewWriteSection() {
   const handleBack = useHandleBack();
@@ -45,7 +45,7 @@ export default function GapReviewWriteSection() {
                 ? '3년 이하'
                 : ''
         }
-        grade={grade} // ✅ 추가
+        grade={grade}
         onSelectJob={setCategory}
         onSelectIsMajor={setIsMajor}
         onSelectPeriod={(v) =>
@@ -105,7 +105,6 @@ export default function GapReviewWriteSection() {
             </button>
           </div>
 
-          {/* SelectedSummary 카드 자체가 높이를 가지고 있으므로 */}
           <SelectedSummary
             category={category}
             isMajor={isMajor}
@@ -150,7 +149,15 @@ export default function GapReviewWriteSection() {
   };
 
   return (
-    <section className="w-full flex flex-col gap-10">
+    <section className="w-full flex flex-col gap-4">
+      <div className="w-full flex justify-between">
+        <div className="flex gap-4 items-center mb-2">
+          <div className="bg-gd-point-main rounded-full flex justify-center items-center w-[32px] h-[32px]">
+            <BookOpen className="text-white" />
+          </div>
+          <h1 className="typo-heading text-title pt-1">공백기 후기</h1>
+        </div>
+      </div>
       <StepHeader currentStep={currentStep} onBack={handleBack} />
       {renderStep()}
     </section>
