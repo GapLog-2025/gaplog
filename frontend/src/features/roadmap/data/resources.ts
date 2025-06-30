@@ -1,19 +1,30 @@
-export const resources = {
+type ResourceItem = {
+  title: string;
+  platform: string;
+  description: string;
+  link: string;
+};
+
+
+export const resources: Record<'frontend' | 'backend' | 'designer', ResourceItem[]> = {
   frontend: [
     {
-      title: 'React 공식 문서',
-      platform: '웹',
-      description: '프론트엔드 개발을 위한 React 라이브러리 공식 문서입니다.',
+      title: '생활코딩 - HTML',
+      platform: 'YouTube',
+      description: 'HTML의 기본 구조와 태그를 쉽게 설명해주는 입문자용 강의입니다.',
+      link: 'https://www.youtube.com/watch?v=OGFgdro160I&list=PLuHgQVnccGMDUzDDCKW-pCZQY-MMCX5yB',
     },
     {
-      title: 'CSS Tricks',
-      platform: '웹',
-      description: '현대적인 CSS 작성법을 배울 수 있는 사이트입니다.',
+      title: '드림코딩 - HTML/CSS/JavaScript',
+      platform: 'YouTube',
+      description: '초보자도 따라할 수 있는 실습 중심의 프론트엔드 종합 강의입니다.',
+      link: 'https://www.youtube.com/watch?v=v2Aw9f-MK5s&list=PLv2d7VI9OotQ1F92Jp9Ce7ovHEsuRQB3Y',
     },
     {
-      title: 'JavaScript MDN',
-      platform: '웹',
-      description: 'JavaScript 개발을 위한 Mozilla 공식 문서입니다.',
+      title: '코딩애플 - 자바스크립트',
+      platform: 'YouTube',
+      description: '개념 설명과 실습을 병행하여 JavaScript의 흐름을 익힐 수 있는 강의입니다.',
+      link: 'https://www.youtube.com/watch?v=8rv8GTgYYrU&list=PLfLgtT94nNq0svPBSslzReYKbZRuv_-NK&index=1',
     },
   ],
   backend: [
@@ -21,16 +32,19 @@ export const resources = {
       title: 'Node.js 교과서',
       platform: '책',
       description: 'Node.js를 이용한 서버 개발을 배울 수 있는 책입니다.',
+      link: 'https://www.yes24.com/Product/Goods/1000000000000',
     },
     {
       title: 'SQL 튜토리얼',
       platform: '웹',
       description: '기초부터 고급까지 SQL을 학습할 수 있는 자료입니다.',
+      link: 'https://www.w3schools.com/sql/',
     },
     {
       title: 'Spring Boot 가이드',
       platform: '웹',
       description: 'Spring Boot 프레임워크 학습을 위한 공식 가이드입니다.',
+      link: 'https://spring.io/guides/gs/spring-boot/',
     },
   ],
   designer: [
@@ -38,16 +52,19 @@ export const resources = {
       title: 'Figma 공식 튜토리얼',
       platform: '웹',
       description: '디자인 협업 도구인 Figma의 사용법을 배울 수 있습니다.',
+      link: 'https://www.figma.com/resources/learn-design/',
     },
     {
       title: 'Interaction Design Foundation',
       platform: '웹',
       description: 'UX/UI 디자인 관련 학습 플랫폼입니다.',
+      link: 'https://www.interaction-design.org/',
     },
     {
       title: 'Adobe XD 가이드',
       platform: '웹',
       description: 'Adobe XD를 활용한 프로토타이핑 방법을 학습할 수 있습니다.',
+      link: 'https://helpx.adobe.com/kr/xd/tutorials.html',
     },
   ],
 } as const;

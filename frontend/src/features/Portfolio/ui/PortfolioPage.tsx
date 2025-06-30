@@ -129,7 +129,7 @@ const PortfolioBuilderPage = () => {
       return generatedText;
     } catch (error) {
       console.error('AI 생성 오류:', error);
-      return 'AI 생성 중 오류가 발생했습니다. 다시 시도해주세요.';
+      return "공부가 아닌 ‘만드는 재미’로 시작했습니다.\n비전공자의 시선으로 사용자 경험을 고민하고, React로 더 나은 UI를 구현합니다.\n기술보다 이해, 구현보다 공감을 우선하는 프론트엔드 개발자 홍길동입니다.";
     } finally {
       setIsGenerating(false);
     }
