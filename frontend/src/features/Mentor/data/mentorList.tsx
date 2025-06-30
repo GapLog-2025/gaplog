@@ -48,16 +48,7 @@ export const sampleMentorList: Mentor[] = [
     bookmarked: false,
     createdAt: '2025-06-29T09:11:45.361Z',
     likes: 41,
-    replies: [
-      {
-        replyId: 1,
-        mentorId: 2,
-        userName: 'HR매니저',
-        content:
-          'UX/UI 디자이너 관련 경험 공유드립니다. 공백기에는 프로젝트 경험이 중요해요.',
-        createdAt: '2025-06-29T08:11:45.361Z',
-      },
-    ],
+    replies: [],
   },
   {
     mentorId: 3,
@@ -276,3 +267,7 @@ export const sampleMentorList: Mentor[] = [
     ],
   },
 ];
+
+export const sampleTopMentorList: Mentor[] = [...sampleMentorList].sort(
+  (a, b) => b.likes - a.likes,
+);

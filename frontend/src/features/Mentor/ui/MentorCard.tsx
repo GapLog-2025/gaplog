@@ -1,8 +1,8 @@
+import { useNavigate } from 'react-router-dom';
 import Tag from '@/components/Tag';
-import { Calendar, Tally1, Heart } from 'lucide-react';
+import { Calendar, Tally1, Heart, ChevronRight } from 'lucide-react';
 import { type Mentor } from '@/types/mentor';
 import formatDate from '@/utils/formatDate';
-import { useNavigate } from 'react-router-dom';
 
 import { Avatar } from '@mui/material';
 
@@ -63,10 +63,16 @@ export default function MentorCard({ article, type }: MentorCardProps) {
 
   const navigate = useNavigate();
 
+  // 답변 상태
+  const isAnswered = replies.length > 0;
+  const replyCountColor = isAnswered ? 'text-green' : 'text-main';
+  const tagType = isAnswered ? 'green' : 'pink';
+  const tagLabel = isAnswered ? '답변 완료' : '답변 대기';
+
   return (
     <button
       className={`flex w-full text-start justify-between h-[320px] rounded-xl border ${theme.borderLeft} px-12 py-8 hover:shadow-lg`}
-      onClick={() => navigate(`/gap-review/${mentorId}`)}
+      onClick={() => navigate(`/mentoring/${mentorId}`)}
     >
       {/* review contents */}
       <div className="w-full h-full flex flex-col justify-between typo-text text-main">
@@ -75,11 +81,14 @@ export default function MentorCard({ article, type }: MentorCardProps) {
           <div className="flex gap-2 items-center">
             <p className="typo-strong text-secondary">직무</p>
             <Tally1 size={16} />
-            <p>{category}</p>
-            <p>{major}</p>
+            <div className="flex gap-1 items-center">
+              <p>{category}</p>
+              <ChevronRight size={18} />
+              <p>{major}</p>
+            </div>
           </div>
 
-          <div className="w-full flex justify-between">
+          <div className="w-full flex justify-between items-center">
             <div className="flex gap-5 items-center typo-strong text-secondary">
               <Avatar />
               {userName}
@@ -89,18 +98,6 @@ export default function MentorCard({ article, type }: MentorCardProps) {
               <span className="font-bold">{formatDate(createdAt)}</span>
             </div>
           </div>
-        </div>
-
-        {/* 게시글 좋아요 & 답글 상태 */}
-        <div className="flex justify-between">
-          <div className="flex gap-2 items-center typo-small text-disabled">
-            <div className="flex justify-center items-center text-white p-1 rounded-full bg-pink ">
-              <Heart size={16} />
-            </div>
-            <span>좋아요</span>
-            <span className="font-semibold">{likes}</span>
-          </div>
-          <div>{replies.length}</div>
         </div>
 
         {/* title & description */}
@@ -119,6 +116,31 @@ export default function MentorCard({ article, type }: MentorCardProps) {
               className={`${theme.border}`}
             />
           ))}
+        </div>
+        {/* 게시글 좋아요 & 답글 상태 */}
+        <div className="flex justify-between items-end">
+          {/* 좋아요 수  */}
+          <div className="flex gap-2 items-center typo-small text-disabled ">
+            <div
+              className={`flex justify-center items-center text-white p-1 rounded-full ${likes > 0 ? 'bg-pink' : 'bg-disabled'} `}
+            >
+              <Heart size={16} />
+            </div>
+            <span className="leading-none">좋아요</span>
+            <span className="font-semibold leading-none">{likes}</span>
+          </div>
+          {/* 답글 상태 */}
+          <div className="flex gap-4 items-center">
+            <div className="flex justify-center items-center gap-2">
+              <p className="typo-strong text-secondary">답변</p>
+              <p className={`typo-heading ${replyCountColor}`}>
+                {replies.length}
+              </p>
+            </div>
+            <div>
+              <Tag type={tagType} label={tagLabel} className="py-2" />
+            </div>
+          </div>
         </div>
       </div>
     </button>

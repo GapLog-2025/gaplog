@@ -5,10 +5,11 @@ import { MessageSquare, PenSquare } from 'lucide-react';
 import { ActionButton } from '@/components/Button';
 import SearchAndSortBar from '../../components/SearchAndSortBar';
 import FilterList from '../../components/FilterList';
+import StyledPagination from '@/components/Pagination';
 
 import NoDataContent from '../GapReview/ui/GapReviewList/NoDataContent';
 
-import { sampleMentorList } from './data/mentorList';
+import { sampleMentorList, sampleTopMentorList } from './data/mentorList';
 import {
   filterMentorsByTags,
   matchMentorByKeyword,
@@ -29,7 +30,7 @@ export default function MentorListSection() {
 
   // 필터/정렬/검색 적용된 전체 데이터
   const filteredData = useMemo(() => {
-    let base = sortOption === '최신순' ? sampleMentorList : sampleMentorList;
+    let base = sortOption === '최신순' ? sampleMentorList : sampleTopMentorList;
 
     if (selectedTags.length > 0) {
       base = filterMentorsByTags(base, selectedTags);
@@ -108,6 +109,19 @@ export default function MentorListSection() {
           />
         )}
       </div>
+
+      {/* 페이지네이션 */}
+      {filteredData.length > 0 && (
+        <div className="flex justify-center mt-6">
+          <StyledPagination
+            count={Math.ceil(filteredData.length / ITEMS_PER_PAGE)}
+            page={currentPage}
+            onChange={(_, value) => setCurrentPage(value)}
+            shape="rounded"
+            color="primary"
+          />
+        </div>
+      )}
     </section>
   );
 }
