@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from '@/pages/HomaPage';
 import GapReviewListPage from '@/pages/GapReview/GapReviewListPage';
-import MentorPage from '@/pages/MentorPage';
+import MentorListPage from '@/pages/Mentor/MentorListPage';
 import CarePage from '@/pages/CarePage';
 import CompanyPage from '@/pages/CompanyPage';
 import RoadmapPage from '@/pages/Roadmap';
@@ -20,6 +20,8 @@ import Terms from '@/pages/Support/Terms';
 import Privacy from '@/pages/Support/Privacy';
 import GapReviewWritePage from '@/pages/GapReview/GapReviewWritePage';
 import GapReviewDetailPage from '@/pages/GapReview/GapReviewDetailPage';
+import MentorDetailPage from '@/pages/Mentor/MentorDetailPage';
+import MentorWritePage from '@/pages/Mentor/MentorWritePage';
 
 export default function AppRouter() {
   return (
@@ -40,7 +42,11 @@ export default function AppRouter() {
         <Route path="/gap-review" element={<GapReviewListPage />} />
         <Route path="/gap-review/write" element={<GapReviewWritePage />} />
         <Route path="/gap-review/:id" element={<GapReviewDetailPage />} />
-        <Route path="/mentoring" element={<MentorPage />} />
+        {/* 멘토링 페이지 관련 */}
+        <Route path="/mentoring" element={<MentorListPage />} />
+        <Route path="/mentoring/write" element={<MentorWritePage />} />
+        <Route path="/mentoring/:id" element={<MentorDetailPage />} />
+        {/* 마음챙김 */}
         <Route path="/care" element={<CarePage />} />
         <Route path="/companies" element={<CompanyPage />} />
         <Route path="/roadmap" element={<RoadmapPage />} />
