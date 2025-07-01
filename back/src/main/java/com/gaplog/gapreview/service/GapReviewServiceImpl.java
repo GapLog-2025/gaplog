@@ -148,4 +148,25 @@ public class GapReviewServiceImpl implements GapReviewService {
                 .bookmarkCount(bookmarkCount)
                 .build();
     }
+
+    @Override
+    public void deleteMyReview(Long userId, Long reviewId) {
+        mapper.deleteBookmarksByReviewId(reviewId); // 북마크 먼저 삭제
+        mapper.deleteReviewById(reviewId, userId);  // 본인 글만 삭제 가능
+    }
+
+    @Override
+    public void updateMyReview(Long userId, Long reviewId, GapReviewRequestDTO dto) {
+        GapReview review = GapReview.builder()
+                .gapReviewsId(reviewId)
+                .userId(userId)
+                .title(dto.getTitle())
+                .major(dto.getMajor())
+                .content(dto.getContent())
+                .grade(dto.getGrade())
+                .gapPeriodMonths(dto.getGapPeriodMonths())
+                .isMajor(dto.getIsMajor())
+                .build();
+        mapper.updateReview(review);
+    }
 }

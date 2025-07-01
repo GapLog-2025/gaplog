@@ -26,4 +26,10 @@ public interface GapReviewMapper {
     GapReview findByReviewId(@Param("reviewId") Long reviewId);
 
     int countBookmarks(@Param("reviewId") Long reviewId);
+
+    void deleteBookmarksByReviewId(@Param("reviewId") Long reviewId);
+
+    void deleteReviewById(@Param("reviewId") Long reviewId, @Param("userId") Long userId);
+
+    void updateReview(GapReview review);
 }
