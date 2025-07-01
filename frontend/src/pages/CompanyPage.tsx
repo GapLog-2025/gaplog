@@ -11,6 +11,7 @@ import { Building2 } from 'lucide-react';
 import { useState, useMemo } from 'react';
 import { regionList } from '@/features/Company/data/regionList';
 import { industryList } from '@/features/Company/data/industryList';
+import CompanyAside from '@/features/Company/ui/CompanyAside';
 
 const ITEMS_PER_PAGE = 9;
 
@@ -112,7 +113,7 @@ export default function CompanyPage() {
   };
 
   return (
-    <Layout>
+    <Layout aside={<CompanyAside />}>
       <div className="flex gap-4 items-center mb-2">
         <div className="bg-gd-point-main rounded-full flex justify-center items-center w-[32px] h-[32px]">
           <Building2 className="text-white" />
