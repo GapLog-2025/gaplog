@@ -65,10 +65,7 @@ export default function CompanyPage() {
     return { companies, totalPages };
   }, [filteredCompanies, currentPage]);
 
-  const handlePageChange = (
-    event: React.ChangeEvent<unknown>,
-    page: number,
-  ) => {
+  const handlePageChange = (_: React.ChangeEvent<unknown>, page: number) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
