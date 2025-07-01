@@ -7,7 +7,7 @@ export interface TaskProgress {
   completed: boolean;
 }
 
-export function useRoadmapProgress(selectedPath: 'frontend' | 'backend' | 'designer') {
+export function useRoadmapProgress(selectedPath: 'itCareerRoadmap' | 'backend' | 'designer') {
   const [taskProgress, setTaskProgress] = useState<TaskProgress[]>([]);
 
   // 현재 선택된 경로의 로드맵 데이터

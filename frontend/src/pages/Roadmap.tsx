@@ -10,7 +10,7 @@ import { Card } from '@/components/Card';
 import { useRoadmapProgress } from '@/features/roadmap/hooks/useRoadmapProgress';
 
 export default function RoadmapPage() {
-  const [selectedPath] = useState<'frontend' | 'backend' | 'designer'>('frontend');
+  const [selectedPath] = useState<'itCareerRoadmap' | 'backend' | 'designer'>('itCareerRoadmap');
   // const [selectedPath, setSelectedPath] = useState<'frontend' | 'backend' | 'designer'>('frontend');
   
   // 통합된 상태 관리

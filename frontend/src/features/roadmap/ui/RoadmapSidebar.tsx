@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { Sparkles, ExternalLink } from 'lucide-react';
 
 interface RoadmapSidebarProps {
-  selectedPath: 'frontend' | 'backend' | 'designer';
+  selectedPath: 'itCareerRoadmap' | 'backend' | 'designer';
   progressHook: any;
 }
 
@@ -158,21 +158,21 @@ export default React.memo(function RoadmapSidebar({ selectedPath, progressHook }
             <div className="flex justify-between items-center mb-2">
               <span className="typo-small text-secondary">평균 취업 소요 기간</span>
               <span className="typo-small text-title">
-                {selectedPath === 'frontend' ? '6~12개월' : 
+                {selectedPath === 'itCareerRoadmap' ? '6~12개월' : 
                  selectedPath === 'backend' ? '8~14개월' : '4~10개월'}
               </span>
             </div>
             <div className="flex justify-between items-center mb-2">
               <span className="typo-small text-secondary">평균 연봉</span>
               <span className="typo-small text-title">
-                {selectedPath === 'frontend' ? '4,000~5,000만원' : 
+                {selectedPath === 'itCareerRoadmap' ? '4,000~5,000만원' : 
                  selectedPath === 'backend' ? '4,500~6,000만원' : '3,500~4,500만원'}
               </span>
             </div>
             <div className="flex justify-between items-center mb-2">
               <span className="typo-small text-secondary">취업 성공률</span>
               <span className="typo-small text-success-text">
-                {selectedPath === 'frontend' ? '75%' : 
+                {selectedPath === 'itCareerRoadmap' ? '75%' : 
                  selectedPath === 'backend' ? '80%' : '70%'}
               </span>
             </div>
@@ -193,7 +193,7 @@ export default React.memo(function RoadmapSidebar({ selectedPath, progressHook }
           <div className="space-y-4">
             <div className="border border-point-yellow-background rounded-lg p-3">
               <div className="typo-small text-point-yellow-text mb-1">
-                {selectedPath === 'frontend' ? '프론트엔드 개발자로 취업 성공!' : 
+                {selectedPath === 'itCareerRoadmap' ? '프론트엔드 개발자로 취업 성공!' : 
                  selectedPath === 'backend' ? '백엔드에서도 개발자에게 취업한 이야기' : 
                  'UX/UI 디자이너 취업 후기'}
               </div>
@@ -202,12 +202,12 @@ export default React.memo(function RoadmapSidebar({ selectedPath, progressHook }
             
             <div className="border border-border rounded-lg p-3">
               <div className="typo-small text-title mb-1">
-                {selectedPath === 'frontend' ? 'React 개발자 취업 후기' : 
+                {selectedPath === 'itCareerRoadmap' ? '무료 부트캠프 취업 후기 장문 정리' : 
                  selectedPath === 'backend' ? '무료 부트캠프 취업 후기 장문 정리' : 
                  '포트폴리오로 디자이너 취업하기'}
               </div>
               <div className="typo-small text-secondary">
-                {selectedPath === 'frontend' ? '신입 • 3개월 과정' : 
+                {selectedPath === 'itCareerRoadmap' ? '신입 • 3개월 과정' : 
                  selectedPath === 'backend' ? '부족함 • 6개월 과정' : 
                  '경력전환 • 4개월 과정'}
               </div>

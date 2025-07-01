@@ -4,7 +4,7 @@ import Tag from '@/components/Tag';
 import { certifications } from '../data/certifications'; // 기존 certifications.ts 사용
 
 interface CertificationSectionProps {
-  selectedPath: 'frontend' | 'backend' | 'designer';
+  selectedPath: 'itCareerRoadmap' | 'backend' | 'designer';
 }
 
 export default function CertificationSection({ selectedPath }: CertificationSectionProps) {

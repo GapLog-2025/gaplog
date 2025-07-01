@@ -129,7 +129,7 @@ const PortfolioBuilderPage = () => {
       return generatedText;
     } catch (error) {
       console.error('AI 생성 오류:', error);
-      return "공부가 아닌 ‘만드는 재미’로 시작했습니다.\n비전공자의 시선으로 사용자 경험을 고민하고, React로 더 나은 UI를 구현합니다.\n기술보다 이해, 구현보다 공감을 우선하는 프론트엔드 개발자 홍길동입니다.";
+      return "“공부가 아닌 ‘만드는 즐거움’에서 시작했습니다. \n비전공자라는 배경은 오히려 기술을 사용자 관점에서 바라보는 힘이 되었습니다. 단순한 구현을 넘어, 왜 필요한지, 어떻게 더 나아질 수 있을지를 끊임없이 고민하며 IT 프로젝트에 임해왔습니다.\n기능보다는 목적을, 도구보다는 맥락을 먼저 생각하는 개발자로서, 기술과 사람을 잇는 솔루션을 만드는 것이 제 일의 기준입니다.";
     } finally {
       setIsGenerating(false);
     }
@@ -641,10 +641,8 @@ const PortfolioBuilderPage = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       직무/포지션 *
                     </label>
-                    <input
-                      type="text"
+                    <select
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-                      placeholder="프론트엔드 개발자"
                       value={portfolioData.personalInfo.title}
                       onChange={(e) => {
                         setPortfolioData((prev) => ({
@@ -656,11 +654,20 @@ const PortfolioBuilderPage = () => {
                         }));
                         setErrors((prev) => ({ ...prev, title: '' }));
                       }}
-                    />
+                    >
+                      <option value="">선택하세요</option>
+                      <option value="IT/개발">IT/개발</option>
+                      <option value="디자인">디자인</option>
+                      <option value="마케팅/광고">마케팅/광고</option>
+                      <option value="경영/사무">경영/사무</option>
+                      <option value="무역/유통">무역/유통</option>
+                      <option value="영업">영업</option>
+                      <option value="생산/제조">생산/제조</option>
+                      <option value="건설">건설</option>
+                      <option value="금융">금융</option>
+                    </select>
                     {errors.title && (
-                      <p className="text-red-500 text-sm mt-1">
-                        {errors.title}
-                      </p>
+                      <p className="text-red-500 text-sm mt-1">{errors.title}</p>
                     )}
                   </div>
 

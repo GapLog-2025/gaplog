@@ -4,7 +4,7 @@ import Tag from '@/components/Tag';
 import { resources } from '../data/resources';
 
 interface RecommendedCoursesProps {
-  selectedPath: 'frontend' | 'backend' | 'designer';
+  selectedPath: 'itCareerRoadmap' | 'backend' | 'designer';
 }
 
 // YouTube 링크에서 영상 ID 추출

@@ -1,5 +1,5 @@
 export const certifications = {
-  frontend: [
+  itCareerRoadmap: [
     {
       name: '정보처리기사',
       description: '프로그래밍 이론, 시스템 구조, 알고리즘, 데이터베이스 등 IT 개발에 필요한 전반적인 기초 지식을 평가하는 국가기술자격증입니다. 코딩 실력을 공식적으로 증명할 수 있어 비전공자에게 특히 유리합니다.',

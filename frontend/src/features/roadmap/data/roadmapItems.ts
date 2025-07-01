@@ -12,71 +12,84 @@ export interface TimelineItem {
 }
 
 export const timelineData: Record<string, TimelineItem[]> = {
-  frontend: [
+  itCareerRoadmap:[
     {
       id: '1',
       period: '1개월차',
-      title: '웹개발 기초 익히기',
-      description: '비전공자라도 이해할 수 있도록 웹의 구조와 HTML/CSS를 중심으로 학습을 시작합니다.',
+      title: 'IT 기초 및 웹 개발 구조 이해',
+      description: '웹의 동작 원리와 클라이언트-서버 모델, 버전관리, 협업 툴 등 IT 공통 기초를 다집니다.',
       completed: false,
       tasks: [
-        { name: '웹의 구조와 동작 방식 이해하기', completed: false },
-        { name: 'HTML 태그와 시맨틱 구조 익히기', completed: false },
-        { name: 'CSS 기본 문법과 레이아웃 이해하기', completed: false },
+        { name: '웹의 구조와 클라이언트-서버 모델 이해', completed: false },
+        { name: 'Git/GitHub 기초 및 버전관리 실습', completed: false },
+        { name: 'HTML/CSS 기본 구조 익히기', completed: false }
       ],
-      resources: ['생활코딩', '드림코딩', '코딩애플']
+      resources: ['생활코딩', 'Git 문서', '드림코딩', 'Notion 협업툴']
     },
     {
       id: '2',
       period: '2개월차',
-      title: 'JavaScript & DOM',
-      description: '프론트엔드의 핵심인 JavaScript 문법과 DOM 조작을 익히고 기초 프로젝트를 시작합니다.',
+      title: '프로그래밍 언어 및 프론트엔드 개발',
+      description: 'JavaScript와 DOM, React 기초를 통해 프론트엔드 개발 역량을 키웁니다.',
       completed: false,
       tasks: [
-        { name: 'JavaScript 기초 문법 익히기 (변수, 함수, 조건문)', completed: false },
-        { name: 'DOM(Document Object Model) 조작 연습', completed: false },
-        { name: '작은 웹 페이지 만들기 (ex. Todo 리스트)', completed: false },
-      ],  
-      resources: ['JavaScript', 'DOM', '미니프로젝트']
+        { name: 'JavaScript 기본 문법 익히기', completed: false },
+        { name: 'DOM 조작 및 이벤트 핸들링 실습', completed: false },
+        { name: 'React 컴포넌트 및 상태 관리 학습', completed: false }
+      ],
+      resources: ['JavaScript Info', 'React 공식문서', '코딩애플']
     },
     {
       id: '3',
       period: '3개월차',
-      title: 'React와 SPA 이해',
-      description: '프론트엔드 개발에서 가장 많이 쓰이는 React를 통해 컴포넌트 기반 개발을 경험합니다.',
+      title: '백엔드 개발의 기초 다지기',
+      description: 'Node.js, Express, 데이터베이스(SQL/NoSQL)까지 백엔드 주요 기술을 익힙니다.',
       completed: false,
       tasks: [
-        { name: 'React 기초 개념 학습 (JSX, 컴포넌트, 상태)', completed: false },
-        { name: '기초 프로젝트 만들기 (ex. 날씨 앱, 계산기)', completed: false },
-        { name: 'React Router 및 상태 관리 기초', completed: false },
+        { name: 'Node.js 기반 서버 구축 실습', completed: false },
+        { name: 'REST API 설계 및 Postman 테스트', completed: false },
+        { name: 'SQL / NoSQL 기초 문법 및 CRUD 실습', completed: false }
       ],
-      resources: ['React', '프로젝트']
+      resources: ['Node.js 공식문서', 'Express 튜토리얼', 'MySQL/PostgreSQL', 'MongoDB 문서']
     },
     {
       id: '4',
       period: '4개월차',
-      title: '프로젝트 및 포트폴리오 제작',
-      description: '나만의 프로젝트를 직접 기획하고 제작하며 GitHub와 블로그를 통해 공개합니다.',
+      title: '풀스택 프로젝트 제작',
+      description: '프론트와 백엔드를 연동한 웹 서비스를 직접 기획, 개발, 배포까지 진행합니다.',
       completed: false,
       tasks: [
-        { name: 'React 기반 개인 프로젝트 제작', completed: false },
-        { name: 'Git & GitHub를 통한 버전관리 실습', completed: false },
-        { name: '기술 블로그에 프로젝트 과정 정리', completed: false },
+        { name: 'React + Express 연동 프로젝트 제작', completed: false },
+        { name: 'MongoDB/MySQL 등 DB 연동 구현', completed: false },
+        { name: 'GitHub 및 블로그에 프로젝트 기록', completed: false }
       ],
-      resources: ['Github', '포트폴리오', '기술 블로그']
+      resources: ['Render/Netlify/Vercel', 'GitHub Pages', '기술 블로그']
     },
     {
       id: '5',
       period: '5개월차',
-      title: '서류 및 면접 준비',
-      description: '이력서와 자기소개서를 준비하고, 비전공자의 장점을 살릴 수 있는 면접 전략을 학습합니다.',
+      title: '배포 및 인프라 기초',
+      description: '배포 및 운영 환경 이해를 위해 Docker, 클라우드 기초, CI/CD 흐름 등을 학습합니다.',
       completed: false,
       tasks: [
-        { name: '이력서/자기소개서 작성 및 피드백 받기', completed: false },
-        { name: '모의 면접 준비 및 실습', completed: false },
-        { name: '프론트엔드 면접 질문 대비', completed: false },
+        { name: 'Docker로 개발환경 구성 실습', completed: false },
+        { name: 'GitHub Actions 등 CI/CD 파이프라인 이해', completed: false },
+        { name: 'AWS S3, EC2 등 클라우드 기초 사용', completed: false }
       ],
-      resources: ['면접 질문 모음', '기업 분석 자료', '면접 특강']
+      resources: ['Docker 튜토리얼', 'AWS 클라우드 기초', 'DevOps 강의']
+    },
+    {
+      id: '6',
+      period: '6개월차',
+      title: '포트폴리오 및 취업 준비',
+      description: '이력서, 자기소개서, 면접 준비와 함께 실무를 반영한 포트폴리오를 정리합니다.',
+      completed: false,
+      tasks: [
+        { name: '포트폴리오 정리 및 배포', completed: false },
+        { name: '이력서 및 자기소개서 피드백', completed: false },
+        { name: 'IT 면접 및 코딩테스트 준비', completed: false }
+      ],
+      resources: ['이력서 가이드', '면접 질문 모음', '백준/프로그래머스', 'TIL 블로그']
     }
   ],
   backend: [

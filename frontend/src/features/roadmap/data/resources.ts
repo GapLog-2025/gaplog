@@ -6,25 +6,25 @@ type ResourceItem = {
 };
 
 
-export const resources: Record<'frontend' | 'backend' | 'designer', ResourceItem[]> = {
-  frontend: [
+export const resources: Record<'itCareerRoadmap' | 'backend' | 'designer', ResourceItem[]> = {
+  itCareerRoadmap: [
     {
       title: '생활코딩 - HTML',
       platform: 'YouTube',
-      description: 'HTML의 기본 구조와 태그를 쉽게 설명해주는 입문자용 강의입니다.',
+      description: 'HTML의 기본 구조와 태그를 쉽게 설명해주는 입문자용 강의입니다. 44개의 짧은 영상으로 구성되어 있습니다.',
       link: 'https://www.youtube.com/watch?v=OGFgdro160I&list=PLuHgQVnccGMDUzDDCKW-pCZQY-MMCX5yB',
     },
     {
       title: '드림코딩 - HTML/CSS/JavaScript',
       platform: 'YouTube',
-      description: '초보자도 따라할 수 있는 실습 중심의 프론트엔드 종합 강의입니다.',
+      description: 'HTML/CSS/JavaScript 관련 초보자도 따라할 수 있는 실습 중심의 프론트엔드 종합 강의입니다.',
       link: 'https://www.youtube.com/watch?v=v2Aw9f-MK5s&list=PLv2d7VI9OotQ1F92Jp9Ce7ovHEsuRQB3Y',
     },
     {
-      title: '코딩애플 - 자바스크립트',
+      title: '조코딩 - Node.js 백엔드 기초 끝내기',
       platform: 'YouTube',
-      description: '개념 설명과 실습을 병행하여 JavaScript의 흐름을 익힐 수 있는 강의입니다.',
-      link: 'https://www.youtube.com/watch?v=8rv8GTgYYrU&list=PLfLgtT94nNq0svPBSslzReYKbZRuv_-NK&index=1',
+      description: 'Node.js, npm 모듈 기초, express 프레임워크로 자바스크립트 API를 구현하는 강의입니다.',
+      link: 'https://www.youtube.com/watch?v=Tt_tKhhhJqY',
     },
   ],
   backend: [
