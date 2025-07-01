@@ -3,7 +3,7 @@ import Tag from '@/components/Tag';
 import { timelineData } from '../data/roadmapItems';
 
 interface RoadmapTimelineProps {
-  selectedPath: 'frontend' | 'backend' | 'designer';
+  selectedPath: 'itCareerRoadmap' | 'backend' | 'designer';
   progressHook: any; // 진행 상태 훅을 props로 받음
 }
 

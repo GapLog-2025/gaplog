@@ -20,12 +20,12 @@
 
 //직무고정
 interface RoadmapHeaderProps {
-  selectedPath: 'frontend' | 'backend' | 'designer';
+  selectedPath: 'itCareerRoadmap' | 'backend' | 'designer';
 }
 
 export default function RoadmapHeader({ selectedPath }: RoadmapHeaderProps) {
-  const pathLabels: Record<'frontend' | 'backend' | 'designer', string> = {
-    frontend: '프론트엔드 개발자',
+  const pathLabels: Record<'itCareerRoadmap' | 'backend' | 'designer', string> = {
+    itCareerRoadmap: 'IT/개발',
     backend: '백엔드 개발자',
     designer: 'UX/UI 디자이너',
   };
@@ -46,7 +46,9 @@ export default function RoadmapHeader({ selectedPath }: RoadmapHeaderProps) {
       <div>
         <label className="block typo-strong text-main mb-2">선택된 직무</label>
         <p className="typo-small text-secondary mb-2">
-          <span className="text-primary-action font-semibold">{pathLabels[selectedPath]}</span>
+          <span className="text-white bg-primary-action px-3 py-1 rounded-full font-semibold shadow-sm">
+            {pathLabels[selectedPath]}
+          </span>
         </p>
       </div>
 
