@@ -112,7 +112,7 @@ function BookmarkedButton({
 type LikedButtonProps = {
   isLiked: boolean;
   children: React.ReactNode;
-  onClick?: () => void;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 function LikedButton({ isLiked, children, onClick }: LikedButtonProps) {

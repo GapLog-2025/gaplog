@@ -1,16 +1,18 @@
 import { useState } from 'react';
-import { ChevronRight, BookOpen } from 'lucide-react';
-import StepHeader from '@/components/StepHeader';
+import { useNavigate } from 'react-router-dom';
+
+import { MessageSquare, ChevronRight } from 'lucide-react';
+import useHandleBack from '@/features/Mentor/hook/handleBack';
+import MentorForm from '@/features/Mentor/ui/MentorForm';
+
 import BasicInfoForm from '@/components/BasicInputForm';
 import SelectedSummary from '@/components/SelectedSummary';
-import ReviewForm from '@/features/GapReview/ui/GapReviewWrite/ReviewForm';
-import useHandleBack from '@/features/GapReview/hook/handleBack';
-import { useNavigate } from 'react-router-dom';
-export default function GapReviewWriteSection() {
+import StepHeader from '@/components/StepHeader';
+
+export default function MentorWriteSection() {
+  const [currentStep, setCurrentStep] = useState(1);
   const handleBack = useHandleBack();
   const navigate = useNavigate();
-
-  const [currentStep, setCurrentStep] = useState(1);
 
   // 1단계 상태
   const [category, setCategory] = useState('');
@@ -30,7 +32,6 @@ export default function GapReviewWriteSection() {
 
   const canSubmit = title.trim().length > 0 && content.trim().length > 0;
 
-  // 각 스텝별 렌더 함수
   const renderStep1 = () => (
     <>
       <BasicInfoForm
@@ -115,7 +116,8 @@ export default function GapReviewWriteSection() {
 
         <div>
           <button
-            onClick={() => navigate('/gap-review')}
+            onClick={() => navigate('/mentoring')}
+            // 임시 로직
             disabled={!canSubmit}
             className={`h-full flex gap-2 justify-center items-center px-6 py-3 typo-text text-white rounded-lg ${
               canSubmit
@@ -123,12 +125,12 @@ export default function GapReviewWriteSection() {
                 : 'bg-gray-300 cursor-not-allowed'
             }`}
           >
-            공백기 후기 작성하기
+            멘토 질문 작성하기
           </button>
         </div>
       </div>
 
-      <ReviewForm
+      <MentorForm
         title={title}
         content={content}
         onTitleChange={setTitle}
@@ -150,15 +152,20 @@ export default function GapReviewWriteSection() {
 
   return (
     <section className="w-full flex flex-col gap-4">
+      {/* 제목 */}
       <div className="w-full flex justify-between">
         <div className="flex gap-4 items-center mb-2">
           <div className="bg-gd-point-main rounded-full flex justify-center items-center w-[32px] h-[32px]">
-            <BookOpen className="text-white" />
+            <MessageSquare className="text-white" />
           </div>
-          <h1 className="typo-heading text-title pt-1">공백기 후기</h1>
+          <h1 className="typo-heading text-title leading-none">
+            멘토에게 질문하기
+          </h1>
         </div>
       </div>
+
       <StepHeader currentStep={currentStep} onBack={handleBack} />
+
       {renderStep()}
     </section>
   );
