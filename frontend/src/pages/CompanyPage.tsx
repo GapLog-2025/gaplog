@@ -10,6 +10,7 @@ import LoadingSpinner from '@/components/LoadingSpinner';
 import { Building2 } from 'lucide-react';
 import { useState, useMemo } from 'react';
 import { regionList } from '@/features/Company/data/regionList';
+import { industryList } from '@/features/Company/data/industryList';
 
 const ITEMS_PER_PAGE = 9;
 
@@ -18,6 +19,7 @@ export default function CompanyPage() {
   const [activeTab, setActiveTab] = useState(0);
   const [selectedRegion, setSelectedRegion] = useState('');
   const [selectedSubRegion, setSelectedSubRegion] = useState('');
+  const [selectedIndustry, setSelectedIndustry] = useState('');
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ['LocalCompanies'],
@@ -50,10 +52,22 @@ export default function CompanyPage() {
           return region.subRegions.some((sub) => sub.code === company.regionCd);
         }
       });
+    } else if (activeTab === 2) {
+      // 업종별 모아보기
+      if (!selectedIndustry) return data.companies;
+      return data.companies.filter((company: Company) => {
+        return company.superIndTpNm === selectedIndustry;
+      });
     }
 
     return data.companies;
-  }, [data?.companies, activeTab, selectedRegion, selectedSubRegion]);
+  }, [
+    data?.companies,
+    activeTab,
+    selectedRegion,
+    selectedSubRegion,
+    selectedIndustry,
+  ]);
 
   // 페이지네이션 계산
   const paginatedData = useMemo(() => {
@@ -89,6 +103,11 @@ export default function CompanyPage() {
 
   const handleSubRegionChange = (subRegionCode: string) => {
     setSelectedSubRegion(subRegionCode);
+    setCurrentPage(1);
+  };
+
+  const handleIndustryChange = (industryName: string) => {
+    setSelectedIndustry(industryName);
     setCurrentPage(1);
   };
 
@@ -134,6 +153,27 @@ export default function CompanyPage() {
               {subRegions.map((subRegion) => (
                 <option key={subRegion.code} value={subRegion.code}>
                   {subRegion.name.substring(3)}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+      )}
+
+      {/* 업종별 필터 */}
+      {activeTab === 2 && (
+        <div className="flex w-full mx-2 justify-end">
+          <div className="mr-4">
+            <select
+              id="industry"
+              value={selectedIndustry}
+              onChange={(e) => handleIndustryChange(e.target.value)}
+              className="border rounded px-2 py-1 w-48"
+            >
+              <option value="">업종 전체</option>
+              {industryList.map((industry) => (
+                <option key={industry} value={industry}>
+                  {industry}
                 </option>
               ))}
             </select>
