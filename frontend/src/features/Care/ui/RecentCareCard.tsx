@@ -1,19 +1,14 @@
 import { Card, CardHeader, CardContent } from '@/components/Card';
 import { MoreButton, MoveButton } from '@/components/Button';
 import { useNavigate } from 'react-router-dom';
-import { RecentCareData } from '@/features/Care/data/CareList';
-import { emotionColorMap, type Emotion } from '@/types/emotion';
+import { emotionLogs } from '@/features/Care/data/CareList';
+import { emotionColorMap, type EmotionLog } from '@/types/emotion';
 import Tag from '@/components/Tag';
 
 import { SmilePlus } from 'lucide-react';
 import { useAuthStore } from '@/stores/useAuthStore';
+import formatDate from '@/utils/formatDate';
 
-type EmotionLog = {
-  emotion: Emotion;
-  date: string;
-  title: string;
-  content: string;
-};
 function RecentCareContent({ data }: { data: EmotionLog[] }) {
   const navigate = useNavigate();
 
@@ -38,9 +33,11 @@ function RecentCareContent({ data }: { data: EmotionLog[] }) {
     );
   }
 
+  const selectedData = data.length <= 3 ? data : data.slice(0, 3);
+
   return (
     <div className="w-full flex flex-col gap-6">
-      {data.map((item, index) => {
+      {selectedData.map((item, index) => {
         return (
           <div
             key={index}
@@ -50,11 +47,13 @@ function RecentCareContent({ data }: { data: EmotionLog[] }) {
           >
             <div className="flex justify-between items-center typo-small text-main">
               <Tag type={emotionColorMap[item.emotion]} label={item.emotion} />
-              <span>{item.date}</span>
+              <span>{formatDate(item.createdAt)} </span>
             </div>
             <div className="pl-2">
               <p className="mt-2 typo-strong text-title">{item.title}</p>
-              <p className="typo-small text-main">{item.content}</p>
+              <p className="typo-small text-main line-clamp-2">
+                {item.content}
+              </p>
             </div>
           </div>
         );
@@ -71,7 +70,7 @@ export default function RecentCareCard() {
     <Card>
       <CardHeader className="flex justify-between items-center">
         <p className="typo-subheading text-title leading-none">감정로그</p>
-        {RecentCareData.length === 0 ? (
+        {emotionLogs.length === 0 ? (
           <MoveButton type="primary" onClick={() => navigate('/care')}>
             이동하기
           </MoveButton>
@@ -82,7 +81,7 @@ export default function RecentCareCard() {
       </CardHeader>
       <CardContent>
         {user && isLoggedIn ? (
-          <RecentCareContent data={RecentCareData} />
+          <RecentCareContent data={emotionLogs} />
         ) : (
           <div className="w-full flex gap-4 p-4 border-0 border-l-4 border-l-primary">
             <div className="bg-primary-primary-background rounded-full w-[36px] h-[36px] flex justify-center items-center">

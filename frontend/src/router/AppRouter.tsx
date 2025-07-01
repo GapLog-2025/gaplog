@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from '@/pages/HomaPage';
 import GapReviewListPage from '@/pages/GapReview/GapReviewListPage';
 import MentorListPage from '@/pages/Mentor/MentorListPage';
-import CarePage from '@/pages/CarePage';
+import CarePage from '@/pages/Care/CarePage';
 import CompanyPage from '@/pages/CompanyPage';
 import RoadmapPage from '@/pages/Roadmap';
 import MyPage from '@/pages/MyPage';
@@ -22,6 +22,8 @@ import GapReviewWritePage from '@/pages/GapReview/GapReviewWritePage';
 import GapReviewDetailPage from '@/pages/GapReview/GapReviewDetailPage';
 import MentorDetailPage from '@/pages/Mentor/MentorDetailPage';
 import MentorWritePage from '@/pages/Mentor/MentorWritePage';
+import CareDetailPage from '@/pages/Care/CareDetailPage';
+import CareWritePage from '@/pages/Care/CareWritePage';
 
 export default function AppRouter() {
   return (
@@ -48,7 +50,11 @@ export default function AppRouter() {
         <Route path="/mentoring/:id" element={<MentorDetailPage />} />
         {/* 마음챙김 */}
         <Route path="/care" element={<CarePage />} />
+        <Route path="/care/:id" element={<CareDetailPage />} />
+        <Route path="/care/write" element={<CareWritePage />} />
+        {/* 강소 기업 */}
         <Route path="/companies" element={<CompanyPage />} />
+        {/* 유저 관련 */}
         <Route path="/roadmap" element={<RoadmapPage />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/portfolio" element={<PortfolioPage />} />
