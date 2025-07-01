@@ -1,5 +1,7 @@
-import { emotionLogs } from '../data/CareList';
+import { useMemo } from 'react';
+import { emotionLogs } from '../../data/CareList';
 import { emotionColorMap } from '@/types/emotion';
+import { Calendar } from 'lucide-react';
 
 interface MonthlyEmotionCalendarProps {
   currentDate: Date;
@@ -32,12 +34,35 @@ export default function MonthlyEmotionCalendar({
     a.getMonth() === b.getMonth() &&
     a.getDate() === b.getDate();
 
-  const dates: (Date | null)[] = [];
-  for (let i = 0; i < startDay; i++) dates.push(null);
-  for (let d = 1; d <= totalDays; d++) dates.push(new Date(year, month, d));
+  // 날짜 배열 생성
+  const dates: (Date | null)[] = useMemo(() => {
+    const result: (Date | null)[] = [];
+    for (let i = 0; i < startDay; i++) result.push(null);
+    for (let d = 1; d <= totalDays; d++) result.push(new Date(year, month, d));
+    return result;
+  }, [year, month]);
+
+  // 해당 월의 감정 로그 총합
+  const totalEmotionLogsInMonth = useMemo(() => {
+    return emotionLogs.filter((log) => {
+      const logDate = new Date(log.createdAt);
+      return logDate.getFullYear() === year && logDate.getMonth() === month;
+    }).length;
+  }, [year, month]);
 
   return (
-    <div className="w-full">
+    <div className="w-full flex flex-col gap-5">
+      <div className="flex justify-between items-end pb-3">
+        <div className="flex items-center gap-3">
+          <Calendar size={28} className="text-primary" />
+          <h3 className="typo-subheading text-main">월간 캘린더</h3>
+        </div>
+        <p className="typo-strong text-secondary leading-none">
+          {totalEmotionLogsInMonth}일 기록
+        </p>
+      </div>
+
+      {/* 요일 */}
       <div className="grid grid-cols-7 gap-1 text-center mb-4">
         {['일', '월', '화', '수', '목', '금', '토'].map((day) => (
           <div key={day} className="typo-strong text-black">
@@ -46,14 +71,15 @@ export default function MonthlyEmotionCalendar({
         ))}
       </div>
 
+      {/* 날짜 박스 */}
       <div className="grid grid-cols-7 gap-1">
         {dates.map((date, idx) => {
           const isSelected =
             date && selectedDate && isSameDay(date, selectedDate);
 
+          const dateKey = date ? formatDate(date) : '';
           const emotionOnDate = emotionLogs.filter(
-            (log) =>
-              log.createdAt.split('T')[0] === formatDate(date ?? new Date()),
+            (log) => log.createdAt.split('T')[0] === dateKey,
           );
 
           const badgeColor =
@@ -64,7 +90,9 @@ export default function MonthlyEmotionCalendar({
           return (
             <div
               key={idx}
-              className={`relative h-14 flex items-center justify-center rounded-lg cursor-pointer ${date ? 'hover:bg-gray-100' : ''}`}
+              className={`relative h-14 flex items-center justify-center rounded-lg cursor-pointer ${
+                date ? 'hover:bg-gray-100' : ''
+              }`}
               onClick={() => date && setSelectedDate(date)}
             >
               {date && (

@@ -2,14 +2,18 @@ import { useState, useRef, useEffect } from 'react';
 
 import { ChevronLeft, ChevronDown, ChevronRight } from 'lucide-react';
 import SelectMonthlyDropDown from './SelectedMonthlyDropDown';
+import EmotionSummary from './Report/EmotionSummary';
+import { type EmotionLog } from '@/types/emotion';
 
 interface SummaryHeaderProps {
   currentDate: Date;
   setCurrentDate: (date: Date) => void;
+  emotionLogs: EmotionLog[];
 }
 export function SummaryHeader({
   currentDate,
   setCurrentDate,
+  emotionLogs,
 }: SummaryHeaderProps) {
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedYear, setSelectedYear] = useState(currentDate.getFullYear());
@@ -104,6 +108,9 @@ export function SummaryHeader({
         <p className="text-main typo-text">
           내게 가장 자주 찾아온 감정은 무엇이었을까요?
         </p>
+      </div>
+      <div className="flex justify-center">
+        <EmotionSummary logs={emotionLogs} currentDate={currentDate} />
       </div>
     </div>
   );
