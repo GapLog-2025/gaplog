@@ -17,21 +17,31 @@
         WHERE bm.user_id = #{userId}
     </select>
 
+
     <select id="search" resultType="com.gaplog.gapreview.domain.GapReview">
-        SELECT * FROM gap_reviews
-        <where>
-            <if test="major != null">
-                AND major = #{major}
-            </if>
-            <if test="isMajor != null">
-                AND ismajor = #{isMajor}
-            </if>
-            <if test="maxGapMonths != null">
-                AND gap_period_months &lt;= #{maxGapMonths}
-            </if>
-        </where>
-        ORDER BY created_at DESC
-    </select>
+            SELECT * FROM gap_reviews
+            <where>
+                <if test="major != null and major != 'string'">
+                    AND major = #{major}
+                </if>
+                <if test="isMajor != null">
+                    AND ismajor = #{isMajor}
+                </if>
+                <if test="maxGapMonths != null and maxGapMonths > 0">
+                    AND gap_period_months &lt;= #{maxGapMonths}
+                </if>
+                <if test="grade != null and grade > 0">
+                    AND grade &gt;= #{grade}
+                </if>
+            </where>
+            ORDER BY created_at DESC
+        </select>
+
+
+
+
+
+
 
     <insert id="insertBookmark" parameterType="map">
         INSERT INTO gap_review_bookmarks (user_id, gap_reviews_id)
@@ -80,6 +90,26 @@
         SELECT COUNT(*) FROM gap_review_bookmarks
         WHERE gap_reviews_id = #{reviewId}
     </select>
+
+    <delete id="deleteBookmarksByReviewId" parameterType="long">
+        DELETE FROM gap_review_bookmarks WHERE gap_reviews_id = #{reviewId}
+    </delete>
+
+    <delete id="deleteReviewById" parameterType="map">
+        DELETE FROM gap_reviews
+        WHERE gap_reviews_id = #{reviewId} AND user_id = #{userId}
+    </delete>
+
+    <update id="updateReview" parameterType="com.gaplog.gapreview.domain.GapReview">
+        UPDATE gap_reviews
+        SET title = #{title},
+            major = #{major},
+            content = #{content},
+            grade = #{grade},
+            gap_period_months = #{gapPeriodMonths},
+            isMajor = #{isMajor}
+        WHERE gap_reviews_id = #{gapReviewsId} AND user_id = #{userId}
+    </update>
 
 </mapper>
 

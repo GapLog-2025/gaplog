@@ -14,4 +14,8 @@ public interface GapReviewService {
     List<GapReviewResponseDTO> getAllOrderByBookmarkCount(Long userId);
     List<GapReviewResponseDTO> getMyReviews(Long userId);
     GapReviewResponseDTO getReviewDetail(Long userId, Long reviewId);
+
+    void deleteMyReview(Long userId, Long reviewId);
+
+    void updateMyReview(Long userId, Long reviewId, GapReviewRequestDTO dto);
 }

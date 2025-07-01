@@ -66,7 +66,7 @@ public class GapReviewController {
         return ResponseEntity.ok(gapReviewService.getAllOrderByBookmarkCount(userDetails.getUserId()));
     }
 
-    @Operation(summary = "내가 쓴 후기 목록 조회")
+    @Operation(summary = "내가 쓴 후기 조회")
     @GetMapping("/my")
     public ResponseEntity<List<GapReviewResponseDTO>> getMyReviews(@AuthenticationPrincipal UserDetailsImpl userDetails) {
         return ResponseEntity.ok(gapReviewService.getMyReviews(userDetails.getUserId()));
@@ -77,5 +77,22 @@ public class GapReviewController {
     public ResponseEntity<GapReviewResponseDTO> getReviewDetail(@PathVariable Long reviewId,
                                                                 @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return ResponseEntity.ok(gapReviewService.getReviewDetail(userDetails.getUserId(), reviewId));
+    }
+
+    @Operation(summary = "내가 쓴 후기 수정")
+    @PutMapping("/{reviewId}")
+    public ResponseEntity<?> updateReview(@PathVariable Long reviewId,
+                                          @RequestBody GapReviewRequestDTO dto,
+                                          @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        gapReviewService.updateMyReview(userDetails.getUserId(), reviewId, dto);
+        return ResponseEntity.ok("후기 수정 완료");
+    }
+
+    @Operation(summary = "내가 쓴 후기 삭제")
+    @DeleteMapping("/{reviewId}")
+    public ResponseEntity<?> deleteReview(@PathVariable Long reviewId,
+                                          @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        gapReviewService.deleteMyReview(userDetails.getUserId(), reviewId);
+        return ResponseEntity.ok("후기 삭제 완료");
     }
 }
