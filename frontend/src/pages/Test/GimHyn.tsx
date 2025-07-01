@@ -1,9 +1,3 @@
-// 하연 테스트 페이지
-
 export default function Gimhyn() {
-  return (
-    <>
-      <h1>테스트 코드 작성을 위한 임시 페이지 입니다.</h1>
-    </>
-  );
+  return <div>테스트페이지</div>;
 }
