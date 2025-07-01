@@ -86,7 +86,7 @@ export default function LocationCard() {
             onClick={() => setIsExpanded(!isExpanded)}
             className={`text-sm text-primary-active font-medium ${!isExpanded ? 'pb-2' : ''} hover:text-primary transition-colors`}
           >
-            {isExpanded ? '접기' : '모든지역 보기'}
+            {isExpanded ? '접기' : '모든 지역 보기'}
           </button>
         </div>
       )}
