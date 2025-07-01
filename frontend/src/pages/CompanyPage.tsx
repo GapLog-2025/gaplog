@@ -114,8 +114,8 @@ export default function CompanyPage() {
 
   return (
     <Layout aside={<CompanyAside />}>
-      <div className="flex gap-4 items-center mb-2">
-        <div className="bg-gd-point-main rounded-full flex justify-center items-center w-[32px] h-[32px]">
+      <div className="flex gap-4 items-center mb-8">
+        <div className="bg-gd-point-main rounded-full flex justify-center items-center w-[32px] h-[32px] ">
           <Building2 className="text-white" />
         </div>
         <h1 className="typo-heading text-title pt-1">강소기업 모아보기</h1>
