@@ -38,9 +38,9 @@ export default function MonthlyEmotionCalendar({
 
   return (
     <div className="w-full">
-      <div className="grid grid-cols-7 gap-1 text-center text-sm mb-4">
+      <div className="grid grid-cols-7 gap-1 text-center mb-4">
         {['일', '월', '화', '수', '목', '금', '토'].map((day) => (
-          <div key={day} className="font-semibold text-gray-500">
+          <div key={day} className="typo-strong text-black">
             {day}
           </div>
         ))}
@@ -64,7 +64,7 @@ export default function MonthlyEmotionCalendar({
           return (
             <div
               key={idx}
-              className={`relative h-16 flex items-center justify-center rounded-lg cursor-pointer ${date ? 'hover:bg-gray-100' : ''}`}
+              className={`relative h-14 flex items-center justify-center rounded-lg cursor-pointer ${date ? 'hover:bg-gray-100' : ''}`}
               onClick={() => date && setSelectedDate(date)}
             >
               {date && (

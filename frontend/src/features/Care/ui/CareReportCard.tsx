@@ -9,7 +9,7 @@ export default function CereReportCard() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(currentDate);
 
   return (
-    <Card className="flex flex-col gap-20">
+    <Card className="flex flex-col gap-10">
       <CardHeader className="px-10 pt-10 bg-gd-point-blue">
         <SummaryHeader
           currentDate={currentDate}

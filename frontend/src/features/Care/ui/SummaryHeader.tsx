@@ -57,7 +57,7 @@ export function SummaryHeader({
   };
 
   return (
-    <div className="w-full flex flex-col gap-4 relative">
+    <div className="w-full flex flex-col gap-4 relative pb-4">
       <div className="flex justify-between items-center w-full">
         <button
           onClick={() => setShowDropdown(!showDropdown)}
