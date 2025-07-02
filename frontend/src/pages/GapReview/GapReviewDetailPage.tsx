@@ -6,6 +6,7 @@ export default function GapReviewDetailPage() {
   return (
     <Layout aside={<GapReviewAside />}>
       <GapReviewDetailSection />
+      {/* <GapReviewDetailSection /> */}
     </Layout>
   );
 }
