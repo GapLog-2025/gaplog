@@ -42,10 +42,6 @@ export default function WeeklyCalendar({
   onPrevWeek,
   onNextWeek,
 }: WeeklyCalendarProps) {
-  const isSameDate = (a: Date, b: Date) =>
-    a.getFullYear() === b.getFullYear() &&
-    a.getMonth() === b.getMonth() &&
-    a.getDate() === b.getDate();
   return (
     <div className="w-full flex flex-col gap-2">
       {/* Title + Navigation */}
@@ -78,7 +74,7 @@ export default function WeeklyCalendar({
           const day = date.getDate();
           const weekday = getWeekdayKor(date);
           const emotion = getEmotionForDate(date, emotionLogs);
-          const isSelected = isSameDate(date, selectedDate);
+          const isSelected = formatDate(date) === formatDate(selectedDate);
           const tagType =
             emotion !== '미작성' ? emotionColorMap[emotion] : undefined;
           const theme = tagType ? themeColorMap[tagType] : undefined;
@@ -89,7 +85,7 @@ export default function WeeklyCalendar({
               onClick={() => onSelectDate(date)}
               className={`flex flex-col items-center justify-centers w-24 h-24 rounded-xl shadow-lg p-4
                 ${isSelected ? 'border-2 border-primary-active' : ''}
-                ${emotion !== '미작성' ? `${theme?.point} text-white border` : 'bg-background text-secondary border border-border'}
+                ${emotion !== '미작성' ? `${theme?.point} text-white` : 'bg-background text-secondary border border-border'}
               `}
             >
               <p className="typo-small">{weekday}</p>
@@ -101,7 +97,7 @@ export default function WeeklyCalendar({
       </div>
 
       {/* Tip */}
-      <p className="typo-small text-main text-right pt-2">
+      <p className="typo-small text-main text-right ">
         * 날짜를 클릭하면 해당 일기로 이동합니다.
       </p>
     </div>

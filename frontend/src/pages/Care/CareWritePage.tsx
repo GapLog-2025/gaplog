@@ -1,5 +1,10 @@
 import Layout from '@/components/Layout';
-
+import CareAside from '@/features/Care/CareAside';
+import CareWriteSection from '@/features/Care/CareWriteSection';
 export default function CareWritePage() {
-  return <Layout>임시 감정 일기 작성 페이지</Layout>;
+  return (
+    <Layout aside={<CareAside />}>
+      <CareWriteSection />
+    </Layout>
+  );
 }
