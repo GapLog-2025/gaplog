@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { Card, CardContent, CardHeader } from '@/components/Card';
-import { SummaryHeader } from './SummaryHeader';
+import { SummaryHeader } from './Report/SummaryHeader';
 import MonthlyEmotionCalendar from './Report/MonthlyCalendar';
 import getTwoWeekChartData from '../utils/getTwoWeekChartDate';
 import { emotionLogs } from '../data/CareList';
@@ -25,7 +25,7 @@ export default function CereReportCard() {
           emotionLogs={emotionLogs}
         />
       </CardHeader>
-      <CardContent className="flex gap-10 pb-12">
+      <CardContent className="flex gap-20 pb-12">
         <div className="w-full">
           <MonthlyEmotionCalendar
             currentDate={currentDate}

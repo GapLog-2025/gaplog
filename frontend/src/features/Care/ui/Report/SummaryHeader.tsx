@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 
 import { ChevronLeft, ChevronDown, ChevronRight } from 'lucide-react';
 import SelectMonthlyDropDown from './SelectedMonthlyDropDown';
-import EmotionSummary from './Report/EmotionSummary';
+import EmotionSummary from './EmotionSummary';
 import { type EmotionLog } from '@/types/emotion';
 
 interface SummaryHeaderProps {
