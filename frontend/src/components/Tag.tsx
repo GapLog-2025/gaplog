@@ -15,7 +15,7 @@ type TagProps = {
 };
 
 const tagColorMap: Record<TagType, { bg: string; text: string }> = {
-  default: { bg: 'bg-white border-border', text: 'text-secondeary' },
+  default: { bg: 'bg-white border border-border', text: 'text-secondeary' },
   info: { bg: 'bg-info-background', text: 'text-info-text' },
   inactive: { bg: 'bg-white', text: 'text-main' },
   skyblue: { bg: 'bg-point-blue-background', text: 'text-point-blue-text' },

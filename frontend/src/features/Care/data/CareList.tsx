@@ -1,25 +1,244 @@
-import { type Emotion } from '@/types/emotion';
+import { type EmotionLog } from '@/types/emotion';
 
-type EmotionLog = {
-  emotion: Emotion;
-  date: string;
-  title: string;
-  content: string;
-};
-
-// export const RecentCareData = [];
-
-export const RecentCareData: EmotionLog[] = [
+export const emotionLogs: EmotionLog[] = [
   {
-    emotion: '기쁨',
-    date: '0000-00-00',
-    title: '감정 일기 제목 1',
-    content: '감정 일기 내용이 이곳에 들어갑니다.',
+    careId: 1,
+    createdAt: '2025-06-10T09:00:00.000Z',
+    emotion: '불안',
+    title: '면접을 앞두고 긴장되는 하루',
+    content: `곧 있을 면접이 계속 머릿속을 맴돌았다.
+어떻게 준비해야 할지 막막하면서도 조급한 마음이 들었다.
+밤에 잠들기까지 여러 번 예상 질문을 떠올려 보았다.`,
+    userName: '홍길동',
+    weather: '맑음',
+    sleeptime: 420,
   },
   {
+    careId: 2,
+    createdAt: '2025-06-11T10:30:00.000Z',
+    emotion: '슬픔',
+    title: '계획대로 되지 않은 하루',
+    content: `오늘은 스터디에 집중하지 못했다.
+해야 할 일을 미뤘다는 자책감이 컸다.
+의욕이 생기지 않아 하루 종일 우울한 기분이었다.`,
+    userName: '홍길동',
+    weather: '흐림',
+    sleeptime: 390,
+  },
+  {
+    careId: 3,
+    createdAt: '2025-06-12T14:00:00.000Z',
+    emotion: '평온',
+    title: '조용히 나를 돌아본 하루',
+    content: `카페에 앉아 천천히 일정을 정리해봤다.
+조급했던 마음을 잠시 내려놓고 싶었다.
+혼자만의 시간을 보내며 마음이 조금은 차분해졌다.`,
+    userName: '홍길동',
+    weather: '비',
+    sleeptime: 480,
+  },
+  {
+    careId: 4,
+    createdAt: '2025-06-13T08:50:00.000Z',
+    emotion: '기쁨',
+    title: '작은 성취가 큰 힘이 되었다',
+    content: `오늘은 기술 면접에서 예상보다 좋은 피드백을 받았다.
+그동안의 노력이 헛되지 않았다는 생각이 들었다.
+작은 칭찬이 큰 자신감을 주었다.`,
+    userName: '홍길동',
+    weather: '맑음',
+    sleeptime: 450,
+  },
+  {
+    careId: 5,
+    createdAt: '2025-06-14T17:20:00.000Z',
+    emotion: '화남',
+    title: '의사소통의 어려움',
+    content: `팀 프로젝트에서 내 의견이 제대로 반영되지 않았다.
+충분히 설명했지만 상대방이 듣지 않으려는 듯했다.
+서운함과 답답함이 동시에 밀려왔다.`,
+    userName: '홍길동',
+    weather: '바람',
+    sleeptime: 410,
+  },
+  {
+    careId: 6,
+    createdAt: '2025-06-15T13:00:00.000Z',
+    emotion: '기쁨',
+    title: '자연 속에서 충전한 하루',
+    content: `근처 공원을 산책하며 여유를 느꼈다.
+햇살도 좋았고 바람도 기분 좋게 불었다.
+오랜만에 마음이 가벼워지는 느낌이었다.`,
+    userName: '홍길동',
+    weather: '맑음',
+    sleeptime: 510,
+  },
+  {
+    careId: 7,
+    createdAt: '2025-06-16T11:30:00.000Z',
+    emotion: '평온',
+    title: '루틴이 주는 안정감',
+    content: `정해진 시간에 일어나고, 계획대로 하루를 보냈다.
+특별한 일은 없었지만 그런 평범함이 좋았다.
+조금씩 삶에 질서가 생겨나는 느낌이었다.`,
+    userName: '홍길동',
+    weather: '흐림',
+    sleeptime: 480,
+  },
+  {
+    careId: 8,
+    createdAt: '2025-06-17T09:45:00.000Z',
     emotion: '불안',
-    date: '0000-00-00',
-    title: '감정 일기 제목 2',
-    content: '감정 일기 내용이 이곳에 들어갑니다.',
+    title: '미래에 대한 걱정',
+    content: `취업 준비를 하다 보니 앞으로가 막막해진다.
+내가 잘하고 있는 걸까 의문이 든다.
+불안한 감정이 하루 종일 머릿속을 떠나지 않았다.`,
+    userName: '홍길동',
+    weather: '비',
+    sleeptime: 390,
+  },
+  {
+    careId: 9,
+    createdAt: '2025-06-18T15:15:00.000Z',
+    emotion: '슬픔',
+    title: '혼자인 듯한 외로움',
+    content: `주변에 말할 사람이 없다는 생각이 들었다.
+마음 깊은 이야기를 털어놓을 곳이 없다는 건 참 외롭다.
+그래서 더 조용히 내 일에 집중했다.`,
+    userName: '홍길동',
+    weather: '눈',
+    sleeptime: 400,
+  },
+  {
+    careId: 10,
+    createdAt: '2025-06-19T10:10:00.000Z',
+    emotion: '화남',
+    title: '과도한 요구에 대한 분노',
+    content: `상대방의 기대치가 너무 높았다.
+모든 걸 완벽히 해내라는 듯한 태도에 화가 났다.
+더 이상 감정을 억누르기 어려웠다.`,
+    userName: '홍길동',
+    weather: '번개',
+    sleeptime: 370,
+  },
+  {
+    careId: 11,
+    createdAt: '2025-06-20T16:30:00.000Z',
+    emotion: '기쁨',
+    title: '감사의 하루',
+    content: `주변 사람들이 도와줘서 큰 도움이 되었다.
+나도 누군가에게 이런 사람이 되고 싶다는 생각이 들었다.
+감사함이 가득한 하루였다.`,
+    userName: '홍길동',
+    weather: '맑음',
+    sleeptime: 500,
+  },
+  {
+    careId: 12,
+    createdAt: '2025-06-21T12:00:00.000Z',
+    emotion: '평온',
+    title: '잔잔한 흐름 속의 하루',
+    content: `집중할 일도, 방해되는 일도 없었다.
+자연스럽게 시간이 흘러갔고, 나도 그 안에 있었다.
+별일 없지만 마음이 편안했다.`,
+    userName: '홍길동',
+    weather: '바람',
+    sleeptime: 480,
+  },
+  {
+    careId: 13,
+    createdAt: '2025-06-22T09:20:00.000Z',
+    emotion: '불안',
+    title: '예상치 못한 변수',
+    content: `계획한 일이 갑자기 틀어져 혼란스러웠다.
+어디서부터 다시 시작해야 할지 막막했다.
+다시 마음을 추스르기까지 시간이 필요했다.`,
+    userName: '홍길동',
+    weather: '흐림',
+    sleeptime: 420,
+  },
+  {
+    careId: 14,
+    createdAt: '2025-06-23T10:40:00.000Z',
+    emotion: '기쁨',
+    title: '모처럼의 여유',
+    content: `오랜만에 나만의 시간을 즐겼다.
+좋아하는 책을 읽으며 커피를 마셨다.
+이런 시간 덕분에 다시 힘을 낼 수 있었다.`,
+    userName: '홍길동',
+    weather: '맑음',
+    sleeptime: 510,
+  },
+  {
+    careId: 15,
+    createdAt: '2025-06-24T14:10:00.000Z',
+    emotion: '슬픔',
+    title: '실망스러운 소식',
+    content: `지원했던 곳에서 불합격 소식을 들었다.
+기대했던 만큼 실망도 컸다.
+그래도 다시 도전해야겠다는 마음을 다잡았다.`,
+    userName: '홍길동',
+    weather: '비',
+    sleeptime: 450,
+  },
+  {
+    careId: 16,
+    createdAt: '2025-06-25T13:50:00.000Z',
+    emotion: '화남',
+    title: '무례한 말을 들은 날',
+    content: `누군가의 말 한마디가 마음을 크게 다치게 했다.
+왜 그런 말을 아무렇지 않게 할 수 있는 걸까.
+상처받은 마음을 숨기느라 더 힘들었다.`,
+    userName: '홍길동',
+    weather: '바람',
+    sleeptime: 390,
+  },
+  {
+    careId: 17,
+    createdAt: '2025-06-26T11:00:00.000Z',
+    emotion: '평온',
+    title: '흐름에 몸을 맡긴 하루',
+    content: `굳이 애쓰지 않고 흘러가는 대로 따라가봤다.
+무리하지 않으니 오히려 집중도 잘 됐다.
+이런 리듬도 나쁘지 않다는 걸 느꼈다.`,
+    userName: '홍길동',
+    weather: '흐림',
+    sleeptime: 480,
+  },
+  {
+    careId: 18,
+    createdAt: '2025-06-27T08:30:00.000Z',
+    emotion: '기쁨',
+    title: '뜻밖의 칭찬',
+    content: `작은 부분을 칭찬받았는데 큰 힘이 되었다.
+내 노력을 누군가 알아봐 줬다는 사실이 고마웠다.
+하루 종일 기분이 좋았다.`,
+    userName: '홍길동',
+    weather: '맑음',
+    sleeptime: 500,
+  },
+  {
+    careId: 19,
+    createdAt: '2025-06-29T18:00:00.000Z',
+    emotion: '슬픔',
+    title: '우울감이 스며든 저녁',
+    content: `하루가 끝날 무렵 괜히 마음이 가라앉았다.
+혼자만 뒤처지는 것 같아 마음이 무거웠다.
+그래도 내일은 다르길 바란다.`,
+    userName: '홍길동',
+    weather: '눈',
+    sleeptime: 420,
+  },
+  {
+    careId: 20,
+    createdAt: '2025-07-01T10:00:00.000Z',
+    emotion: '기쁨',
+    title: '새로운 시작의 에너지',
+    content: `7월의 첫날, 새로운 마음가짐으로 하루를 시작했다.
+하반기 목표를 다시 정리하며 다짐을 되새겼다.
+기대감과 설렘이 공존하는 하루였다.`,
+    userName: '홍길동',
+    weather: '맑음',
+    sleeptime: 540,
   },
 ];
