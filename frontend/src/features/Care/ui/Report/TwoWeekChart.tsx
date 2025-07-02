@@ -7,8 +7,7 @@ import {
   emotionColorMap,
   themeColorMap,
 } from '@/types/emotion';
-
-import { getEmotionSummaryFromChart } from '../../utils/getEMotionSummaryFromChart';
+import { getEmotionSummaryFromChart } from '@/features/Care/utils/getEmotionSummaryFromChart';
 import Tag from '@/components/Tag';
 
 interface EmotionChartData {
