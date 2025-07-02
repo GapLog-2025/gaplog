@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { ActionButton } from '@/components/Button';
 import { PenSquare, Heart } from 'lucide-react';
 import CareReportCard from '@/features/Care/ui/CareReportCard';
+import WeeklyCareCard from './ui/WeeklyCareCard';
 
 export default function CareSection() {
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ export default function CareSection() {
 
       {/* 감정 리포트 */}
       <CareReportCard />
+      <WeeklyCareCard />
     </section>
   );
 }

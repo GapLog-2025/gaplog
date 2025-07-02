@@ -6,6 +6,8 @@ export type EmotionTagType =
   | 'skyblue'
   | 'primary';
 
+export type WeatherType = '맑음' | '흐림' | '비' | '번개' | '눈' | '바람';
+
 export type EmotionLog = {
   careId: number;
   createdAt: string; // ISO8601
@@ -13,6 +15,8 @@ export type EmotionLog = {
   title: string;
   content: string;
   userName: string;
+  weather: WeatherType;
+  sleeptime: number;
 };
 
 export const emotionColorMap: Record<Emotion, EmotionTagType> = {

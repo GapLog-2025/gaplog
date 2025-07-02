@@ -1,7 +1,5 @@
 import { type EmotionLog } from '@/types/emotion';
 
-// export const RecentCareData = [];
-
 export const emotionLogs: EmotionLog[] = [
   {
     careId: 1,
@@ -12,6 +10,8 @@ export const emotionLogs: EmotionLog[] = [
 어떻게 준비해야 할지 막막하면서도 조급한 마음이 들었다.
 밤에 잠들기까지 여러 번 예상 질문을 떠올려 보았다.`,
     userName: '홍길동',
+    weather: '맑음',
+    sleeptime: 420,
   },
   {
     careId: 2,
@@ -22,6 +22,8 @@ export const emotionLogs: EmotionLog[] = [
 해야 할 일을 미뤘다는 자책감이 컸다.
 의욕이 생기지 않아 하루 종일 우울한 기분이었다.`,
     userName: '홍길동',
+    weather: '흐림',
+    sleeptime: 390,
   },
   {
     careId: 3,
@@ -32,6 +34,8 @@ export const emotionLogs: EmotionLog[] = [
 조급했던 마음을 잠시 내려놓고 싶었다.
 혼자만의 시간을 보내며 마음이 조금은 차분해졌다.`,
     userName: '홍길동',
+    weather: '비',
+    sleeptime: 480,
   },
   {
     careId: 4,
@@ -42,6 +46,8 @@ export const emotionLogs: EmotionLog[] = [
 그동안의 노력이 헛되지 않았다는 생각이 들었다.
 작은 칭찬이 큰 자신감을 주었다.`,
     userName: '홍길동',
+    weather: '맑음',
+    sleeptime: 450,
   },
   {
     careId: 5,
@@ -52,6 +58,8 @@ export const emotionLogs: EmotionLog[] = [
 충분히 설명했지만 상대방이 듣지 않으려는 듯했다.
 서운함과 답답함이 동시에 밀려왔다.`,
     userName: '홍길동',
+    weather: '바람',
+    sleeptime: 410,
   },
   {
     careId: 6,
@@ -62,6 +70,8 @@ export const emotionLogs: EmotionLog[] = [
 햇살도 좋았고 바람도 기분 좋게 불었다.
 오랜만에 마음이 가벼워지는 느낌이었다.`,
     userName: '홍길동',
+    weather: '맑음',
+    sleeptime: 510,
   },
   {
     careId: 7,
@@ -72,6 +82,8 @@ export const emotionLogs: EmotionLog[] = [
 특별한 일은 없었지만 그런 평범함이 좋았다.
 조금씩 삶에 질서가 생겨나는 느낌이었다.`,
     userName: '홍길동',
+    weather: '흐림',
+    sleeptime: 480,
   },
   {
     careId: 8,
@@ -82,6 +94,8 @@ export const emotionLogs: EmotionLog[] = [
 내가 잘하고 있는 걸까 의문이 든다.
 불안한 감정이 하루 종일 머릿속을 떠나지 않았다.`,
     userName: '홍길동',
+    weather: '비',
+    sleeptime: 390,
   },
   {
     careId: 9,
@@ -92,6 +106,8 @@ export const emotionLogs: EmotionLog[] = [
 마음 깊은 이야기를 털어놓을 곳이 없다는 건 참 외롭다.
 그래서 더 조용히 내 일에 집중했다.`,
     userName: '홍길동',
+    weather: '눈',
+    sleeptime: 400,
   },
   {
     careId: 10,
@@ -102,6 +118,8 @@ export const emotionLogs: EmotionLog[] = [
 모든 걸 완벽히 해내라는 듯한 태도에 화가 났다.
 더 이상 감정을 억누르기 어려웠다.`,
     userName: '홍길동',
+    weather: '번개',
+    sleeptime: 370,
   },
   {
     careId: 11,
@@ -112,6 +130,8 @@ export const emotionLogs: EmotionLog[] = [
 나도 누군가에게 이런 사람이 되고 싶다는 생각이 들었다.
 감사함이 가득한 하루였다.`,
     userName: '홍길동',
+    weather: '맑음',
+    sleeptime: 500,
   },
   {
     careId: 12,
@@ -122,6 +142,8 @@ export const emotionLogs: EmotionLog[] = [
 자연스럽게 시간이 흘러갔고, 나도 그 안에 있었다.
 별일 없지만 마음이 편안했다.`,
     userName: '홍길동',
+    weather: '바람',
+    sleeptime: 480,
   },
   {
     careId: 13,
@@ -132,6 +154,8 @@ export const emotionLogs: EmotionLog[] = [
 어디서부터 다시 시작해야 할지 막막했다.
 다시 마음을 추스르기까지 시간이 필요했다.`,
     userName: '홍길동',
+    weather: '흐림',
+    sleeptime: 420,
   },
   {
     careId: 14,
@@ -142,6 +166,8 @@ export const emotionLogs: EmotionLog[] = [
 좋아하는 책을 읽으며 커피를 마셨다.
 이런 시간 덕분에 다시 힘을 낼 수 있었다.`,
     userName: '홍길동',
+    weather: '맑음',
+    sleeptime: 510,
   },
   {
     careId: 15,
@@ -152,6 +178,8 @@ export const emotionLogs: EmotionLog[] = [
 기대했던 만큼 실망도 컸다.
 그래도 다시 도전해야겠다는 마음을 다잡았다.`,
     userName: '홍길동',
+    weather: '비',
+    sleeptime: 450,
   },
   {
     careId: 16,
@@ -162,6 +190,8 @@ export const emotionLogs: EmotionLog[] = [
 왜 그런 말을 아무렇지 않게 할 수 있는 걸까.
 상처받은 마음을 숨기느라 더 힘들었다.`,
     userName: '홍길동',
+    weather: '바람',
+    sleeptime: 390,
   },
   {
     careId: 17,
@@ -172,6 +202,8 @@ export const emotionLogs: EmotionLog[] = [
 무리하지 않으니 오히려 집중도 잘 됐다.
 이런 리듬도 나쁘지 않다는 걸 느꼈다.`,
     userName: '홍길동',
+    weather: '흐림',
+    sleeptime: 480,
   },
   {
     careId: 18,
@@ -182,6 +214,8 @@ export const emotionLogs: EmotionLog[] = [
 내 노력을 누군가 알아봐 줬다는 사실이 고마웠다.
 하루 종일 기분이 좋았다.`,
     userName: '홍길동',
+    weather: '맑음',
+    sleeptime: 500,
   },
   {
     careId: 19,
@@ -192,6 +226,8 @@ export const emotionLogs: EmotionLog[] = [
 혼자만 뒤처지는 것 같아 마음이 무거웠다.
 그래도 내일은 다르길 바란다.`,
     userName: '홍길동',
+    weather: '눈',
+    sleeptime: 420,
   },
   {
     careId: 20,
@@ -202,5 +238,7 @@ export const emotionLogs: EmotionLog[] = [
 하반기 목표를 다시 정리하며 다짐을 되새겼다.
 기대감과 설렘이 공존하는 하루였다.`,
     userName: '홍길동',
+    weather: '맑음',
+    sleeptime: 540,
   },
 ];
