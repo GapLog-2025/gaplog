@@ -6,12 +6,15 @@ import { MoveButton } from '@/components/Button';
 import MessageCard from '@/features/Home/ui/card/MessageCard';
 import { messageList } from '@/features/Home/data/messageList';
 import { selectTwoRandom } from '@/features/Home/utils/selectTwoRandom';
-import { CertificateFallbackCard } from './ui/card/CertificateCard';
+import { CertificateCard } from './ui/card/CertificateCard';
 // reivew
 import ReviewCard from '@/features/GapReview/ui/ReviewCard';
 import { sampleReviews } from '@/features/GapReview/data/reviewList';
 import { useNavigate } from 'react-router-dom';
 import { TimelineFallbackCard } from './ui/card/TimelineCard';
+
+//테스트 목업
+import { certificateList } from './data/cerificateList';
 
 export default function HomeSection() {
   // 메시지 2개 랜덤 가져오기
@@ -36,7 +39,19 @@ export default function HomeSection() {
         </SectionBlock>
         {/* 자격증 추천 */}
         <SectionBlock title="맞춤 자격증 추천">
-          <CertificateFallbackCard />
+          {certificateList.map((item, index) => (
+            <CertificateCard
+              key={index}
+              name={item.name}
+              description={item.description}
+              examDate={item.examDate}
+              applyPeriod={item.applyPeriod}
+              popularity={item.popularity}
+              url={item.url}
+
+              // 필요한 props 추가
+            />
+          ))}
         </SectionBlock>
       </div>
       <Divider />
