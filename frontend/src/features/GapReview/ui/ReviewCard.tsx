@@ -3,6 +3,7 @@ import { Calendar } from 'lucide-react';
 import { type GapReview } from '@/types/gapReview';
 import formatDate from '@/utils/formatDate';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react'; // 추가
 
 type CardColor = 'primary' | 'skyblue' | 'yellow' | 'green';
 
@@ -23,6 +24,7 @@ export default function ReviewCard({ review, type }: ReviewCardProps) {
     grade,
     isMajor,
   } = review;
+  const [imgError, setImgError] = useState(false); // 이미지 로딩 실패 감지
 
   const colorMap = {
     primary: {
@@ -63,8 +65,17 @@ export default function ReviewCard({ review, type }: ReviewCardProps) {
       className={`flex w-full text-start justify-between h-[264px] rounded-xl border ${theme.borderLeft} px-12 py-8 hover:shadow-lg`}
       onClick={() => navigate(`/gap-review/${gapReviewsId}`)}
     >
-      {/* img */}
-      <div className={`${theme.background} w-[200px] h-[200px] rounded-xl`} />
+      {!imgError ? (
+        <img
+          src={`/temp/profile${gapReviewsId}.png`}
+          alt="profile"
+          onError={() => setImgError(true)}
+          className="w-[200px] h-[200px] rounded-xl object-cover"
+        />
+      ) : (
+        <div className={`${theme.background} w-[200px] h-[200px] rounded-xl`} />
+      )}
+
       {/* review contents */}
       <div className="w-[70%] h-full flex flex-col justify-between">
         {/* tags */}

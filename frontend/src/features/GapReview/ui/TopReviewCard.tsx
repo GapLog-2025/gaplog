@@ -24,8 +24,8 @@ function TopReviewContent({ data }: TopReviewContentProps) {
         // 임시 갭 리뷰 전체 페이지 이동
         <button
           key={index}
-          className="flex gap-5 items-start px-3 py-1 hover:bg-gray-100 rounded-md"
-          onClick={() => navigate('gap-review')}
+          className="flex gap-5 items-start px-3 py-1 hover:bg-gray-100 rounded-md text-start"
+          onClick={() => navigate(`/gap-review/${index + 1}`)} // 임시 상세 페이지 이동
         >
           <Avatar
             alt="인기 리뷰 아바타 이미지"
