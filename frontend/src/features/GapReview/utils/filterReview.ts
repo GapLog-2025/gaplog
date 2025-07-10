@@ -83,7 +83,7 @@ export function matchReviewByKeyword(
 
   const basicMatch =
     review.title.toLowerCase().includes(lowered) ||
-    review.content.toLowerCase().includes(lowered) ||
+    // review.content.toLowerCase().includes(lowered) ||
     review.major.toLowerCase().includes(lowered) ||
     review.userName.toLowerCase().includes(lowered);
 

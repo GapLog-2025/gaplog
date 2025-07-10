@@ -25,7 +25,7 @@ function CertificateCardLayout({
 function CertificateFallbackCard() {
   const navigate = useNavigate();
   return (
-    <CertificateCardLayout classname="justify-center items-center">
+    <CertificateCardLayout classname="justify-center items-center px-10">
       <div className="bg-primary-primary-background rounded-full w-[36px] h-[36px] flex justify-center items-center">
         <BookCheck className="text-primary" />
       </div>
@@ -80,7 +80,7 @@ function CertificateCard({
     window.open(url, '_blank', 'noopener,noreferrer');
   };
   return (
-    <CertificateCardLayout classname="max-w-[400px]">
+    <CertificateCardLayout classname="max-w-[440px]">
       {/* cardTitle */}
       <div className="flex items-center justify-between">
         <div className="flex gap-4 items-center">
